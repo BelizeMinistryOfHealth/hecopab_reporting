@@ -1,0 +1,20 @@
+version: "3.8"
+
+services:
+  hecopab_db:
+    image: postgres:12
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: hecopab
+    ports:
+      - "5432:5432"
+
+  hecopab_test_db:
+    image: postgres:12
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: hecopab
+    ports:
+      - "5432:5432"
