@@ -1,0 +1,10 @@
+db:
+  username: postgres
+  password: password
+  database: hecopab
+  host: localhost
+auth:
+  jwkUrl: 'https://hecopab-dev.us.auth0.com/.well-known/jwks.json'
+  issuer: 'https://hecopab-dev.us.auth0.com/'
+  audience: 8MGNb32Ddu3tc55u7m19OW16VHWcca56
+
