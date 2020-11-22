@@ -3,28 +3,43 @@ package server
 import (
 	"context"
 	"fmt"
-	"log"
 	"net/http"
 	"os"
 	"os/signal"
 	"time"
 
 	"github.com/gorilla/mux"
+	log "github.com/sirupsen/logrus"
+
+	"moh.gov.bz/hecopab/reporting/internal/config"
+	"moh.gov.bz/hecopab/reporting/internal/db"
 )
 
 func TestHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprint(w, "OK")
 }
 
-func RegisterHandlers() *mux.Router {
+type App struct {
+	Db *db.Db
+}
+
+func RegisterHandlers(cnf config.AppConf) *mux.Router {
 	r := mux.NewRouter()
+	store, err := db.NewConnection(&cnf.Db)
+	if err != nil {
+		log.Panic("could not establish connection to the database")
+		os.Exit(1)
+	}
+
+	app := App{Db: store}
+	log.Info("Initiated App: %+v", app)
 	apiRouter := r.PathPrefix("/api").Subrouter()
 	apiRouter.HandleFunc("/test", TestHandler)
 	return r
 }
 
-func NewServer() {
-	r := RegisterHandlers()
+func NewServer(cnf config.AppConf) {
+	r := RegisterHandlers(cnf)
 	srv := &http.Server{
 		Addr: "0.0.0.0:8080",
 		// Good practice to set timeouts to avoid Slowloris attacks.
