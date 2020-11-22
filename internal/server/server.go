@@ -11,25 +11,31 @@ import (
 	_ "github.com/lib/pq"
 	log "github.com/sirupsen/logrus"
 
-	"moh.gov.bz/hecopab/reporting/internal/api"
 	"moh.gov.bz/hecopab/reporting/internal/app"
+	"moh.gov.bz/hecopab/reporting/internal/app/api"
 	"moh.gov.bz/hecopab/reporting/internal/config"
 	"moh.gov.bz/hecopab/reporting/internal/db"
 )
 
 func RegisterHandlers(cnf config.AppConf) *mux.Router {
-	r := mux.NewRouter()
 	store, err := db.NewConnection(&cnf.Db)
 	if err != nil {
 		log.Errorf("could not establish connection to the database: %+v", err)
 		os.Exit(1)
 	}
 
-	app := app.App{Db: store}
+	app := app.App{
+		Db: store,
+		Auth: app.Auth{
+			JwkUrl: cnf.Auth.JwkUrl,
+			Iss:    cnf.Auth.Issuer,
+			Aud:    cnf.Auth.Audience,
+		}}
+	router := api.API(app)
 	log.Infof("Initiated App: %+v", app)
-	apiRouter := r.PathPrefix("/api").Subrouter()
-	apiRouter.HandleFunc("/test", api.TestHandler)
-	return r
+	//apiRouter := r.PathPrefix("/api").Subrouter()
+	//apiRouter.HandleFunc("/test", api.TestHandler)
+	return router
 }
 
 func NewServer(cnf config.AppConf) {

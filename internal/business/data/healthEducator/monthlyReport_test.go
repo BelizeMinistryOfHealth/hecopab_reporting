@@ -1,4 +1,4 @@
-package db
+package healthEducator
 
 import (
 	"fmt"
@@ -10,6 +10,7 @@ import (
 	_ "github.com/lib/pq"
 
 	"moh.gov.bz/hecopab/reporting/internal/config"
+	"moh.gov.bz/hecopab/reporting/internal/db"
 	"moh.gov.bz/hecopab/reporting/internal/models"
 )
 
@@ -20,7 +21,7 @@ var cnf = config.DbConf{
 	Host:     "localhost",
 }
 
-func ClearTable(table string, db Db) error {
+func ClearTable(table string, db db.Db) error {
 	stmt := fmt.Sprintf("DELETE FROM %s", table)
 	_, err := db.Exec(stmt)
 	if err != nil {
@@ -31,25 +32,25 @@ func ClearTable(table string, db Db) error {
 
 func TestMain(m *testing.M) {
 	exitVal := m.Run()
-	db, _ := NewConnection(&cnf)
+	db, _ := db.NewConnection(&cnf)
 	ClearTable("monthly_health_educator_report", *db)
 	os.Exit(exitVal)
 }
 
-func TestDb_CreateEducatorMonthlyReport(t *testing.T) {
-	db, err := NewConnection(&cnf)
+func TestEdMonthlyReport_Create(t *testing.T) {
+	db, err := db.NewConnection(&cnf)
 	if err != nil {
 		t.Fatalf("error opening connection to database: %+v", err)
 	}
-	report := models.MonthlyReportRecord{
+	report := MonthlyReportRecord{
 		ID: uuid.New().String(),
-		Report: models.MonthlyReport{
+		Report: MonthlyReport{
 			District:       "Belize",
 			Facility:       "Rural Area 1",
 			HealthEducator: "Jane Educator",
 			Month:          11,
 			Year:           2020,
-			HealthEducation: models.HealthEducation{
+			HealthEducation: HealthEducation{
 				EducationPromotionInSchools: models.GeographicalVectors{
 					Rural: 10,
 					Urban: 0,
@@ -97,27 +98,27 @@ func TestDb_CreateEducatorMonthlyReport(t *testing.T) {
 		UpdatedBy: "",
 		UpdatedAt: nil,
 	}
-
-	err = db.CreateEducatorMonthlyReport(report)
+	ed := New(db.DB)
+	err = ed.Create(report)
 	if err != nil {
 		t.Fatalf("failed to persist a monthly report: %+v", err)
 	}
 }
 
-func TestDb_ListMonthlyEducatorReport(t *testing.T) {
-	db, err := NewConnection(&cnf)
+func TestEdMonthlyReport_List(t *testing.T) {
+	db, err := db.NewConnection(&cnf)
 	if err != nil {
 		t.Fatalf("error opening connection to database: %+v", err)
 	}
-	report := models.MonthlyReportRecord{
+	report := MonthlyReportRecord{
 		ID: uuid.New().String(),
-		Report: models.MonthlyReport{
+		Report: MonthlyReport{
 			District:       "Belize",
 			Facility:       "Rural Area 1",
 			HealthEducator: "Jane Educator",
 			Month:          11,
 			Year:           2020,
-			HealthEducation: models.HealthEducation{
+			HealthEducation: HealthEducation{
 				EducationPromotionInSchools: models.GeographicalVectors{
 					Rural: 10,
 					Urban: 0,
@@ -165,12 +166,13 @@ func TestDb_ListMonthlyEducatorReport(t *testing.T) {
 		UpdatedBy: "",
 		UpdatedAt: nil,
 	}
-	err = db.CreateEducatorMonthlyReport(report)
+	ed := New(db.DB)
+	err = ed.Create(report)
 	if err != nil {
 		t.Fatalf("failed to persist a monthly report: %+v", err)
 	}
 
-	reports, err := db.ListMonthlyEducatorReport(2020)
+	reports, err := ed.List(2020)
 	if err != nil {
 		t.Fatalf("failed to retrieve educator reports: %+v", err)
 	}

@@ -2,7 +2,7 @@
 // Instead of re-writing my middlewares to use http.Handler, I decided to write my own
 // implementation of alice that works with http.HandlerFunc instead of http.Handler.
 
-package server
+package api
 
 import "net/http"
 

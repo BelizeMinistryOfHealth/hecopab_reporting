@@ -1,10 +1,12 @@
-package server
+package api
 
 import (
 	"context"
 	"net/http"
 
 	"github.com/uris77/auth0"
+
+	"moh.gov.bz/hecopab/reporting/internal/app"
 )
 
 // EnableCors enables CORS
@@ -17,10 +19,6 @@ func EnableCors() Middleware {
 			f(w, r)
 		}
 	}
-}
-
-type JwtToken struct {
-	Email string
 }
 
 // VerifyToken is a middleware that verifies an auth0 token.
@@ -40,7 +38,7 @@ func VerifyToken(jwkUrl, aud, iss string, auth0Client auth0.Auth0) Middleware {
 				return
 			}
 			email, _ := jwtToken.Get("email")
-			ctx := context.WithValue(r.Context(), "user", JwtToken{Email: email.(string)})
+			ctx := context.WithValue(r.Context(), "user", app.JwtToken{Email: email.(string)})
 			r = r.WithContext(ctx)
 			f(w, r)
 		}
