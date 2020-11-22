@@ -1,0 +1,1 @@
+DROP TABLE monthly_health_educator_report;
