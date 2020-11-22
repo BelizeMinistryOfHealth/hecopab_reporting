@@ -1,7 +1,7 @@
 emtct_db:
   username: postgres
   password: password
-  database: emtct
+  database: hecopab
   host: localhost
 acsis_db:
   username: ''

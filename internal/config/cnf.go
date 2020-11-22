@@ -36,7 +36,7 @@ func ReadConf(fileName string) (*AppConf, error) {
 	log.Infof("using configuration file: %s", fileName)
 
 	var c DbConf
-	err := viper.Sub("emtct_db").Unmarshal(&c)
+	err := viper.Sub("db").Unmarshal(&c)
 	if err != nil {
 		return nil, err
 	}

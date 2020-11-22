@@ -2,39 +2,33 @@ package server
 
 import (
 	"context"
-	"fmt"
 	"net/http"
 	"os"
 	"os/signal"
 	"time"
 
 	"github.com/gorilla/mux"
+	_ "github.com/lib/pq"
 	log "github.com/sirupsen/logrus"
 
+	"moh.gov.bz/hecopab/reporting/internal/api"
+	"moh.gov.bz/hecopab/reporting/internal/app"
 	"moh.gov.bz/hecopab/reporting/internal/config"
 	"moh.gov.bz/hecopab/reporting/internal/db"
 )
-
-func TestHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprint(w, "OK")
-}
-
-type App struct {
-	Db *db.Db
-}
 
 func RegisterHandlers(cnf config.AppConf) *mux.Router {
 	r := mux.NewRouter()
 	store, err := db.NewConnection(&cnf.Db)
 	if err != nil {
-		log.Panic("could not establish connection to the database")
+		log.Errorf("could not establish connection to the database: %+v", err)
 		os.Exit(1)
 	}
 
-	app := App{Db: store}
-	log.Info("Initiated App: %+v", app)
+	app := app.App{Db: store}
+	log.Infof("Initiated App: %+v", app)
 	apiRouter := r.PathPrefix("/api").Subrouter()
-	apiRouter.HandleFunc("/test", TestHandler)
+	apiRouter.HandleFunc("/test", api.TestHandler)
 	return r
 }
 
