@@ -62,16 +62,26 @@ func (eg edMonthlyReportGroup) EdMonthlyReportHandlers(w http.ResponseWriter, r 
 		token := r.Context().Value("user").(app.JwtToken)
 		user := token.Email
 		year := r.URL.Query().Get("year")
-		yr, err := strconv.Atoi(year)
-		if err != nil {
-			log.WithFields(log.Fields{
-				"user":    user,
-				"handler": handlerName,
-				"year":    year,
-			}).WithError(err).Error("year must be a valid number")
-			http.Error(w, "year must be a valid number", http.StatusBadRequest)
-			return
+		var yr int
+		// Default to the current year if no year is provided.
+		if len(year) == 0 {
+			today := time.Now()
+			yr = today.Year()
 		}
+		if yr == 0 {
+			y, err := strconv.Atoi(year)
+			if err != nil {
+				log.WithFields(log.Fields{
+					"user":    user,
+					"handler": handlerName,
+					"year":    year,
+				}).WithError(err).Error("year must be a valid number")
+				http.Error(w, "year must be a valid number", http.StatusBadRequest)
+				return
+			}
+			yr = y
+		}
+
 		reports, err := eg.monthlyReport.List(yr)
 		if err != nil {
 			log.WithFields(log.Fields{

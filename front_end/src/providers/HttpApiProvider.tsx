@@ -5,7 +5,9 @@ interface ApiContext {
   httpClient: HttpApi;
 }
 
-export const HttpApiContext = React.createContext<ApiContext | null>(null);
+export const HttpApiContext = React.createContext<ApiContext>({
+  httpClient: new HttpApi('', ''),
+});
 export const useHttpApi = () => React.useContext(HttpApiContext);
 
 interface HttpApiProviderProps {
@@ -22,7 +24,7 @@ const HttpApiProvider = ({
   const httpClient = useRef<HttpApi>();
   httpClient.current = new HttpApi(idToken, baseUrl);
   const contextValue = { httpClient: httpClient.current };
-  if (httpClient.current) {
+  if (httpClient.current && httpClient.current.isValid()) {
     return (
       <HttpApiContext.Provider value={contextValue}>
         {children}

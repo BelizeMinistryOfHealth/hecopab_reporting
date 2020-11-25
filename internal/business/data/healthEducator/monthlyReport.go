@@ -24,12 +24,29 @@ func New(db *sql.DB) EdMonthlyReport {
 func (e EdMonthlyReport) Create(r MonthlyReportRecord) error {
 	stmt := `
 	INSERT INTO monthly_health_educator_report 
-	    (id, district, facility, month, year, health_education, health_educator, created_at, created_by)
-	VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9);
+	    (id, district, facility, month, year, health_education, referrals, other_services, capacity_building,
+	     community_platform_project, health_educator, created_at, created_by)
+	VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13);
 `
 	ed, err := json.Marshal(r.Report.HealthEducation)
 	if err != nil {
 		return fmt.Errorf("could not decode health education object: %w", err)
+	}
+	referrals, err := json.Marshal(r.Report.Referrals)
+	if err != nil {
+		return fmt.Errorf("could not decode referrals object: %w", err)
+	}
+	otherServices, err := json.Marshal(r.Report.OtherServices)
+	if err != nil {
+		return fmt.Errorf("could not decode other services object: %w", err)
+	}
+	capacityBuilding, err := json.Marshal(r.Report.CapacityBuilding)
+	if err != nil {
+		return fmt.Errorf("could not decode capacity building object: %w", err)
+	}
+	ccp, err := json.Marshal(r.Report.CommunityPlatformProject)
+	if err != nil {
+		return fmt.Errorf("could not decode community platform project object: %w", err)
 	}
 	_, err = e.Exec(stmt,
 		r.ID,
@@ -38,6 +55,10 @@ func (e EdMonthlyReport) Create(r MonthlyReportRecord) error {
 		r.Report.Month,
 		r.Report.Year,
 		ed,
+		referrals,
+		otherServices,
+		capacityBuilding,
+		ccp,
 		r.Report.HealthEducator,
 		r.CreatedAt,
 		r.CreatedBy)
@@ -51,7 +72,8 @@ func (e EdMonthlyReport) Create(r MonthlyReportRecord) error {
 func (e EdMonthlyReport) List(year int) ([]MonthlyReportRecord, error) {
 	stmt := `
 	SELECT 
-	       id, district, facility, month, year, health_education, health_educator, created_at, created_by, updated_at, updated_by
+	       id, district, facility, month, year, health_education, referrals, other_services, capacity_building, 
+	       community_platform_project, health_educator, created_at, created_by, updated_at, updated_by
 	FROM 
 	     monthly_health_educator_report
 	WHERE 
@@ -74,6 +96,10 @@ func (e EdMonthlyReport) List(year int) ([]MonthlyReportRecord, error) {
 			&report.Report.Month,
 			&report.Report.Year,
 			&report.Report.HealthEducation,
+			&report.Report.Referrals,
+			&report.Report.OtherServices,
+			&report.Report.CapacityBuilding,
+			&report.Report.CommunityPlatformProject,
 			&report.Report.HealthEducator,
 			&report.CreatedAt,
 			&report.CreatedBy,

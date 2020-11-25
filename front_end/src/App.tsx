@@ -5,10 +5,11 @@ import './App.css';
 import { Box, Grommet, Main } from 'grommet';
 import Welcome from './components/Welcome/Welcome';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { Sidebar } from './components/Sidebar/Sidebar';
+import Sidebar from './components/Sidebar/Sidebar';
 import Home from './pages/Home/Home';
 import NotFound from './pages/NotFound/NotFound';
 import HttpApiProvider from './providers/HttpApiProvider';
+import MonthlyReport from './pages/HealthEducator/MonthlyReport';
 
 function App() {
   const { isAuthenticated, getIdTokenClaims } = useAuth0();
@@ -36,15 +37,24 @@ function App() {
     return <></>;
   }
 
+  const sidebarButtons = [
+    { label: 'Health Educators', link: '/educator/monthlyReports' },
+    { label: 'Community Health Workers', link: '/' },
+  ];
   if (isAuthenticated && idToken) {
     return (
       <Grommet theme={grommet} full>
         <BrowserRouter>
           <Box direction={'row'} fill>
-            <Sidebar />
+            <Sidebar labels={sidebarButtons} />
             <HttpApiProvider idToken={idToken} baseUrl={REACT_APP_API_URL}>
               <Box flex>
                 <Switch>
+                  <Route
+                    path={'/educator/monthlyReports'}
+                    exact
+                    component={MonthlyReport}
+                  />
                   <Route path={'/'} exact component={Home} />
                   <Route component={NotFound} />
                 </Switch>
