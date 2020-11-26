@@ -25,6 +25,7 @@ const CapacityBuildingForm = (props: CapacityBuildingFormProps) => {
               name={'newCommunityHealthWorkersRecruited.rural'}
               placeholder={'Rural'}
               size={'small'}
+              defaultValue={state.newCommunityHealthWorkersRecruited.rural}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
                   setter({
@@ -50,6 +51,7 @@ const CapacityBuildingForm = (props: CapacityBuildingFormProps) => {
               name={'newCommunityHealthWorkersRecruited.urban'}
               placeholder={'Urban'}
               size={'small'}
+              defaultValue={state.newCommunityHealthWorkersRecruited.urban}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
                   setter({
@@ -77,6 +79,7 @@ const CapacityBuildingForm = (props: CapacityBuildingFormProps) => {
               name={'communityHealthWorkersTrained.rural'}
               placeholder={'Rural'}
               size={'small'}
+              defaultValue={state.communityHealthWorkersTrained.rural}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
                   setter({
@@ -102,6 +105,7 @@ const CapacityBuildingForm = (props: CapacityBuildingFormProps) => {
               name={'communityHealthWorkersTrained.urban'}
               placeholder={'Urban'}
               size={'small'}
+              defaultValue={state.communityHealthWorkersTrained.urban}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
                   setter({
@@ -129,6 +133,7 @@ const CapacityBuildingForm = (props: CapacityBuildingFormProps) => {
               name={'workshopsForCommunityHealthWorkers.rural'}
               placeholder={'Rural'}
               size={'small'}
+              defaultValue={state.workshopsForCommunityHealthWorkers.rural}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
                   setter({
@@ -154,6 +159,7 @@ const CapacityBuildingForm = (props: CapacityBuildingFormProps) => {
               name={'workshopsForCommunityHealthWorkers.urban'}
               placeholder={'Urban'}
               size={'small'}
+              defaultValue={state.workshopsForCommunityHealthWorkers.urban}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
                   setter({
@@ -181,6 +187,7 @@ const CapacityBuildingForm = (props: CapacityBuildingFormProps) => {
               name={'workshopsForHealthEducators.rural'}
               placeholder={'Rural'}
               size={'small'}
+              defaultValue={state.workshopsForHealthEducators.rural}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
                   setter({
@@ -206,6 +213,7 @@ const CapacityBuildingForm = (props: CapacityBuildingFormProps) => {
               name={'workshopsForHealthEducators.urban'}
               placeholder={'Urban'}
               size={'small'}
+              defaultValue={state.workshopsForHealthEducators.urban}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
                   setter({
@@ -233,6 +241,7 @@ const CapacityBuildingForm = (props: CapacityBuildingFormProps) => {
               name={'chwsInAttendanceAtMonthlyMeeting.rural'}
               placeholder={'Rural'}
               size={'small'}
+              defaultValue={state.chwsInAttendanceAtMonthlyMeeting.rural}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
                   setter({
@@ -258,6 +267,7 @@ const CapacityBuildingForm = (props: CapacityBuildingFormProps) => {
               name={'chwsInAttendanceAtMonthlyMeeting.urban'}
               placeholder={'Urban'}
               size={'small'}
+              defaultValue={state.chwsInAttendanceAtMonthlyMeeting.urban}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
                   setter({
@@ -285,6 +295,7 @@ const CapacityBuildingForm = (props: CapacityBuildingFormProps) => {
               name={'healthCommitteesFormed.rural'}
               placeholder={'Rural'}
               size={'small'}
+              defaultValue={state.healthCommitteesFormed.rural}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
                   setter({
@@ -310,6 +321,7 @@ const CapacityBuildingForm = (props: CapacityBuildingFormProps) => {
               name={'healthCommitteesFormed.urban'}
               placeholder={'Urban'}
               size={'small'}
+              defaultValue={state.healthCommitteesFormed.urban}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
                   setter({
@@ -337,6 +349,7 @@ const CapacityBuildingForm = (props: CapacityBuildingFormProps) => {
               name={'healthCommitteesTrained.rural'}
               placeholder={'Rural'}
               size={'small'}
+              defaultValue={state.healthCommitteesTrained.rural}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
                   setter({
@@ -362,6 +375,7 @@ const CapacityBuildingForm = (props: CapacityBuildingFormProps) => {
               name={'healthCommitteesTrained.urban'}
               placeholder={'Urban'}
               size={'small'}
+              defaultValue={state.healthCommitteesTrained.urban}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
                   setter({

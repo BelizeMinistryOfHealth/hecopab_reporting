@@ -1,6 +1,6 @@
-import React, {Dispatch, SetStateAction} from 'react';
+import React, { SetStateAction } from 'react';
 import { Box, FormField, Select, Text, TextInput } from 'grommet';
-import months from '../../../api/months';
+import months, { monthName } from '../../../api/months';
 import districts from '../../../api/district';
 
 export interface BasicInfoState {
@@ -28,7 +28,8 @@ const BasicInfoForm = (props: BasicInfoFormProps) => {
       >
         <TextInput
           name={'healthEducator'}
-          onBlur={(e) => setter({...state, healthEducator: e.target.value})}
+          value={state.healthEducator}
+          onChange={(e) => setter({ ...state, healthEducator: e.target.value })}
         />
       </FormField>
       <FormField name={'district'} label={'District'} required>
@@ -36,13 +37,15 @@ const BasicInfoForm = (props: BasicInfoFormProps) => {
           options={districts}
           id={'district'}
           name={'district'}
-          onChange={(e) => setter({...state, district: e.value})}
+          value={state.district}
+          onChange={(e) => setter({ ...state, district: e.value })}
         />
       </FormField>
       <FormField name={'facility'} label={'Facility'} required>
         <TextInput
           name={'facility'}
-          onBlur={(e) => setter({...state, facility: e.target.value})}
+          value={state.facility}
+          onChange={(e) => setter({ ...state, facility: e.target.value })}
         />
       </FormField>
       <FormField name={'month'} label={'Month'} required>
@@ -52,7 +55,8 @@ const BasicInfoForm = (props: BasicInfoFormProps) => {
           name={'month'}
           labelKey={'name'}
           valueKey={'value'}
-          onChange={(e) => setter({...state, month: e.value.value})}
+          value={{ value: state.month, name: monthName(state.month) }}
+          onChange={(e) => setter({ ...state, month: e.value.value })}
         />
       </FormField>
       <FormField
@@ -63,10 +67,10 @@ const BasicInfoForm = (props: BasicInfoFormProps) => {
       >
         <TextInput
           name={'year'}
-          onBlur={(e) => {
+          value={state.year}
+          onChange={(e) => {
             if (e.target.value.trim().length > 0) {
-              setter({...state, year: parseInt(e.target.value)
-            });
+              setter({ ...state, year: parseInt(e.target.value) });
             }
           }}
         />

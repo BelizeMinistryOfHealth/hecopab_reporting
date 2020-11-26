@@ -27,6 +27,7 @@ const CommunityPlatformProjectForm = (
               name={'numberOfCommunitiesUnderCp.rural'}
               placeholder={'Rural'}
               size={'small'}
+              defaultValue={state.numberOfCommunitiesUnderCp.rural}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
                   setter({
@@ -52,6 +53,7 @@ const CommunityPlatformProjectForm = (
               name={'numberOfCommunitiesUnderCp.urban'}
               placeholder={'Urban'}
               size={'small'}
+              defaultValue={state.numberOfCommunitiesUnderCp.urban}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
                   setter({
@@ -81,6 +83,7 @@ const CommunityPlatformProjectForm = (
               name={'totalNumberOfCommunitiesConfirmed.rural'}
               placeholder={'Rural'}
               size={'small'}
+              defaultValue={state.totalNumberOfCommunitiesConfirmed.rural}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
                   setter({
@@ -106,6 +109,7 @@ const CommunityPlatformProjectForm = (
               name={'totalNumberOfCommunitiesConfirmed.urban'}
               placeholder={'Urban'}
               size={'small'}
+              defaultValue={state.totalNumberOfCommunitiesConfirmed.urban}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
                   setter({
@@ -133,6 +137,7 @@ const CommunityPlatformProjectForm = (
               name={'numberOfMeetingsOrTrainingConducted.rural'}
               placeholder={'Rural'}
               size={'small'}
+              defaultValue={state.numberOfMeetingsOrTrainingConducted.rural}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
                   setter({
@@ -158,6 +163,7 @@ const CommunityPlatformProjectForm = (
               name={'numberOfMeetingsOrTrainingConducted.urban'}
               placeholder={'Urban'}
               size={'small'}
+              defaultValue={state.numberOfMeetingsOrTrainingConducted.urban}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
                   setter({
@@ -185,6 +191,7 @@ const CommunityPlatformProjectForm = (
               name={'challengesAndOrIssuesIdentified.rural'}
               placeholder={'Rural'}
               size={'small'}
+              defaultValue={state.challengesAndOrIssuesIdentified.rural}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
                   setter({
@@ -210,6 +217,7 @@ const CommunityPlatformProjectForm = (
               name={'challengesAndOrIssuesIdentified.urban'}
               placeholder={'Urban'}
               size={'small'}
+              defaultValue={state.challengesAndOrIssuesIdentified.urban}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
                   setter({
@@ -237,6 +245,7 @@ const CommunityPlatformProjectForm = (
               name={'accomplishments.rural'}
               placeholder={'Rural'}
               size={'small'}
+              defaultValue={state.accomplishments.rural}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
                   setter({
@@ -262,6 +271,7 @@ const CommunityPlatformProjectForm = (
               name={'accomplishments.urban'}
               placeholder={'Urban'}
               size={'small'}
+              defaultValue={state.accomplishments.urban}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
                   setter({
@@ -291,6 +301,7 @@ const CommunityPlatformProjectForm = (
               name={'externalAssistanceNeeded.rural'}
               placeholder={'Rural'}
               size={'small'}
+              defaultValue={state.externalAssistanceNeeded.rural}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
                   setter({
@@ -316,6 +327,7 @@ const CommunityPlatformProjectForm = (
               name={'externalAssistanceNeeded.urban'}
               placeholder={'Urban'}
               size={'small'}
+              defaultValue={state.externalAssistanceNeeded.urban}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
                   setter({

@@ -14,8 +14,8 @@ export interface HealthEducation {
   healthFairs: GeoVectors;
   wellnessDayActivities: GeoVectors;
   cleanupCampaigns: GeoVectors;
-  educationConcerningDiabetes: GeoVectors;
-  educationConcerningTobaccoCessation: GeoVectors;
+  healthEducationActivitiesConcerningDiabetes: GeoVectors;
+  healthEducationSessionsConcerningTobaccoCessation: GeoVectors;
 }
 
 export interface Referrals {
@@ -78,6 +78,6 @@ export interface MonthlyReportRecord {
   monthlyReport: MonthlyReport;
   createdBy: string;
   createdAt: Date;
-  updatedBy: string;
-  updatedAt: Date;
+  updatedBy?: string;
+  updatedAt?: Date;
 }

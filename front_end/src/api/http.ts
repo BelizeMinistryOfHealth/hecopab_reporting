@@ -29,6 +29,14 @@ class HttpApi {
     });
   }
 
+  async put(path: string, body: string) {
+    return fetch(`${this.baseUrl}/api${path}`, {
+      ...this.configObj,
+      method: 'PUT',
+      body,
+    });
+  }
+
   isValid() {
     return (
       this.accessToken.trim().length > 0 && this.accessToken.trim().length > 0

@@ -1,4 +1,4 @@
-import React, {SetStateAction} from 'react';
+import React, { SetStateAction } from 'react';
 import { HealthEducation } from '../../../api/healthEducator';
 import { Box, FormField, Text, TextInput } from 'grommet';
 
@@ -25,9 +25,16 @@ const HealthEducationForm = (props: HealthEducationFormProps) => {
               name={'healthEducationAndPromotionInSchools.rural'}
               placeholder={'Rural'}
               size={'small'}
+              defaultValue={state.healthEducationAndPromotionInSchools.rural}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  setter({...state, healthEducationAndPromotionInSchools: {...state.healthEducationAndPromotionInSchools, rural: parseInt(e.target.value)}});
+                  setter({
+                    ...state,
+                    healthEducationAndPromotionInSchools: {
+                      ...state.healthEducationAndPromotionInSchools,
+                      rural: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -44,12 +51,19 @@ const HealthEducationForm = (props: HealthEducationFormProps) => {
               name={'healthEducationAndPromotionInSchools.urban'}
               placeholder={'Urban'}
               size={'small'}
+              defaultValue={state.healthEducationAndPromotionInSchools.urban}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
                   state.healthEducationAndPromotionInSchools.urban = parseInt(
                     e.target.value
                   );
-                  setter({...state, healthEducationAndPromotionInSchools: {...state.healthEducationAndPromotionInSchools, urban: parseInt(e.target.value)}});
+                  setter({
+                    ...state,
+                    healthEducationAndPromotionInSchools: {
+                      ...state.healthEducationAndPromotionInSchools,
+                      urban: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -74,9 +88,20 @@ const HealthEducationForm = (props: HealthEducationFormProps) => {
               }
               placeholder={'Rural'}
               size={'small'}
+              defaultValue={
+                state
+                  .healthEducationAndPromotionSessionsInHospitalAndHealthCenter
+                  .rural
+              }
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  setter({...state, healthEducationAndPromotionSessionsInHospitalAndHealthCenter: {...state.healthEducationAndPromotionSessionsInHospitalAndHealthCenter, rural: parseInt(e.target.value)}});
+                  setter({
+                    ...state,
+                    healthEducationAndPromotionSessionsInHospitalAndHealthCenter: {
+                      ...state.healthEducationAndPromotionSessionsInHospitalAndHealthCenter,
+                      rural: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -97,9 +122,20 @@ const HealthEducationForm = (props: HealthEducationFormProps) => {
               }
               placeholder={'Urban'}
               size={'small'}
+              defaultValue={
+                state
+                  .healthEducationAndPromotionSessionsInHospitalAndHealthCenter
+                  .urban
+              }
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  setter({...state, healthEducationAndPromotionSessionsInHospitalAndHealthCenter: {...state.healthEducationAndPromotionSessionsInHospitalAndHealthCenter, urban: parseInt(e.target.value)}});
+                  setter({
+                    ...state,
+                    healthEducationAndPromotionSessionsInHospitalAndHealthCenter: {
+                      ...state.healthEducationAndPromotionSessionsInHospitalAndHealthCenter,
+                      urban: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -124,9 +160,18 @@ const HealthEducationForm = (props: HealthEducationFormProps) => {
               name={'healthEducationSessionsWithinTheCommunity.rural'}
               placeholder={'Rural'}
               size={'small'}
+              defaultValue={
+                state.healthEducationSessionsWithinTheCommunity.rural
+              }
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  setter({...state, healthEducationSessionsWithinTheCommunity: {...state.healthEducationSessionsWithinTheCommunity, rural: parseInt(e.target.value)}});
+                  setter({
+                    ...state,
+                    healthEducationSessionsWithinTheCommunity: {
+                      ...state.healthEducationSessionsWithinTheCommunity,
+                      rural: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -143,9 +188,18 @@ const HealthEducationForm = (props: HealthEducationFormProps) => {
               name={'healthEducationSessionsWithinTheCommunity.urban'}
               placeholder={'Urban'}
               size={'small'}
+              defaultValue={
+                state.healthEducationSessionsWithinTheCommunity.urban
+              }
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  setter({...state, healthEducationSessionsWithinTheCommunity: {...state.healthEducationSessionsWithinTheCommunity, urban: parseInt(e.target.value)}});
+                  setter({
+                    ...state,
+                    healthEducationSessionsWithinTheCommunity: {
+                      ...state.healthEducationSessionsWithinTheCommunity,
+                      urban: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -168,9 +222,16 @@ const HealthEducationForm = (props: HealthEducationFormProps) => {
               name={'homeVisits.rural'}
               placeholder={'Rural'}
               size={'small'}
+              defaultValue={state.homeVisits.rural}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  setter({...state, homeVisits: {...state.homeVisits, rural: parseInt(e.target.value)}});
+                  setter({
+                    ...state,
+                    homeVisits: {
+                      ...state.homeVisits,
+                      rural: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -187,9 +248,16 @@ const HealthEducationForm = (props: HealthEducationFormProps) => {
               name={'homeVisits.urban'}
               placeholder={'Urban'}
               size={'small'}
+              defaultValue={state.homeVisits.urban}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  setter({...state, homeVisits: {...state.homeVisits, urban: parseInt(e.target.value)}});
+                  setter({
+                    ...state,
+                    homeVisits: {
+                      ...state.homeVisits,
+                      urban: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -214,9 +282,18 @@ const HealthEducationForm = (props: HealthEducationFormProps) => {
               name={'supervisoryVisitsToCommunityHealthWorkers.rural'}
               placeholder={'Rural'}
               size={'small'}
+              defaultValue={
+                state.supervisoryVisitsToCommunityHealthWorkers.rural
+              }
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  setter({...state, supervisoryVisitsToCommunityHealthWorkers: {...state.supervisoryVisitsToCommunityHealthWorkers, rural: parseInt(e.target.value)}});
+                  setter({
+                    ...state,
+                    supervisoryVisitsToCommunityHealthWorkers: {
+                      ...state.supervisoryVisitsToCommunityHealthWorkers,
+                      rural: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -233,9 +310,18 @@ const HealthEducationForm = (props: HealthEducationFormProps) => {
               name={'supervisoryVisitsToCommunityHealthWorkers.urban'}
               placeholder={'Urban'}
               size={'small'}
+              defaultValue={
+                state.supervisoryVisitsToCommunityHealthWorkers.urban
+              }
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  setter({...state, supervisoryVisitsToCommunityHealthWorkers: {...state.supervisoryVisitsToCommunityHealthWorkers, urban: parseInt(e.target.value)}});
+                  setter({
+                    ...state,
+                    supervisoryVisitsToCommunityHealthWorkers: {
+                      ...state.supervisoryVisitsToCommunityHealthWorkers,
+                      urban: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -258,9 +344,16 @@ const HealthEducationForm = (props: HealthEducationFormProps) => {
               name={'healthFairs.rural'}
               placeholder={'Rural'}
               size={'small'}
+              defaultValue={state.healthFairs.rural}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  setter({...state, healthFairs: {...state.healthFairs, rural: parseInt(e.target.value)}});
+                  setter({
+                    ...state,
+                    healthFairs: {
+                      ...state.healthFairs,
+                      rural: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -277,9 +370,16 @@ const HealthEducationForm = (props: HealthEducationFormProps) => {
               name={'healthFairs.urban'}
               placeholder={'Urban'}
               size={'small'}
+              defaultValue={state.healthFairs.urban}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  setter({...state, healthFairs: {...state.healthFairs, urban: parseInt(e.target.value)}});
+                  setter({
+                    ...state,
+                    healthFairs: {
+                      ...state.healthFairs,
+                      urban: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -302,9 +402,16 @@ const HealthEducationForm = (props: HealthEducationFormProps) => {
               name={'wellnessDayActivities.rural'}
               placeholder={'Rural'}
               size={'small'}
+              defaultValue={state.wellnessDayActivities.rural}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  setter({...state, wellnessDayActivities: {...state.wellnessDayActivities, rural: parseInt(e.target.value)}});
+                  setter({
+                    ...state,
+                    wellnessDayActivities: {
+                      ...state.wellnessDayActivities,
+                      rural: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -321,9 +428,16 @@ const HealthEducationForm = (props: HealthEducationFormProps) => {
               name={'wellnessDayActivities.urban'}
               placeholder={'Urban'}
               size={'small'}
+              defaultValue={state.wellnessDayActivities.urban}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  setter({...state, wellnessDayActivities: {...state.wellnessDayActivities, urban: parseInt(e.target.value)}});
+                  setter({
+                    ...state,
+                    wellnessDayActivities: {
+                      ...state.wellnessDayActivities,
+                      urban: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -346,9 +460,16 @@ const HealthEducationForm = (props: HealthEducationFormProps) => {
               name={'cleanupCampaigns.rural'}
               placeholder={'Rural'}
               size={'small'}
+              defaultValue={state.cleanupCampaigns.rural}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  setter({...state, cleanupCampaigns: {...state.cleanupCampaigns, rural: parseInt(e.target.value)}});
+                  setter({
+                    ...state,
+                    cleanupCampaigns: {
+                      ...state.cleanupCampaigns,
+                      rural: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -365,9 +486,16 @@ const HealthEducationForm = (props: HealthEducationFormProps) => {
               name={'cleanupCampaigns.urban'}
               placeholder={'Urban'}
               size={'small'}
+              defaultValue={state.cleanupCampaigns.urban}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  setter({...state, cleanupCampaigns: {...state.cleanupCampaigns, urban: parseInt(e.target.value)}});
+                  setter({
+                    ...state,
+                    cleanupCampaigns: {
+                      ...state.cleanupCampaigns,
+                      urban: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -392,9 +520,18 @@ const HealthEducationForm = (props: HealthEducationFormProps) => {
               name={'educationConcerningDiabetes.rural'}
               placeholder={'Rural'}
               size={'small'}
+              defaultValue={
+                state.healthEducationActivitiesConcerningDiabetes.rural
+              }
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  setter({...state, educationConcerningDiabetes: {...state.educationConcerningDiabetes, rural: parseInt(e.target.value)}});
+                  setter({
+                    ...state,
+                    healthEducationActivitiesConcerningDiabetes: {
+                      ...state.healthEducationActivitiesConcerningDiabetes,
+                      rural: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -411,9 +548,18 @@ const HealthEducationForm = (props: HealthEducationFormProps) => {
               name={'educationConcerningDiabetes.urban'}
               placeholder={'Urban'}
               size={'small'}
+              defaultValue={
+                state.healthEducationActivitiesConcerningDiabetes.urban
+              }
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  setter({...state, educationConcerningDiabetes: {...state.educationConcerningDiabetes, urban: parseInt(e.target.value)}});
+                  setter({
+                    ...state,
+                    healthEducationActivitiesConcerningDiabetes: {
+                      ...state.healthEducationActivitiesConcerningDiabetes,
+                      urban: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -438,9 +584,18 @@ const HealthEducationForm = (props: HealthEducationFormProps) => {
               name={'educationConcerningTobaccoCessation.rural'}
               placeholder={'Rural'}
               size={'small'}
+              defaultValue={
+                state.healthEducationSessionsConcerningTobaccoCessation.rural
+              }
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  setter({...state, educationConcerningTobaccoCessation: {...state.educationConcerningTobaccoCessation, rural: parseInt(e.target.value)}});
+                  setter({
+                    ...state,
+                    healthEducationSessionsConcerningTobaccoCessation: {
+                      ...state.healthEducationSessionsConcerningTobaccoCessation,
+                      rural: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -457,9 +612,18 @@ const HealthEducationForm = (props: HealthEducationFormProps) => {
               name={'educationConcerningTobaccoCessation.urban'}
               placeholder={'Urban'}
               size={'small'}
+              defaultValue={
+                state.healthEducationSessionsConcerningTobaccoCessation.urban
+              }
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  setter({...state, educationConcerningTobaccoCessation: {...state.educationConcerningTobaccoCessation, urban: parseInt(e.target.value)}});
+                  setter({
+                    ...state,
+                    healthEducationSessionsConcerningTobaccoCessation: {
+                      ...state.healthEducationSessionsConcerningTobaccoCessation,
+                      urban: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />

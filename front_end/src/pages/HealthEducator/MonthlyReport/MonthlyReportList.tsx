@@ -10,31 +10,52 @@ import {
 } from 'grommet';
 import { MonthlyReportRecord } from '../../../api/healthEducator';
 import { monthName } from '../../../api/months';
+import { Edit } from 'grommet-icons';
 
 export interface MonthlyReportListProps {
   reports: MonthlyReportRecord[];
+  onClickEdit: (r: MonthlyReportRecord) => void;
 }
 
-const row = (data: MonthlyReportRecord) => {
+const row = (
+  data: MonthlyReportRecord,
+  onClickEdit: (r: MonthlyReportRecord) => void
+) => {
   const { monthlyReport } = data;
   return (
-    <TableRow>
-      <TableCell>{monthlyReport.year}</TableCell>
-      <TableCell>{monthName(monthlyReport.month)}</TableCell>
-      <TableCell>{monthlyReport.district}</TableCell>
-      <TableCell>{monthlyReport.facility}</TableCell>
-      <TableCell>{monthlyReport.healthEducator}</TableCell>
-      <TableCell>{data.createdBy}</TableCell>
+    <TableRow key={data.id}>
+      <TableCell>
+        <Text size={'small'}>{monthlyReport.year}</Text>
+      </TableCell>
+      <TableCell>
+        <Text size={'small'}>{monthName(monthlyReport.month)}</Text>
+      </TableCell>
+      <TableCell>
+        <Text size={'small'}>{monthlyReport.district}</Text>
+      </TableCell>
+      <TableCell>
+        <Text size={'small'}>{monthlyReport.facility}</Text>
+      </TableCell>
+      <TableCell>
+        <Text size={'small'}>{monthlyReport.healthEducator}</Text>
+      </TableCell>
+      <TableCell>
+        <Text size={'small'}>{data.createdBy}</Text>
+      </TableCell>
+      <TableCell alignContent={'end'} onClick={() => onClickEdit(data)}>
+        <Edit size={'medium'} />
+      </TableCell>
     </TableRow>
   );
 };
 
 interface MonthlyReportTableProps {
   data: MonthlyReportRecord[];
+  onClickEdit: (r: MonthlyReportRecord) => void;
 }
 
 const MonthlyReportTable = (props: MonthlyReportTableProps) => {
-  const { data } = props;
+  const { data, onClickEdit } = props;
   return (
     <Table>
       <TableHeader>
@@ -69,15 +90,16 @@ const MonthlyReportTable = (props: MonthlyReportTableProps) => {
               Created By
             </Text>
           </TableCell>
+          <TableCell size={'xxsmall'}></TableCell>
         </TableRow>
       </TableHeader>
-      <TableBody>{data.map((d) => row(d))}</TableBody>
+      <TableBody>{data.map((d) => row(d, onClickEdit))}</TableBody>
     </Table>
   );
 };
 
 const MonthlyReportList = (props: MonthlyReportListProps) => {
-  const { reports } = props;
+  const { reports, onClickEdit } = props;
   return (
     <Box
       round
@@ -88,7 +110,7 @@ const MonthlyReportList = (props: MonthlyReportListProps) => {
       animation={['fadeIn', 'slideLeft']}
       fill
     >
-      <MonthlyReportTable data={reports} />
+      <MonthlyReportTable data={reports} onClickEdit={onClickEdit} />
     </Box>
   );
 };

@@ -9,6 +9,7 @@ import EmptyResults from '../../../components/EmptyResults/EmptyResults';
 import AddActionButton from '../../../components/AddActionButton/AddActionButton';
 import MonthlyReportCreate from './MonthlyReportCreate';
 import MonthlyReportList from './MonthlyReportList';
+import MonthlyReportEdit from './MonthlyReportEdit';
 
 export interface MonthlyReportRecordState {
   reports: MonthlyReportRecord[];
@@ -66,11 +67,20 @@ const MonthlyReport = () => {
     error: undefined,
   });
   const [openNewForm, setOpenNewForm] = React.useState(false);
+  const [editReport, setEditReport] = React.useState<
+    MonthlyReportRecord | undefined
+  >(undefined);
 
   const onClickNew = () => setOpenNewForm(true);
   const onClickNewClose = () => {
     setOpenNewForm(false);
+    setEditReport(undefined);
     setReports({ reports: [], loading: true, error: undefined });
+  };
+  const onClickEdit = (report: MonthlyReportRecord) => {
+    // Make sure that the "create form" is closed.
+    setOpenNewForm(false);
+    setEditReport(report);
   };
 
   React.useEffect(() => {
@@ -93,7 +103,9 @@ const MonthlyReport = () => {
       }
     };
     if (reports.loading) {
-      fetchReports();
+      fetchReports().then(() =>
+        console.log('fetched health educator monthly reports')
+      );
     }
   }, [httpClient, reports]);
 
@@ -119,10 +131,31 @@ const MonthlyReport = () => {
     );
   }
 
+  const onUpdateReport = async (r: MonthlyReportRecord) => {
+    await httpClient.put('/educator/monthlyReport', JSON.stringify(r));
+    setEditReport(undefined);
+    setReports({ loading: true, error: undefined, reports: [] });
+  };
+
+  if (editReport) {
+    return (
+      <Scaffold onClickNew={onClickNew}>
+        <MonthlyReportEdit
+          report={editReport}
+          saveReport={onUpdateReport}
+          onClickClose={onClickNewClose}
+        />
+      </Scaffold>
+    );
+  }
+
   return (
     <Scaffold onClickNew={onClickNew}>
       {reports.reports ? (
-        <MonthlyReportList reports={reports.reports} />
+        <MonthlyReportList
+          reports={reports.reports}
+          onClickEdit={onClickEdit}
+        />
       ) : (
         <EmptyResults />
       )}

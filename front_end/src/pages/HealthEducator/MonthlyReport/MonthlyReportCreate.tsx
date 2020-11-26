@@ -64,8 +64,8 @@ const MonthlyReportCreate = (props: MonthlyReportCreateProps) => {
       healthFairs: emptyGeoVectors(),
       wellnessDayActivities: emptyGeoVectors(),
       cleanupCampaigns: emptyGeoVectors(),
-      educationConcerningDiabetes: emptyGeoVectors(),
-      educationConcerningTobaccoCessation: emptyGeoVectors(),
+      healthEducationActivitiesConcerningDiabetes: emptyGeoVectors(),
+      healthEducationSessionsConcerningTobaccoCessation: emptyGeoVectors(),
     }
   );
   const [otherServices, setOtherServices] = React.useState<OtherServices>({
@@ -121,7 +121,6 @@ const MonthlyReportCreate = (props: MonthlyReportCreateProps) => {
       month: basicInfo.month,
       year: basicInfo.year,
     };
-    console.dir({ report });
     setMonthlyReport(report);
     setEvent({
       name: FormEventName.Submit,

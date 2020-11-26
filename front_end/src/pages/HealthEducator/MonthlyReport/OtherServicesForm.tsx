@@ -24,6 +24,7 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
               name={'orsZincDistributed.rural'}
               placeholder={'Rural'}
               size={'small'}
+              defaultValue={state.orsZincDistributed.rural}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
                   setter({
@@ -49,6 +50,7 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
               name={'orsZincDistributed.urban'}
               placeholder={'Urban'}
               size={'small'}
+              defaultValue={state.orsZincDistributed.urban}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
                   setter({
@@ -76,6 +78,7 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
               name={'rapidPregnancyTest.rural'}
               placeholder={'Rural'}
               size={'small'}
+              defaultValue={state.rapidPregnancyTest.rural}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
                   setter({
@@ -101,6 +104,7 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
               name={'rapidPregnancyTest.urban'}
               placeholder={'Urban'}
               size={'small'}
+              defaultValue={state.rapidPregnancyTest.urban}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
                   setter({
@@ -128,6 +132,7 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
               name={'glucoseMonitoring.rural'}
               placeholder={'Rural'}
               size={'small'}
+              defaultValue={state.glucoseMonitoring.rural}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
                   setter({
@@ -153,6 +158,7 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
               name={'glucoseMonitoring.urban'}
               placeholder={'Urban'}
               size={'small'}
+              defaultValue={state.glucoseMonitoring.urban}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
                   setter({
@@ -180,6 +186,7 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
               name={'hyperglycemia.rural'}
               placeholder={'Rural'}
               size={'small'}
+              defaultValue={state.hyperglycemia.rural}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
                   setter({
@@ -205,6 +212,7 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
               name={'hyperglycemia.urban'}
               placeholder={'Urban'}
               size={'small'}
+              defaultValue={state.hyperglycemia.urban}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
                   setter({
@@ -232,6 +240,7 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
               name={'hypoglycemia.rural'}
               placeholder={'Rural'}
               size={'small'}
+              defaultValue={state.hypoglycemia.rural}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
                   setter({
@@ -257,6 +266,7 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
               name={'hypoglycemia.urban'}
               placeholder={'Urban'}
               size={'small'}
+              defaultValue={state.hypoglycemia.urban}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
                   setter({
@@ -284,6 +294,7 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
               name={'bloodPressure.rural'}
               placeholder={'Rural'}
               size={'small'}
+              defaultValue={state.bloodPressure.rural}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
                   setter({
@@ -309,6 +320,7 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
               name={'bloodPressure.urban'}
               placeholder={'Urban'}
               size={'small'}
+              defaultValue={state.bloodPressure.urban}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
                   setter({
@@ -336,6 +348,7 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
               name={'hypertension.rural'}
               placeholder={'Rural'}
               size={'small'}
+              defaultValue={state.hypertension.rural}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
                   setter({
@@ -361,6 +374,7 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
               name={'hypertension.urban'}
               placeholder={'Urban'}
               size={'small'}
+              defaultValue={state.hypertension.urban}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
                   setter({
@@ -388,6 +402,7 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
               name={'hypotension.rural'}
               placeholder={'Rural'}
               size={'small'}
+              defaultValue={state.hypotension.rural}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
                   setter({
@@ -413,6 +428,7 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
               name={'hypotension.urban'}
               placeholder={'Urban'}
               size={'small'}
+              defaultValue={state.hypotension.urban}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
                   setter({
@@ -440,6 +456,7 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
               name={'firstAid.rural'}
               placeholder={'Rural'}
               size={'small'}
+              defaultValue={state.firstAid.rural}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
                   setter({
@@ -465,6 +482,7 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
               name={'firstAid.urban'}
               placeholder={'Urban'}
               size={'small'}
+              defaultValue={state.firstAid.urban}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
                   setter({
@@ -492,6 +510,7 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
               name={'deaths.rural'}
               placeholder={'Rural'}
               size={'small'}
+              defaultValue={state.deaths.rural}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
                   setter({
@@ -517,6 +536,7 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
               name={'deaths.urban'}
               placeholder={'Urban'}
               size={'small'}
+              defaultValue={state.deaths.urban}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
                   setter({
@@ -544,6 +564,7 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
               name={'births.rural'}
               placeholder={'Rural'}
               size={'small'}
+              defaultValue={state.births.rural}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
                   setter({
@@ -569,6 +590,7 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
               name={'births.urban'}
               placeholder={'Urban'}
               size={'small'}
+              defaultValue={state.births.urban}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
                   setter({
