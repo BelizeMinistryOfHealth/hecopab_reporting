@@ -9,6 +9,7 @@ import {
   Text,
 } from 'grommet';
 import { MonthlyReportRecord } from '../../../api/healthEducator';
+import { monthName } from '../../../api/months';
 
 export interface MonthlyReportListProps {
   reports: MonthlyReportRecord[];
@@ -19,10 +20,11 @@ const row = (data: MonthlyReportRecord) => {
   return (
     <TableRow>
       <TableCell>{monthlyReport.year}</TableCell>
-      <TableCell>{monthlyReport.month}</TableCell>
+      <TableCell>{monthName(monthlyReport.month)}</TableCell>
       <TableCell>{monthlyReport.district}</TableCell>
       <TableCell>{monthlyReport.facility}</TableCell>
       <TableCell>{monthlyReport.healthEducator}</TableCell>
+      <TableCell>{data.createdBy}</TableCell>
     </TableRow>
   );
 };
@@ -37,11 +39,36 @@ const MonthlyReportTable = (props: MonthlyReportTableProps) => {
     <Table>
       <TableHeader>
         <TableRow>
-          <TableCell>Year</TableCell>
-          <TableCell>Month</TableCell>
-          <TableCell>District</TableCell>
-          <TableCell>Facility</TableCell>
-          <TableCell>Health Educator</TableCell>
+          <TableCell size={'xsmall'}>
+            <Text weight={'bold'} size={'large'}>
+              Year
+            </Text>
+          </TableCell>
+          <TableCell size={'xsmall'}>
+            <Text weight={'bold'} size={'large'}>
+              Month
+            </Text>
+          </TableCell>
+          <TableCell size={'small'}>
+            <Text weight={'bold'} size={'large'}>
+              District
+            </Text>
+          </TableCell>
+          <TableCell>
+            <Text weight={'bold'} size={'large'}>
+              Facility
+            </Text>
+          </TableCell>
+          <TableCell>
+            <Text weight={'bold'} size={'large'}>
+              Health Educator
+            </Text>
+          </TableCell>
+          <TableCell>
+            <Text weight={'bold'} size={'large'}>
+              Created By
+            </Text>
+          </TableCell>
         </TableRow>
       </TableHeader>
       <TableBody>{data.map((d) => row(d))}</TableBody>

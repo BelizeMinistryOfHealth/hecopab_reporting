@@ -78,6 +78,7 @@ func (e EdMonthlyReport) List(year int) ([]MonthlyReportRecord, error) {
 	     monthly_health_educator_report
 	WHERE 
 	      year = $1
+    ORDER BY year, month;
 `
 	rows, err := e.Query(stmt, year)
 	if err != nil {

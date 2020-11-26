@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { SetStateAction } from 'react';
 import { CapacityBuilding } from '../../../api/healthEducator';
 import { Box, FormField, Text, TextInput } from 'grommet';
 
 export interface CapacityBuildingFormProps {
   state: CapacityBuilding;
+  setter: React.Dispatch<SetStateAction<CapacityBuilding>>;
 }
 
 const CapacityBuildingForm = (props: CapacityBuildingFormProps) => {
-  const { state } = props;
+  const { state, setter } = props;
 
   return (
     <Box background={'#F7F7F7'} gap={'medium'} pad={'medium'}>
@@ -26,9 +27,13 @@ const CapacityBuildingForm = (props: CapacityBuildingFormProps) => {
               size={'small'}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  state.newCommunityHealthWorkersRecruited.rural = parseInt(
-                    e.target.value
-                  );
+                  setter({
+                    ...state,
+                    newCommunityHealthWorkersRecruited: {
+                      ...state.newCommunityHealthWorkersRecruited,
+                      rural: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -47,9 +52,13 @@ const CapacityBuildingForm = (props: CapacityBuildingFormProps) => {
               size={'small'}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  state.newCommunityHealthWorkersRecruited.urban = parseInt(
-                    e.target.value
-                  );
+                  setter({
+                    ...state,
+                    newCommunityHealthWorkersRecruited: {
+                      ...state.newCommunityHealthWorkersRecruited,
+                      urban: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -70,9 +79,13 @@ const CapacityBuildingForm = (props: CapacityBuildingFormProps) => {
               size={'small'}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  state.communityHealthWorkersTrained.rural = parseInt(
-                    e.target.value
-                  );
+                  setter({
+                    ...state,
+                    communityHealthWorkersTrained: {
+                      ...state.communityHealthWorkersTrained,
+                      rural: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -91,9 +104,13 @@ const CapacityBuildingForm = (props: CapacityBuildingFormProps) => {
               size={'small'}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  state.communityHealthWorkersTrained.urban = parseInt(
-                    e.target.value
-                  );
+                  setter({
+                    ...state,
+                    communityHealthWorkersTrained: {
+                      ...state.communityHealthWorkersTrained,
+                      urban: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -114,9 +131,13 @@ const CapacityBuildingForm = (props: CapacityBuildingFormProps) => {
               size={'small'}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  state.workshopsForCommunityHealthWorkers.rural = parseInt(
-                    e.target.value
-                  );
+                  setter({
+                    ...state,
+                    workshopsForCommunityHealthWorkers: {
+                      ...state.workshopsForCommunityHealthWorkers,
+                      rural: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -135,9 +156,13 @@ const CapacityBuildingForm = (props: CapacityBuildingFormProps) => {
               size={'small'}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  state.workshopsForCommunityHealthWorkers.urban = parseInt(
-                    e.target.value
-                  );
+                  setter({
+                    ...state,
+                    workshopsForCommunityHealthWorkers: {
+                      ...state.workshopsForCommunityHealthWorkers,
+                      urban: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -158,9 +183,13 @@ const CapacityBuildingForm = (props: CapacityBuildingFormProps) => {
               size={'small'}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  state.workshopsForHealthEducators.rural = parseInt(
-                    e.target.value
-                  );
+                  setter({
+                    ...state,
+                    workshopsForHealthEducators: {
+                      ...state.workshopsForHealthEducators,
+                      rural: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -179,9 +208,13 @@ const CapacityBuildingForm = (props: CapacityBuildingFormProps) => {
               size={'small'}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  state.workshopsForHealthEducators.urban = parseInt(
-                    e.target.value
-                  );
+                  setter({
+                    ...state,
+                    workshopsForHealthEducators: {
+                      ...state.workshopsForHealthEducators,
+                      urban: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -202,9 +235,13 @@ const CapacityBuildingForm = (props: CapacityBuildingFormProps) => {
               size={'small'}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  state.chwsInAttendanceAtMonthlyMeeting.rural = parseInt(
-                    e.target.value
-                  );
+                  setter({
+                    ...state,
+                    chwsInAttendanceAtMonthlyMeeting: {
+                      ...state.chwsInAttendanceAtMonthlyMeeting,
+                      rural: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -223,9 +260,13 @@ const CapacityBuildingForm = (props: CapacityBuildingFormProps) => {
               size={'small'}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  state.chwsInAttendanceAtMonthlyMeeting.urban = parseInt(
-                    e.target.value
-                  );
+                  setter({
+                    ...state,
+                    chwsInAttendanceAtMonthlyMeeting: {
+                      ...state.chwsInAttendanceAtMonthlyMeeting,
+                      urban: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -246,7 +287,13 @@ const CapacityBuildingForm = (props: CapacityBuildingFormProps) => {
               size={'small'}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  state.healthCommitteesFormed.rural = parseInt(e.target.value);
+                  setter({
+                    ...state,
+                    healthCommitteesFormed: {
+                      ...state.healthCommitteesFormed,
+                      rural: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -265,7 +312,13 @@ const CapacityBuildingForm = (props: CapacityBuildingFormProps) => {
               size={'small'}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  state.healthCommitteesFormed.urban = parseInt(e.target.value);
+                  setter({
+                    ...state,
+                    healthCommitteesFormed: {
+                      ...state.healthCommitteesFormed,
+                      urban: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -286,9 +339,13 @@ const CapacityBuildingForm = (props: CapacityBuildingFormProps) => {
               size={'small'}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  state.healthCommitteesTrained.rural = parseInt(
-                    e.target.value
-                  );
+                  setter({
+                    ...state,
+                    healthCommitteesTrained: {
+                      ...state.healthCommitteesTrained,
+                      rural: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -307,9 +364,13 @@ const CapacityBuildingForm = (props: CapacityBuildingFormProps) => {
               size={'small'}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  state.healthCommitteesTrained.urban = parseInt(
-                    e.target.value
-                  );
+                  setter({
+                    ...state,
+                    healthCommitteesTrained: {
+                      ...state.healthCommitteesTrained,
+                      urban: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />

@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { SetStateAction } from 'react';
 import { OtherServices } from '../../../api/healthEducator';
 import { Box, FormField, Text, TextInput } from 'grommet';
 
 export interface OtherServicesFormProps {
   state: OtherServices;
+  setter: React.Dispatch<SetStateAction<OtherServices>>;
 }
 
 const OtherServicesForm = (props: OtherServicesFormProps) => {
-  const { state } = props;
+  const { state, setter } = props;
   return (
     <Box background={'#F7F7F7'} gap={'medium'} pad={'medium'}>
       <Text weight={'bold'}>Other Services</Text>
@@ -25,7 +26,13 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
               size={'small'}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  state.orsZincDistributed.rural = parseInt(e.target.value);
+                  setter({
+                    ...state,
+                    orsZincDistributed: {
+                      ...state.orsZincDistributed,
+                      rural: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -44,7 +51,13 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
               size={'small'}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  state.orsZincDistributed.urban = parseInt(e.target.value);
+                  setter({
+                    ...state,
+                    orsZincDistributed: {
+                      ...state.orsZincDistributed,
+                      urban: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -65,7 +78,13 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
               size={'small'}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  state.rapidPregnancyTest.rural = parseInt(e.target.value);
+                  setter({
+                    ...state,
+                    rapidPregnancyTest: {
+                      ...state.rapidPregnancyTest,
+                      rural: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -84,7 +103,13 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
               size={'small'}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  state.rapidPregnancyTest.urban = parseInt(e.target.value);
+                  setter({
+                    ...state,
+                    rapidPregnancyTest: {
+                      ...state.rapidPregnancyTest,
+                      urban: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -105,7 +130,13 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
               size={'small'}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  state.glucoseMonitoring.rural = parseInt(e.target.value);
+                  setter({
+                    ...state,
+                    glucoseMonitoring: {
+                      ...state.glucoseMonitoring,
+                      rural: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -124,7 +155,13 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
               size={'small'}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  state.glucoseMonitoring.urban = parseInt(e.target.value);
+                  setter({
+                    ...state,
+                    glucoseMonitoring: {
+                      ...state.glucoseMonitoring,
+                      urban: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -145,7 +182,13 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
               size={'small'}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  state.hyperglycemia.rural = parseInt(e.target.value);
+                  setter({
+                    ...state,
+                    hyperglycemia: {
+                      ...state.hyperglycemia,
+                      rural: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -164,7 +207,13 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
               size={'small'}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  state.hyperglycemia.urban = parseInt(e.target.value);
+                  setter({
+                    ...state,
+                    hyperglycemia: {
+                      ...state.hyperglycemia,
+                      urban: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -185,7 +234,13 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
               size={'small'}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  state.hypoglycemia.rural = parseInt(e.target.value);
+                  setter({
+                    ...state,
+                    hypoglycemia: {
+                      ...state.hypoglycemia,
+                      rural: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -204,7 +259,13 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
               size={'small'}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  state.hypoglycemia.urban = parseInt(e.target.value);
+                  setter({
+                    ...state,
+                    hypoglycemia: {
+                      ...state.hypoglycemia,
+                      urban: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -225,7 +286,13 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
               size={'small'}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  state.bloodPressure.rural = parseInt(e.target.value);
+                  setter({
+                    ...state,
+                    bloodPressure: {
+                      ...state.bloodPressure,
+                      rural: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -244,7 +311,13 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
               size={'small'}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  state.bloodPressure.urban = parseInt(e.target.value);
+                  setter({
+                    ...state,
+                    bloodPressure: {
+                      ...state.bloodPressure,
+                      urban: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -265,7 +338,13 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
               size={'small'}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  state.hypertension.rural = parseInt(e.target.value);
+                  setter({
+                    ...state,
+                    hypertension: {
+                      ...state.hypertension,
+                      rural: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -284,7 +363,13 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
               size={'small'}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  state.hypertension.urban = parseInt(e.target.value);
+                  setter({
+                    ...state,
+                    hypertension: {
+                      ...state.hypertension,
+                      urban: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -305,7 +390,13 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
               size={'small'}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  state.hypotension.rural = parseInt(e.target.value);
+                  setter({
+                    ...state,
+                    hypotension: {
+                      ...state.hypotension,
+                      rural: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -324,7 +415,13 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
               size={'small'}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  state.hypotension.urban = parseInt(e.target.value);
+                  setter({
+                    ...state,
+                    hypotension: {
+                      ...state.hypotension,
+                      urban: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -345,7 +442,13 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
               size={'small'}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  state.firstAid.rural = parseInt(e.target.value);
+                  setter({
+                    ...state,
+                    firstAid: {
+                      ...state.firstAid,
+                      rural: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -364,7 +467,13 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
               size={'small'}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  state.firstAid.urban = parseInt(e.target.value);
+                  setter({
+                    ...state,
+                    firstAid: {
+                      ...state.firstAid,
+                      urban: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -385,7 +494,13 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
               size={'small'}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  state.deaths.rural = parseInt(e.target.value);
+                  setter({
+                    ...state,
+                    deaths: {
+                      ...state.deaths,
+                      rural: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -404,7 +519,13 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
               size={'small'}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  state.deaths.urban = parseInt(e.target.value);
+                  setter({
+                    ...state,
+                    deaths: {
+                      ...state.deaths,
+                      urban: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -425,7 +546,13 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
               size={'small'}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  state.births.rural = parseInt(e.target.value);
+                  setter({
+                    ...state,
+                    births: {
+                      ...state.births,
+                      rural: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -444,7 +571,13 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
               size={'small'}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  state.births.urban = parseInt(e.target.value);
+                  setter({
+                    ...state,
+                    births: {
+                      ...state.births,
+                      urban: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />

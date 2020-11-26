@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Dispatch, SetStateAction} from 'react';
 import { Box, FormField, Select, Text, TextInput } from 'grommet';
 import months from '../../../api/months';
 import districts from '../../../api/district';
@@ -13,9 +13,11 @@ export interface BasicInfoState {
 
 export interface BasicInfoFormProps {
   state: BasicInfoState;
+  setter: React.Dispatch<SetStateAction<BasicInfoState>>;
 }
 
 const BasicInfoForm = (props: BasicInfoFormProps) => {
+  const { state, setter } = props;
   return (
     <Box background={'#F7F7F7'} gap={'medium'} pad={'medium'}>
       <Text weight={'bold'}>Basic Information</Text>
@@ -26,7 +28,7 @@ const BasicInfoForm = (props: BasicInfoFormProps) => {
       >
         <TextInput
           name={'healthEducator'}
-          onBlur={(e) => (props.state.healthEducator = e.target.value)}
+          onBlur={(e) => setter({...state, healthEducator: e.target.value})}
         />
       </FormField>
       <FormField name={'district'} label={'District'} required>
@@ -34,13 +36,13 @@ const BasicInfoForm = (props: BasicInfoFormProps) => {
           options={districts}
           id={'district'}
           name={'district'}
-          onChange={(e) => (props.state.district = e.value)}
+          onChange={(e) => setter({...state, district: e.value})}
         />
       </FormField>
       <FormField name={'facility'} label={'Facility'} required>
         <TextInput
           name={'facility'}
-          onBlur={(e) => (props.state.facility = e.target.value)}
+          onBlur={(e) => setter({...state, facility: e.target.value})}
         />
       </FormField>
       <FormField name={'month'} label={'Month'} required>
@@ -50,7 +52,7 @@ const BasicInfoForm = (props: BasicInfoFormProps) => {
           name={'month'}
           labelKey={'name'}
           valueKey={'value'}
-          onChange={(e) => (props.state.month = e.value.value)}
+          onChange={(e) => setter({...state, month: e.value.value})}
         />
       </FormField>
       <FormField
@@ -63,7 +65,8 @@ const BasicInfoForm = (props: BasicInfoFormProps) => {
           name={'year'}
           onBlur={(e) => {
             if (e.target.value.trim().length > 0) {
-              props.state.year = parseInt(e.target.value);
+              setter({...state, year: parseInt(e.target.value)
+            });
             }
           }}
         />

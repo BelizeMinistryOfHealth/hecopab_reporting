@@ -68,7 +68,10 @@ const MonthlyReport = () => {
   const [openNewForm, setOpenNewForm] = React.useState(false);
 
   const onClickNew = () => setOpenNewForm(true);
-  const onClickNewClose = () => setOpenNewForm(false);
+  const onClickNewClose = () => {
+    setOpenNewForm(false);
+    setReports({ reports: [], loading: true, error: undefined });
+  };
 
   React.useEffect(() => {
     const fetchReports = async (): Promise<void> => {

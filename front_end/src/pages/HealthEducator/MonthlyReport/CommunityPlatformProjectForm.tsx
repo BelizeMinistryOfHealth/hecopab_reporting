@@ -1,15 +1,16 @@
-import React from 'react';
+import React, { SetStateAction } from 'react';
 import { CommunityPlatformProject } from '../../../api/healthEducator';
 import { Box, FormField, Text, TextInput } from 'grommet';
 
 export interface CommunityPlatformProjectFormProps {
   state: CommunityPlatformProject;
+  setter: React.Dispatch<SetStateAction<CommunityPlatformProject>>;
 }
 
 const CommunityPlatformProjectForm = (
   props: CommunityPlatformProjectFormProps
 ) => {
-  const { state } = props;
+  const { state, setter } = props;
 
   return (
     <Box background={'#F7F7F7'} gap={'medium'} pad={'medium'}>
@@ -28,9 +29,13 @@ const CommunityPlatformProjectForm = (
               size={'small'}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  state.numberOfCommunitiesUnderCp.rural = parseInt(
-                    e.target.value
-                  );
+                  setter({
+                    ...state,
+                    numberOfCommunitiesUnderCp: {
+                      ...state.numberOfCommunitiesUnderCp,
+                      rural: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -49,9 +54,13 @@ const CommunityPlatformProjectForm = (
               size={'small'}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  state.numberOfCommunitiesUnderCp.urban = parseInt(
-                    e.target.value
-                  );
+                  setter({
+                    ...state,
+                    numberOfCommunitiesUnderCp: {
+                      ...state.numberOfCommunitiesUnderCp,
+                      urban: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -74,9 +83,13 @@ const CommunityPlatformProjectForm = (
               size={'small'}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  state.totalNumberOfCommunitiesConfirmed.rural = parseInt(
-                    e.target.value
-                  );
+                  setter({
+                    ...state,
+                    totalNumberOfCommunitiesConfirmed: {
+                      ...state.totalNumberOfCommunitiesConfirmed,
+                      rural: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -95,9 +108,13 @@ const CommunityPlatformProjectForm = (
               size={'small'}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  state.totalNumberOfCommunitiesConfirmed.urban = parseInt(
-                    e.target.value
-                  );
+                  setter({
+                    ...state,
+                    totalNumberOfCommunitiesConfirmed: {
+                      ...state.totalNumberOfCommunitiesConfirmed,
+                      urban: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -118,9 +135,13 @@ const CommunityPlatformProjectForm = (
               size={'small'}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  state.numberOfMeetingsOrTrainingConducted.rural = parseInt(
-                    e.target.value
-                  );
+                  setter({
+                    ...state,
+                    numberOfMeetingsOrTrainingConducted: {
+                      ...state.numberOfMeetingsOrTrainingConducted,
+                      rural: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -139,9 +160,13 @@ const CommunityPlatformProjectForm = (
               size={'small'}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  state.numberOfMeetingsOrTrainingConducted.urban = parseInt(
-                    e.target.value
-                  );
+                  setter({
+                    ...state,
+                    numberOfMeetingsOrTrainingConducted: {
+                      ...state.numberOfMeetingsOrTrainingConducted,
+                      urban: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -162,9 +187,13 @@ const CommunityPlatformProjectForm = (
               size={'small'}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  state.challengesAndOrIssuesIdentified.rural = parseInt(
-                    e.target.value
-                  );
+                  setter({
+                    ...state,
+                    challengesAndOrIssuesIdentified: {
+                      ...state.challengesAndOrIssuesIdentified,
+                      rural: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -183,9 +212,13 @@ const CommunityPlatformProjectForm = (
               size={'small'}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  state.challengesAndOrIssuesIdentified.urban = parseInt(
-                    e.target.value
-                  );
+                  setter({
+                    ...state,
+                    challengesAndOrIssuesIdentified: {
+                      ...state.challengesAndOrIssuesIdentified,
+                      urban: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -206,7 +239,13 @@ const CommunityPlatformProjectForm = (
               size={'small'}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  state.accomplishments.rural = parseInt(e.target.value);
+                  setter({
+                    ...state,
+                    accomplishments: {
+                      ...state.accomplishments,
+                      rural: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -225,7 +264,13 @@ const CommunityPlatformProjectForm = (
               size={'small'}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  state.accomplishments.urban = parseInt(e.target.value);
+                  setter({
+                    ...state,
+                    accomplishments: {
+                      ...state.accomplishments,
+                      urban: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -248,9 +293,13 @@ const CommunityPlatformProjectForm = (
               size={'small'}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  state.externalAssistanceNeeded.rural = parseInt(
-                    e.target.value
-                  );
+                  setter({
+                    ...state,
+                    externalAssistanceNeeded: {
+                      ...state.externalAssistanceNeeded,
+                      rural: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />
@@ -269,9 +318,13 @@ const CommunityPlatformProjectForm = (
               size={'small'}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  state.externalAssistanceNeeded.urban = parseInt(
-                    e.target.value
-                  );
+                  setter({
+                    ...state,
+                    externalAssistanceNeeded: {
+                      ...state.externalAssistanceNeeded,
+                      urban: parseInt(e.target.value),
+                    },
+                  });
                 }
               }}
             />

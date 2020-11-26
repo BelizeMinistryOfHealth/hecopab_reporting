@@ -1,15 +1,16 @@
-import React from 'react';
+import React, { SetStateAction} from 'react';
 import { Referrals } from '../../../api/healthEducator';
 import { Box, FormField, Text, TextInput } from 'grommet';
 
 export interface ReferralsToHealthFacilitiesFormProps {
   state: Referrals;
+  setter: React.Dispatch<SetStateAction<Referrals>>
 }
 
 const ReferralsToHealthFacilitiesForm = (
   props: ReferralsToHealthFacilitiesFormProps
 ) => {
-  const { state } = props;
+  const { state, setter } = props;
 
   return (
     <Box background={'#F7F7F7'} gap={'medium'} pad={'medium'}>
@@ -28,7 +29,7 @@ const ReferralsToHealthFacilitiesForm = (
               size={'small'}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  state.familyPlanning.rural = parseInt(e.target.value);
+                  setter({...state, familyPlanning: { ...state.familyPlanning, rural: parseInt(e.target.value)}});
                 }
               }}
             />
@@ -47,7 +48,7 @@ const ReferralsToHealthFacilitiesForm = (
               size={'small'}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  state.familyPlanning.urban = parseInt(e.target.value);
+                  setter({...state, familyPlanning: {...state.familyPlanning, urban: parseInt(e.target.value)}});
                 }
               }}
             />
@@ -68,7 +69,7 @@ const ReferralsToHealthFacilitiesForm = (
               size={'small'}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  state.preconceptionCare.rural = parseInt(e.target.value);
+                  setter({...state, preconceptionCare: {...state.preconceptionCare, rural: parseInt(e.target.value)}});
                 }
               }}
             />
@@ -87,7 +88,7 @@ const ReferralsToHealthFacilitiesForm = (
               size={'small'}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  state.preconceptionCare.urban = parseInt(e.target.value);
+                  setter({...state, preconceptionCare: {...state.preconceptionCare, urban: parseInt(e.target.value)}});
                 }
               }}
             />
@@ -108,7 +109,7 @@ const ReferralsToHealthFacilitiesForm = (
               size={'small'}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  state.antenatalCare.rural = parseInt(e.target.value);
+                  setter({...state, antenatalCare: {...state.antenatalCare, rural: parseInt(e.target.value)}});
                 }
               }}
             />
@@ -127,7 +128,7 @@ const ReferralsToHealthFacilitiesForm = (
               size={'small'}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  state.antenatalCare.urban = parseInt(e.target.value);
+                  setter({...state, antenatalCare: {...state.antenatalCare, urban: parseInt(e.target.value)}});
                 }
               }}
             />
@@ -148,7 +149,7 @@ const ReferralsToHealthFacilitiesForm = (
               size={'small'}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  state.postnatalCare.rural = parseInt(e.target.value);
+                  setter({...state, postnatalCare: {...state.postnatalCare, rural: parseInt(e.target.value)}});
                 }
               }}
             />
@@ -167,7 +168,7 @@ const ReferralsToHealthFacilitiesForm = (
               size={'small'}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  state.postnatalCare.urban = parseInt(e.target.value);
+                  setter({...state, postnatalCare: {...state.postnatalCare, urban: parseInt(e.target.value)}});
                 }
               }}
             />
@@ -188,7 +189,7 @@ const ReferralsToHealthFacilitiesForm = (
               size={'small'}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  state.newbornCare.rural = parseInt(e.target.value);
+                  setter({...state, newbornCare: {...state.newbornCare, rural: parseInt(e.target.value)}});
                 }
               }}
             />
@@ -207,7 +208,7 @@ const ReferralsToHealthFacilitiesForm = (
               size={'small'}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  state.newbornCare.urban = parseInt(e.target.value);
+                  setter({...state, newbornCare: {...state.newbornCare, urban: parseInt(e.target.value)}});
                 }
               }}
             />
@@ -228,9 +229,7 @@ const ReferralsToHealthFacilitiesForm = (
               size={'small'}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  state.cervicalCancerScreening.rural = parseInt(
-                    e.target.value
-                  );
+                  setter({...state, cervicalCancerScreening: {...state.cervicalCancerScreening, rural: parseInt(e.target.value)}});
                 }
               }}
             />
@@ -249,9 +248,7 @@ const ReferralsToHealthFacilitiesForm = (
               size={'small'}
               onBlur={(e) => {
                 if (e.target.value.trim().length > 0) {
-                  state.cervicalCancerScreening.urban = parseInt(
-                    e.target.value
-                  );
+                  setter({...state, cervicalCancerScreening: {...state.cervicalCancerScreening, urban: parseInt(e.target.value)}});
                 }
               }}
             />

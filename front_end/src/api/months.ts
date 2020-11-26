@@ -13,4 +13,9 @@ const months = [
   { name: 'Dec', value: 12 },
 ];
 
+export const monthName = (v: number): string => {
+  const month = months.find((m) => m.value === v);
+  return month?.name ?? 'N/A';
+};
+
 export default months;
