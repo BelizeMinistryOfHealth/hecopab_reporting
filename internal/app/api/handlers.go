@@ -26,7 +26,7 @@ func API(app app.App) *mux.Router {
 	// Router for all educator endpoints
 	educatorRouter := r.PathPrefix("/api/educator").Subrouter()
 	educatorRouter.HandleFunc("/monthlyReport", authMid.Then(eg.EdMonthlyReportHandlers)).
-		Methods(http.MethodOptions, http.MethodPost, http.MethodGet)
+		Methods(http.MethodOptions, http.MethodPost, http.MethodGet, http.MethodPut)
 
 	return r
 }

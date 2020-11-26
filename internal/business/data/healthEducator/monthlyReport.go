@@ -117,3 +117,71 @@ func (e EdMonthlyReport) List(year int) ([]MonthlyReportRecord, error) {
 
 	return reports, nil
 }
+
+// Update updates a monthly report.
+func (e EdMonthlyReport) Update(r MonthlyReportRecord) error {
+	stmt := `
+	UPDATE monthly_health_educator_report
+	SET facility=$2, year=$3, month=$4, district=$5, health_educator=$6, health_education=$7,
+	    referrals=$8, other_services=$9, community_platform_project=$10, capacity_building=$11,
+		updated_by=$12, updated_at=$13
+	WHERE id = $1;
+`
+	_, err := e.Exec(stmt,
+		r.ID,
+		r.Report.Facility,
+		r.Report.Year,
+		r.Report.Month,
+		r.Report.District,
+		r.Report.HealthEducator,
+		r.Report.HealthEducation,
+		r.Report.Referrals,
+		r.Report.OtherServices,
+		r.Report.CommunityPlatformProject,
+		r.Report.CapacityBuilding,
+		r.UpdatedBy,
+		r.UpdatedAt)
+	if err != nil {
+		return fmt.Errorf("error updating monthly_health_educator_report: %w", err)
+	}
+	return nil
+}
+
+// GetById retrieves a monthly report that has the specified id.
+func (e EdMonthlyReport) GetById(id string) (*MonthlyReportRecord, error) {
+	stmt := `
+	SELECT 
+	       id, facility, health_educator, district, month, year, health_education, referrals, capacity_building,
+	       other_services, community_platform_project, created_at, created_by, updated_at, updated_by
+	FROM monthly_health_educator_report
+	WHERE id = $1
+	
+`
+	row := e.QueryRow(stmt, id)
+	var report MonthlyReportRecord
+	err := row.Scan(
+		&report.ID,
+		&report.Report.Facility,
+		&report.Report.HealthEducator,
+		&report.Report.District,
+		&report.Report.Month,
+		&report.Report.Year,
+		&report.Report.HealthEducation,
+		&report.Report.Referrals,
+		&report.Report.CapacityBuilding,
+		&report.Report.OtherServices,
+		&report.Report.CommunityPlatformProject,
+		&report.CreatedAt,
+		&report.CreatedBy,
+		&report.UpdatedAt,
+		&report.UpdatedBy)
+
+	switch err {
+	case sql.ErrNoRows:
+		return nil, nil
+	case nil:
+		return &report, nil
+	default:
+		return nil, fmt.Errorf("error retrieving health educator monthly report form database: %w", err)
+	}
+}

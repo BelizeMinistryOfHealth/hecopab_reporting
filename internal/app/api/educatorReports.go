@@ -100,6 +100,44 @@ func (eg edMonthlyReportGroup) EdMonthlyReportHandlers(w http.ResponseWriter, r 
 				"handler": handlerName,
 			}).WithError(err).Error("failed to encode the health educator's monthly reports")
 		}
+
+	case http.MethodPut:
+		token := r.Context().Value("user").(app.JwtToken)
+		user := token.Email
+		var report healthEducator.MonthlyReportRecord
+		if err := json.NewDecoder(r.Body).Decode(&report); err != nil {
+			log.WithFields(log.Fields{
+				"user":    user,
+				"body":    r.Body,
+				"method":  "PUT",
+				"handler": handlerName,
+			}).WithError(err).Error("failed to decode the body")
+			http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
+			return
+		}
+		report.UpdatedBy = user
+		today := time.Now()
+		report.UpdatedAt = &today
+		if err := eg.monthlyReport.Update(report); err != nil {
+			log.WithFields(log.Fields{
+				"user":    user,
+				"report":  report,
+				"method":  "PUT",
+				"handler": handlerName,
+			}).WithError(err).Error("error updating health educator monthly report")
+			http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
+			return
+		}
+		if err := json.NewEncoder(w).Encode(report); err != nil {
+			log.WithFields(log.Fields{
+				"user":    user,
+				"report":  report,
+				"method":  "PUT",
+				"handler": handlerName,
+			}).WithError(err).Error("error encoding updated health educator monthly report")
+			http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
+			return
+		}
 	}
 
 }
