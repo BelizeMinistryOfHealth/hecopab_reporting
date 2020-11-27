@@ -20,6 +20,7 @@ const HealthEducationForm = (props: HealthEducationFormProps) => {
             name={'healthEducationAndPromotionInSchools.rural'}
             contentProps={{ direction: 'row', width: 'xsmall', align: 'start' }}
             pad={false}
+            label={<Text size={'small'}>Rural</Text>}
           >
             <TextInput
               name={'healthEducationAndPromotionInSchools.rural'}
@@ -41,6 +42,7 @@ const HealthEducationForm = (props: HealthEducationFormProps) => {
           </FormField>
           <FormField
             name={'healthEducationAndPromotionInSchools.urban'}
+            label={<Text size={'small'}>Urban</Text>}
             contentProps={{
               direction: 'row',
               width: 'xsmall',
@@ -80,6 +82,7 @@ const HealthEducationForm = (props: HealthEducationFormProps) => {
               'healthEducationAndPromotionSessionsInHospitalAndHealthCenter.rural'
             }
             contentProps={{ direction: 'row', width: 'xsmall', align: 'start' }}
+            label={<Text size={'small'}>Rural</Text>}
             pad={false}
           >
             <TextInput
@@ -110,6 +113,7 @@ const HealthEducationForm = (props: HealthEducationFormProps) => {
             name={
               'healthEducationAndPromotionSessionsInHospitalAndHealthCenter.urban'
             }
+            label={<Text size={'small'}>Urban</Text>}
             contentProps={{
               direction: 'row',
               width: 'xsmall',
@@ -149,6 +153,7 @@ const HealthEducationForm = (props: HealthEducationFormProps) => {
         <Box direction={'row'} align={'start'}>
           <FormField
             name={'healthEducationSessionsWithinTheCommunity.rural'}
+            label={<Text size={'small'}>Rural</Text>}
             contentProps={{
               direction: 'row',
               width: 'xsmall',
@@ -178,6 +183,7 @@ const HealthEducationForm = (props: HealthEducationFormProps) => {
           </FormField>
           <FormField
             name={'healthEducationSessionsWithinTheCommunity.urban'}
+            label={<Text size={'small'}>Urban</Text>}
             contentProps={{
               direction: 'row',
               width: 'xsmall',
@@ -211,6 +217,7 @@ const HealthEducationForm = (props: HealthEducationFormProps) => {
         <Box direction={'row'} align={'start'}>
           <FormField
             name={'homeVisits.rural'}
+            label={<Text size={'small'}>Rural</Text>}
             contentProps={{
               direction: 'row',
               width: 'xsmall',
@@ -238,6 +245,7 @@ const HealthEducationForm = (props: HealthEducationFormProps) => {
           </FormField>
           <FormField
             name={'homeVisits.urban'}
+            label={<Text size={'small'}>Urban</Text>}
             contentProps={{
               direction: 'row',
               width: 'xsmall',
@@ -271,6 +279,7 @@ const HealthEducationForm = (props: HealthEducationFormProps) => {
         <Box direction={'row'} align={'start'}>
           <FormField
             name={'supervisoryVisitsToCommunityHealthWorkers.rural'}
+            label={<Text size={'small'}>Rural</Text>}
             contentProps={{
               direction: 'row',
               width: 'xsmall',
@@ -300,6 +309,7 @@ const HealthEducationForm = (props: HealthEducationFormProps) => {
           </FormField>
           <FormField
             name={'supervisoryVisitsToCommunityHealthWorkers.urban'}
+            label={<Text size={'small'}>Urban</Text>}
             contentProps={{
               direction: 'row',
               width: 'xsmall',
@@ -333,6 +343,7 @@ const HealthEducationForm = (props: HealthEducationFormProps) => {
         <Box direction={'row'} align={'start'}>
           <FormField
             name={'healthFairs.rural'}
+            label={<Text size={'small'}>Rural</Text>}
             contentProps={{
               direction: 'row',
               width: 'xsmall',
@@ -360,6 +371,7 @@ const HealthEducationForm = (props: HealthEducationFormProps) => {
           </FormField>
           <FormField
             name={'healthFairs.urban'}
+            label={<Text size={'small'}>Urban</Text>}
             contentProps={{
               direction: 'row',
               width: 'xsmall',
@@ -391,6 +403,7 @@ const HealthEducationForm = (props: HealthEducationFormProps) => {
         <Box direction={'row'} align={'start'}>
           <FormField
             name={'wellnessDayActivities.rural'}
+            label={<Text size={'small'}>Rural</Text>}
             contentProps={{
               direction: 'row',
               width: 'xsmall',
@@ -418,6 +431,7 @@ const HealthEducationForm = (props: HealthEducationFormProps) => {
           </FormField>
           <FormField
             name={'wellnessDayActivities.urban'}
+            label={<Text size={'small'}>Urban</Text>}
             contentProps={{
               direction: 'row',
               width: 'xsmall',
@@ -449,6 +463,7 @@ const HealthEducationForm = (props: HealthEducationFormProps) => {
         <Box direction={'row'} align={'start'}>
           <FormField
             name={'cleanupCampaigns.rural'}
+            label={<Text size={'small'}>Rural</Text>}
             contentProps={{
               direction: 'row',
               width: 'xsmall',
@@ -476,6 +491,7 @@ const HealthEducationForm = (props: HealthEducationFormProps) => {
           </FormField>
           <FormField
             name={'cleanupCampaigns.urban'}
+            label={<Text size={'small'}>Urban</Text>}
             contentProps={{
               direction: 'row',
               width: 'xsmall',
@@ -509,6 +525,7 @@ const HealthEducationForm = (props: HealthEducationFormProps) => {
         <Box direction={'row'} align={'start'}>
           <FormField
             name={'educationConcerningDiabetes.rural'}
+            label={<Text size={'small'}>Rural</Text>}
             contentProps={{
               direction: 'row',
               width: 'xsmall',
@@ -538,6 +555,7 @@ const HealthEducationForm = (props: HealthEducationFormProps) => {
           </FormField>
           <FormField
             name={'educationConcerningDiabetes.urban'}
+            label={<Text size={'small'}>Urban</Text>}
             contentProps={{
               direction: 'row',
               width: 'xsmall',
@@ -573,6 +591,7 @@ const HealthEducationForm = (props: HealthEducationFormProps) => {
         <Box direction={'row'} align={'start'}>
           <FormField
             name={'educationConcerningTobaccoCessation.rural'}
+            label={<Text size={'small'}>Rural</Text>}
             contentProps={{
               direction: 'row',
               width: 'xsmall',
@@ -602,6 +621,7 @@ const HealthEducationForm = (props: HealthEducationFormProps) => {
           </FormField>
           <FormField
             name={'educationConcerningTobaccoCessation.urban'}
+            label={<Text size={'small'}>Urban</Text>}
             contentProps={{
               direction: 'row',
               width: 'xsmall',

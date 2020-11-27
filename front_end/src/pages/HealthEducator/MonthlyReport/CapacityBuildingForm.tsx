@@ -20,6 +20,7 @@ const CapacityBuildingForm = (props: CapacityBuildingFormProps) => {
             name={'newCommunityHealthWorkersRecruited.rural'}
             contentProps={{ direction: 'row', width: 'xsmall', align: 'start' }}
             pad={false}
+            label={<Text size={'small'}>Rural</Text>}
           >
             <TextInput
               name={'newCommunityHealthWorkersRecruited.rural'}
@@ -41,6 +42,7 @@ const CapacityBuildingForm = (props: CapacityBuildingFormProps) => {
           </FormField>
           <FormField
             name={'newCommunityHealthWorkersRecruited.urban'}
+            label={<Text size={'small'}>Urban</Text>}
             contentProps={{
               direction: 'row',
               width: 'xsmall',
@@ -74,6 +76,7 @@ const CapacityBuildingForm = (props: CapacityBuildingFormProps) => {
             name={'communityHealthWorkersTrained.rural'}
             contentProps={{ direction: 'row', width: 'xsmall', align: 'start' }}
             pad={false}
+            label={<Text size={'small'}>Rural</Text>}
           >
             <TextInput
               name={'communityHealthWorkersTrained.rural'}
@@ -95,6 +98,7 @@ const CapacityBuildingForm = (props: CapacityBuildingFormProps) => {
           </FormField>
           <FormField
             name={'communityHealthWorkersTrained.urban'}
+            label={<Text size={'small'}>Urban</Text>}
             contentProps={{
               direction: 'row',
               width: 'xsmall',
@@ -128,6 +132,7 @@ const CapacityBuildingForm = (props: CapacityBuildingFormProps) => {
             name={'workshopsForCommunityHealthWorkers.rural'}
             contentProps={{ direction: 'row', width: 'xsmall', align: 'start' }}
             pad={false}
+            label={<Text size={'small'}>Rural</Text>}
           >
             <TextInput
               name={'workshopsForCommunityHealthWorkers.rural'}
@@ -149,6 +154,7 @@ const CapacityBuildingForm = (props: CapacityBuildingFormProps) => {
           </FormField>
           <FormField
             name={'workshopsForCommunityHealthWorkers.urban'}
+            label={<Text size={'small'}>Urban</Text>}
             contentProps={{
               direction: 'row',
               width: 'xsmall',
@@ -181,6 +187,7 @@ const CapacityBuildingForm = (props: CapacityBuildingFormProps) => {
           <FormField
             name={'workshopsForHealthEducators.rural'}
             contentProps={{ direction: 'row', width: 'xsmall', align: 'start' }}
+            label={<Text size={'small'}>Rural</Text>}
             pad={false}
           >
             <TextInput
@@ -203,6 +210,7 @@ const CapacityBuildingForm = (props: CapacityBuildingFormProps) => {
           </FormField>
           <FormField
             name={'workshopsForHealthEducators.urban'}
+            label={<Text size={'small'}>Urban</Text>}
             contentProps={{
               direction: 'row',
               width: 'xsmall',
@@ -236,6 +244,7 @@ const CapacityBuildingForm = (props: CapacityBuildingFormProps) => {
             name={'chwsInAttendanceAtMonthlyMeeting.rural'}
             contentProps={{ direction: 'row', width: 'xsmall', align: 'start' }}
             pad={false}
+            label={<Text size={'small'}>Rural</Text>}
           >
             <TextInput
               name={'chwsInAttendanceAtMonthlyMeeting.rural'}
@@ -257,6 +266,7 @@ const CapacityBuildingForm = (props: CapacityBuildingFormProps) => {
           </FormField>
           <FormField
             name={'chwsInAttendanceAtMonthlyMeeting.urban'}
+            label={<Text size={'small'}>Urban</Text>}
             contentProps={{
               direction: 'row',
               width: 'xsmall',
@@ -290,6 +300,7 @@ const CapacityBuildingForm = (props: CapacityBuildingFormProps) => {
             name={'healthCommitteesFormed.rural'}
             contentProps={{ direction: 'row', width: 'xsmall', align: 'start' }}
             pad={false}
+            label={<Text size={'small'}>Rural</Text>}
           >
             <TextInput
               name={'healthCommitteesFormed.rural'}
@@ -316,6 +327,7 @@ const CapacityBuildingForm = (props: CapacityBuildingFormProps) => {
               width: 'xsmall',
               align: 'center',
             }}
+            label={<Text size={'small'}>Urban</Text>}
           >
             <TextInput
               name={'healthCommitteesFormed.urban'}
@@ -344,6 +356,7 @@ const CapacityBuildingForm = (props: CapacityBuildingFormProps) => {
             name={'healthCommitteesTrained.rural'}
             contentProps={{ direction: 'row', width: 'xsmall', align: 'start' }}
             pad={false}
+            label={<Text size={'small'}>Rural</Text>}
           >
             <TextInput
               name={'healthCommitteesTrained.rural'}
@@ -370,6 +383,7 @@ const CapacityBuildingForm = (props: CapacityBuildingFormProps) => {
               width: 'xsmall',
               align: 'center',
             }}
+            label={<Text size={'small'}>Urban</Text>}
           >
             <TextInput
               name={'healthCommitteesTrained.urban'}

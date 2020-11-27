@@ -22,6 +22,7 @@ const CommunityPlatformProjectForm = (
             name={'numberOfCommunitiesUnderCp.rural'}
             contentProps={{ direction: 'row', width: 'xsmall', align: 'start' }}
             pad={false}
+            label={<Text size={'small'}>Rural</Text>}
           >
             <TextInput
               name={'numberOfCommunitiesUnderCp.rural'}
@@ -43,6 +44,7 @@ const CommunityPlatformProjectForm = (
           </FormField>
           <FormField
             name={'numberOfCommunitiesUnderCp.urban'}
+            label={<Text size={'small'}>Urban</Text>}
             contentProps={{
               direction: 'row',
               width: 'xsmall',
@@ -78,6 +80,7 @@ const CommunityPlatformProjectForm = (
             name={'totalNumberOfCommunitiesConfirmed.rural'}
             contentProps={{ direction: 'row', width: 'xsmall', align: 'start' }}
             pad={false}
+            label={<Text size={'small'}>Rural</Text>}
           >
             <TextInput
               name={'totalNumberOfCommunitiesConfirmed.rural'}
@@ -99,6 +102,7 @@ const CommunityPlatformProjectForm = (
           </FormField>
           <FormField
             name={'totalNumberOfCommunitiesConfirmed.urban'}
+            label={<Text size={'small'}>Urban</Text>}
             contentProps={{
               direction: 'row',
               width: 'xsmall',
@@ -132,6 +136,7 @@ const CommunityPlatformProjectForm = (
             name={'numberOfMeetingsOrTrainingConducted.rural'}
             contentProps={{ direction: 'row', width: 'xsmall', align: 'start' }}
             pad={false}
+            label={<Text size={'small'}>Rural</Text>}
           >
             <TextInput
               name={'numberOfMeetingsOrTrainingConducted.rural'}
@@ -153,6 +158,7 @@ const CommunityPlatformProjectForm = (
           </FormField>
           <FormField
             name={'numberOfMeetingsOrTrainingConducted.urban'}
+            label={<Text size={'small'}>Urban</Text>}
             contentProps={{
               direction: 'row',
               width: 'xsmall',
@@ -186,6 +192,7 @@ const CommunityPlatformProjectForm = (
             name={'challengesAndOrIssuesIdentified.rural'}
             contentProps={{ direction: 'row', width: 'xsmall', align: 'start' }}
             pad={false}
+            label={<Text size={'small'}>Rural</Text>}
           >
             <TextInput
               name={'challengesAndOrIssuesIdentified.rural'}
@@ -207,6 +214,7 @@ const CommunityPlatformProjectForm = (
           </FormField>
           <FormField
             name={'challengesAndOrIssuesIdentified.urban'}
+            label={<Text size={'small'}>Urban</Text>}
             contentProps={{
               direction: 'row',
               width: 'xsmall',
@@ -240,6 +248,7 @@ const CommunityPlatformProjectForm = (
             name={'accomplishments.rural'}
             contentProps={{ direction: 'row', width: 'xsmall', align: 'start' }}
             pad={false}
+            label={<Text size={'small'}>Rural</Text>}
           >
             <TextInput
               name={'accomplishments.rural'}
@@ -261,6 +270,7 @@ const CommunityPlatformProjectForm = (
           </FormField>
           <FormField
             name={'accomplishments.urban'}
+            label={<Text size={'small'}>Urban</Text>}
             contentProps={{
               direction: 'row',
               width: 'xsmall',
@@ -296,6 +306,7 @@ const CommunityPlatformProjectForm = (
             name={'externalAssistanceNeeded.rural'}
             contentProps={{ direction: 'row', width: 'xsmall', align: 'start' }}
             pad={false}
+            label={<Text size={'small'}>Rural</Text>}
           >
             <TextInput
               name={'externalAssistanceNeeded.rural'}
@@ -317,6 +328,7 @@ const CommunityPlatformProjectForm = (
           </FormField>
           <FormField
             name={'externalAssistanceNeeded.urban'}
+            label={<Text size={'small'}>Urban</Text>}
             contentProps={{
               direction: 'row',
               width: 'xsmall',

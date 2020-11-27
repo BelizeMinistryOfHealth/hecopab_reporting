@@ -18,6 +18,7 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
           <FormField
             name={'orsZincDistributed.rural'}
             contentProps={{ direction: 'row', width: 'xsmall', align: 'start' }}
+            label={<Text size={'small'}>Rural</Text>}
             pad={false}
           >
             <TextInput
@@ -40,6 +41,7 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
           </FormField>
           <FormField
             name={'orsZincDistributed.urban'}
+            label={<Text size={'small'}>Urban</Text>}
             contentProps={{
               direction: 'row',
               width: 'xsmall',
@@ -73,6 +75,7 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
             name={'rapidPregnancyTest.rural'}
             contentProps={{ direction: 'row', width: 'xsmall', align: 'start' }}
             pad={false}
+            label={<Text size={'small'}>Rural</Text>}
           >
             <TextInput
               name={'rapidPregnancyTest.rural'}
@@ -94,6 +97,7 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
           </FormField>
           <FormField
             name={'rapidPregnancyTest.urban'}
+            label={<Text size={'small'}>Urban</Text>}
             contentProps={{
               direction: 'row',
               width: 'xsmall',
@@ -126,6 +130,7 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
           <FormField
             name={'glucoseMonitoring.rural'}
             contentProps={{ direction: 'row', width: 'xsmall', align: 'start' }}
+            label={<Text size={'small'}>Rural</Text>}
             pad={false}
           >
             <TextInput
@@ -148,6 +153,7 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
           </FormField>
           <FormField
             name={'glucoseMonitoring.urban'}
+            label={<Text size={'small'}>Urban</Text>}
             contentProps={{
               direction: 'row',
               width: 'xsmall',
@@ -181,6 +187,7 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
             name={'hyperglycemia.rural'}
             contentProps={{ direction: 'row', width: 'xsmall', align: 'start' }}
             pad={false}
+            label={<Text size={'small'}>Rural</Text>}
           >
             <TextInput
               name={'hyperglycemia.rural'}
@@ -202,6 +209,7 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
           </FormField>
           <FormField
             name={'hyperglycemia.urban'}
+            label={<Text size={'small'}>Urban</Text>}
             contentProps={{
               direction: 'row',
               width: 'xsmall',
@@ -233,6 +241,7 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
         <Box direction={'row'} align={'start'}>
           <FormField
             name={'hypoglycemia.rural'}
+            label={<Text size={'small'}>Rural</Text>}
             contentProps={{ direction: 'row', width: 'xsmall', align: 'start' }}
             pad={false}
           >
@@ -256,6 +265,7 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
           </FormField>
           <FormField
             name={'hypoglycemia.urban'}
+            label={<Text size={'small'}>Urban</Text>}
             contentProps={{
               direction: 'row',
               width: 'xsmall',
@@ -287,6 +297,7 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
         <Box direction={'row'} align={'start'}>
           <FormField
             name={'bloodPressure.rural'}
+            label={<Text size={'small'}>Rural</Text>}
             contentProps={{ direction: 'row', width: 'xsmall', align: 'start' }}
             pad={false}
           >
@@ -310,6 +321,7 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
           </FormField>
           <FormField
             name={'bloodPressure.urban'}
+            label={<Text size={'small'}>Urban</Text>}
             contentProps={{
               direction: 'row',
               width: 'xsmall',
@@ -341,6 +353,7 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
         <Box direction={'row'} align={'start'}>
           <FormField
             name={'hypertension.rural'}
+            label={<Text size={'small'}>Rural</Text>}
             contentProps={{ direction: 'row', width: 'xsmall', align: 'start' }}
             pad={false}
           >
@@ -364,6 +377,7 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
           </FormField>
           <FormField
             name={'hypertension.urban'}
+            label={<Text size={'small'}>Urban</Text>}
             contentProps={{
               direction: 'row',
               width: 'xsmall',
@@ -395,6 +409,7 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
         <Box direction={'row'} align={'start'}>
           <FormField
             name={'hypotension.rural'}
+            label={<Text size={'small'}>Rural</Text>}
             contentProps={{ direction: 'row', width: 'xsmall', align: 'start' }}
             pad={false}
           >
@@ -418,6 +433,7 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
           </FormField>
           <FormField
             name={'hypotension.urban'}
+            label={<Text size={'small'}>Urban</Text>}
             contentProps={{
               direction: 'row',
               width: 'xsmall',
@@ -449,6 +465,7 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
         <Box direction={'row'} align={'start'}>
           <FormField
             name={'firstAid.rural'}
+            label={<Text size={'small'}>Rural</Text>}
             contentProps={{ direction: 'row', width: 'xsmall', align: 'start' }}
             pad={false}
           >
@@ -472,6 +489,7 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
           </FormField>
           <FormField
             name={'firstAid.urban'}
+            label={<Text size={'small'}>Urban</Text>}
             contentProps={{
               direction: 'row',
               width: 'xsmall',
@@ -503,6 +521,7 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
         <Box direction={'row'} align={'start'}>
           <FormField
             name={'deaths.rural'}
+            label={<Text size={'small'}>Rural</Text>}
             contentProps={{ direction: 'row', width: 'xsmall', align: 'start' }}
             pad={false}
           >
@@ -526,6 +545,7 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
           </FormField>
           <FormField
             name={'deaths.urban'}
+            label={<Text size={'small'}>Urban</Text>}
             contentProps={{
               direction: 'row',
               width: 'xsmall',
@@ -557,6 +577,7 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
         <Box direction={'row'} align={'start'}>
           <FormField
             name={'births.rural'}
+            label={<Text size={'small'}>Rural</Text>}
             contentProps={{ direction: 'row', width: 'xsmall', align: 'start' }}
             pad={false}
           >
@@ -580,6 +601,7 @@ const OtherServicesForm = (props: OtherServicesFormProps) => {
           </FormField>
           <FormField
             name={'births.urban'}
+            label={<Text size={'small'}>Urban</Text>}
             contentProps={{
               direction: 'row',
               width: 'xsmall',

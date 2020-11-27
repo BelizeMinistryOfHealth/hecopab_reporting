@@ -20,6 +20,7 @@ const ReferralsToHealthFacilitiesForm = (
         <Box direction={'row'} align={'start'}>
           <FormField
             name={'familyPlanning.rural'}
+            label={<Text size={'small'}>Rural</Text>}
             contentProps={{ direction: 'row', width: 'xsmall', align: 'start' }}
             pad={false}
           >
@@ -43,6 +44,7 @@ const ReferralsToHealthFacilitiesForm = (
           </FormField>
           <FormField
             name={'familyPlanning.urban'}
+            label={<Text size={'small'}>Urban</Text>}
             contentProps={{
               direction: 'row',
               width: 'xsmall',
@@ -74,6 +76,7 @@ const ReferralsToHealthFacilitiesForm = (
         <Box direction={'row'} align={'start'}>
           <FormField
             name={'preconceptionCare.rural'}
+            label={<Text size={'small'}>Rural</Text>}
             contentProps={{ direction: 'row', width: 'xsmall', align: 'start' }}
             pad={false}
           >
@@ -97,6 +100,7 @@ const ReferralsToHealthFacilitiesForm = (
           </FormField>
           <FormField
             name={'preconceptionCare.urban'}
+            label={<Text size={'small'}>Urban</Text>}
             contentProps={{
               direction: 'row',
               width: 'xsmall',
@@ -128,6 +132,7 @@ const ReferralsToHealthFacilitiesForm = (
         <Box direction={'row'} align={'start'}>
           <FormField
             name={'antenatalCare.rural'}
+            label={<Text size={'small'}>Rural</Text>}
             contentProps={{ direction: 'row', width: 'xsmall', align: 'start' }}
             pad={false}
           >
@@ -151,6 +156,7 @@ const ReferralsToHealthFacilitiesForm = (
           </FormField>
           <FormField
             name={'antenatalCare.urban'}
+            label={<Text size={'small'}>Urban</Text>}
             contentProps={{
               direction: 'row',
               width: 'xsmall',
@@ -182,6 +188,7 @@ const ReferralsToHealthFacilitiesForm = (
         <Box direction={'row'} align={'start'}>
           <FormField
             name={'postnatalCare.rural'}
+            label={<Text size={'small'}>Rural</Text>}
             contentProps={{ direction: 'row', width: 'xsmall', align: 'start' }}
             pad={false}
           >
@@ -205,6 +212,7 @@ const ReferralsToHealthFacilitiesForm = (
           </FormField>
           <FormField
             name={'postnatalCare.urban'}
+            label={<Text size={'small'}>Urban</Text>}
             contentProps={{
               direction: 'row',
               width: 'xsmall',
@@ -236,6 +244,7 @@ const ReferralsToHealthFacilitiesForm = (
         <Box direction={'row'} align={'start'}>
           <FormField
             name={'newbornCare.rural'}
+            label={<Text size={'small'}>Rural</Text>}
             contentProps={{ direction: 'row', width: 'xsmall', align: 'start' }}
             pad={false}
           >
@@ -259,6 +268,7 @@ const ReferralsToHealthFacilitiesForm = (
           </FormField>
           <FormField
             name={'newbornCare.urban'}
+            label={<Text size={'small'}>Urban</Text>}
             contentProps={{
               direction: 'row',
               width: 'xsmall',
@@ -290,6 +300,7 @@ const ReferralsToHealthFacilitiesForm = (
         <Box direction={'row'} align={'start'}>
           <FormField
             name={'cervicalCancerScreening.rural'}
+            label={<Text size={'small'}>Rural</Text>}
             contentProps={{ direction: 'row', width: 'xsmall', align: 'start' }}
             pad={false}
           >
@@ -313,6 +324,7 @@ const ReferralsToHealthFacilitiesForm = (
           </FormField>
           <FormField
             name={'cervicalCancerScreening.urban'}
+            label={<Text size={'small'}>Urban</Text>}
             contentProps={{
               direction: 'row',
               width: 'xsmall',
