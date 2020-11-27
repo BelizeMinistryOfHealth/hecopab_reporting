@@ -12,7 +12,11 @@ type Db struct {
 }
 
 func NewConnection(cnf *config.DbConf) (*Db, error) {
-	connstr := fmt.Sprintf("user=%s dbname=%s password=%s host=%s sslmode=disable", cnf.Username, cnf.Database, cnf.Password, cnf.Host)
+	var connstr = fmt.Sprintf("user=%s dbname=%s password=%s host=%s port=%s", cnf.Username, cnf.Database, cnf.Password, cnf.Host, cnf.Port)
+	if cnf.Sslmode == "disable" {
+		connstr = fmt.Sprintf("user=%s dbname=%s password=%s host=%s port=%s sslmode=disable", cnf.Username, cnf.Database, cnf.Password, cnf.Host, cnf.Port)
+	}
+
 	db, err := sql.Open("postgres", connstr)
 	if err != nil {
 		return nil, err

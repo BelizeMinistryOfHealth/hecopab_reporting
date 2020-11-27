@@ -1,13 +1,9 @@
-emtct_db:
+db:
   username: postgres
   password: password
   database: hecopab
   host: localhost
-acsis_db:
-  username: ''
-  password: ''
-  database: ''
-  host: ''
+  port: 5432
 auth:
   jwkUrl: 'https://emtct-dev.us.auth0.com/.well-known/jwks.json'
   issuer: 'https://emtct-dev.us.auth0.com/'

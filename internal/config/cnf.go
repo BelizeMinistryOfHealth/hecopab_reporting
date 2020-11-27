@@ -8,6 +8,8 @@ type DbConf struct {
 	Password string
 	Database string
 	Host     string
+	Port     string
+	Sslmode  string
 }
 
 type AuthConf struct {

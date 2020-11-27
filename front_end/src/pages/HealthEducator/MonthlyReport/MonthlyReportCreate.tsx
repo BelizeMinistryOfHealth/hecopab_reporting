@@ -144,7 +144,7 @@ const MonthlyReportCreate = (props: MonthlyReportCreateProps) => {
     if (event?.name === FormEventName.Submit) {
       postReport();
     }
-  }, [monthlyReport, event]);
+  }, [monthlyReport, event, httpClient, onClickClose]);
 
   if (event?.name === FormEventName.Submit) {
     return (

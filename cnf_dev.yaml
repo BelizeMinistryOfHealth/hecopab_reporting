@@ -3,6 +3,8 @@ db:
   password: password
   database: hecopab
   host: localhost
+  port: 5432
+  sslmode: disable
 auth:
   jwkUrl: 'https://hecopab-dev.us.auth0.com/.well-known/jwks.json'
   issuer: 'https://hecopab-dev.us.auth0.com/'
