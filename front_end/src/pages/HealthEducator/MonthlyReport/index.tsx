@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import { MonthlyReportRecord } from '../../../api/healthEducator';
 import { useHttpApi } from '../../../providers/HttpApiProvider';
-import { Box, Text, TextInput } from 'grommet';
+import { Box, Form, Text, TextInput } from 'grommet';
 import Spinner from '../../../components/Spinner/Spinner';
 import AppHeader from '../../../components/AppHeader/AppHeader';
 import { Search } from 'grommet-icons';
@@ -20,9 +20,12 @@ export interface MonthlyReportRecordState {
 interface ScaffoldProps {
   onClickNew: () => void;
   children: ReactNode;
+  onSearch: (year: number) => void;
 }
 const Scaffold = (props: ScaffoldProps) => {
-  const { onClickNew, children } = props;
+  const { onClickNew, children, onSearch } = props;
+  const [yearToSearch, setYearToSearch] = React.useState<string>();
+
   return (
     <Box background={'light-3'} fill>
       <AppHeader
@@ -30,19 +33,37 @@ const Scaffold = (props: ScaffoldProps) => {
         actionComponent={<AddActionButton onClick={onClickNew} />}
       />
       <Box flex overflow='auto' gap='medium' pad='medium'>
-        <Box
-          flex={false}
-          overflow='auto'
-          round='large'
-          background={{ color: 'dark-5', opacity: 'weak' }}
-          direction='row'
-          align='center'
-          pad={{ horizontal: 'medium', vertical: 'small' }}
-          margin={{ horizontal: 'medium', top: 'medium' }}
+        <Form
+          onSubmit={() => {
+            if (yearToSearch != undefined) {
+              try {
+                const yr = parseInt(yearToSearch);
+                onSearch(yr);
+              } catch (e) {
+                console.error('invalid year');
+              }
+            }
+          }}
         >
-          <Search color={'brand'} />
-          <TextInput plain placeholder={'Search by Year'} type={'search'} />
-        </Box>
+          <Box
+            flex={false}
+            overflow='auto'
+            round='large'
+            background={{ color: 'dark-5', opacity: 'weak' }}
+            direction='row'
+            align='center'
+            pad={{ horizontal: 'medium', vertical: 'small' }}
+            margin={{ horizontal: 'medium', top: 'medium' }}
+          >
+            <Search color={'brand'} />
+            <TextInput
+              plain
+              placeholder={'Search by Year'}
+              type={'search'}
+              onChange={(e) => setYearToSearch(e.currentTarget.value)}
+            />
+          </Box>
+        </Form>
         <Box
           flex={false}
           direction={'row-responsive'}
@@ -59,6 +80,12 @@ const Scaffold = (props: ScaffoldProps) => {
   );
 };
 
+interface SearchParam {
+  year: number;
+  loading: boolean;
+  error?: Error;
+}
+
 const MonthlyReport = () => {
   const { httpClient } = useHttpApi();
   const [reports, setReports] = React.useState<MonthlyReportRecordState>({
@@ -70,6 +97,15 @@ const MonthlyReport = () => {
   const [editReport, setEditReport] = React.useState<
     MonthlyReportRecord | undefined
   >(undefined);
+  const [searchParam, setSearchParam] = React.useState<SearchParam>({
+    year: 2020,
+    loading: false,
+  });
+
+  const onSearch = (year: number) => {
+    console.log('searching');
+    setSearchParam({ year, loading: true });
+  };
 
   const onClickNew = () => setOpenNewForm(true);
   const onClickNewClose = () => {
@@ -85,15 +121,18 @@ const MonthlyReport = () => {
 
   React.useEffect(() => {
     const fetchReports = async (): Promise<void> => {
+      let url = '/educator/monthlyReport';
       try {
-        const results: MonthlyReportRecord[] = await httpClient.get(
-          '/educator/monthlyReport'
-        );
+        if (searchParam.loading && searchParam.year) {
+          url = `${url}?year=${searchParam.year}`;
+        }
+        const results: MonthlyReportRecord[] = await httpClient.get(url);
         setReports({
           reports: results,
           loading: false,
           error: undefined,
         });
+        setSearchParam({ ...searchParam, loading: false });
       } catch (e) {
         setReports({
           reports: [],
@@ -102,14 +141,14 @@ const MonthlyReport = () => {
         });
       }
     };
-    if (reports.loading) {
+    if (reports.loading || searchParam.loading) {
       fetchReports().then(() =>
         console.log('fetched health educator monthly reports')
       );
     }
-  }, [httpClient, reports]);
+  }, [httpClient, reports, searchParam]);
 
-  if (reports.loading) {
+  if (reports.loading || searchParam.loading) {
     return (
       <Box
         align={'center'}
@@ -125,7 +164,7 @@ const MonthlyReport = () => {
 
   if (openNewForm) {
     return (
-      <Scaffold onClickNew={onClickNew}>
+      <Scaffold onClickNew={onClickNew} onSearch={onSearch}>
         <MonthlyReportCreate onClickClose={onClickNewClose} />
       </Scaffold>
     );
@@ -139,7 +178,7 @@ const MonthlyReport = () => {
 
   if (editReport) {
     return (
-      <Scaffold onClickNew={onClickNew}>
+      <Scaffold onClickNew={onClickNew} onSearch={onSearch}>
         <MonthlyReportEdit
           report={editReport}
           saveReport={onUpdateReport}
@@ -150,7 +189,7 @@ const MonthlyReport = () => {
   }
 
   return (
-    <Scaffold onClickNew={onClickNew}>
+    <Scaffold onClickNew={onClickNew} onSearch={onSearch}>
       {reports.reports ? (
         <MonthlyReportList
           reports={reports.reports}
