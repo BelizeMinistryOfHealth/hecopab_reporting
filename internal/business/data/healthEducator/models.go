@@ -166,5 +166,5 @@ type MonthlyReportRecord struct {
 	CreatedBy string        `json:"createdBy"`
 	CreatedAt time.Time     `json:"createdAt"`
 	UpdatedBy string        `json:"updatedBy"`
-	UpdatedAt *time.Time    `josn:"updatedAt"`
+	UpdatedAt *time.Time    `json:"updatedAt"`
 }

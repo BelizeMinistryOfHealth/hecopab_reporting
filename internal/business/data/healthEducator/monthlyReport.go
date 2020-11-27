@@ -78,13 +78,13 @@ func (e EdMonthlyReport) List(year int) ([]MonthlyReportRecord, error) {
 	     monthly_health_educator_report
 	WHERE 
 	      year = $1
-    ORDER BY year, month;
+    ORDER BY month;
 `
 	rows, err := e.Query(stmt, year)
-	if err != nil {
-		return nil, fmt.Errorf("error retrieving montly educator reports from the database: %w", err)
-	}
 	defer rows.Close()
+	if err != nil {
+		return nil, fmt.Errorf("error retrieving monthly educator reports from the database: %w", err)
+	}
 
 	var reports []MonthlyReportRecord
 	for rows.Next() {
