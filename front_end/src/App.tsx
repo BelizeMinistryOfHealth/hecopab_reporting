@@ -12,6 +12,7 @@ import HttpApiProvider from './providers/HttpApiProvider';
 import MonthlyReport from './pages/HealthEducator/MonthlyReport';
 import ChwMonthlyReportPage from './pages/Chw/MonthlyReport';
 import ChwMonthlyReportCreate from './pages/Chw/MonthlyReport/MonthlyReportCreate';
+import ChwMonthlyReportEdit from './pages/Chw/MonthlyReport/Edit';
 
 function App() {
   const { isAuthenticated, getIdTokenClaims } = useAuth0();
@@ -61,6 +62,11 @@ function App() {
                     path={'/chw/monthlyReports/new'}
                     exact
                     component={ChwMonthlyReportCreate}
+                  />
+                  <Route
+                    path={'/chw/monthlyReports/:id'}
+                    exact
+                    component={ChwMonthlyReportEdit}
                   />
                   <Route
                     path={'/chw/monthlyReports'}

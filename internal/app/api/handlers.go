@@ -32,6 +32,8 @@ func API(app app.App) *mux.Router {
 	// Router for chw
 	ch := chwMonthlyReports{chwMonthlyReport: chw.New(app.Db.DB)}
 	chwRouter := r.PathPrefix("/api/chw").Subrouter()
+	chwRouter.HandleFunc("/monthlyReport/{id}", authMid.Then(ch.ChwMonthlyReportResourceHandler)).
+		Methods(http.MethodGet, http.MethodOptions)
 	chwRouter.HandleFunc("/monthlyReport", authMid.Then(ch.ChwMonthlyReportHandlers)).
 		Methods(http.MethodPost, http.MethodGet, http.MethodPut, http.MethodOptions)
 

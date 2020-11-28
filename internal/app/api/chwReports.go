@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/google/uuid"
+	"github.com/gorilla/mux"
 	log "github.com/sirupsen/logrus"
 
 	"moh.gov.bz/hecopab/reporting/internal/app"
@@ -147,5 +148,39 @@ func (c chwMonthlyReports) ChwMonthlyReportHandlers(w http.ResponseWriter, r *ht
 			return
 		}
 	}
+}
 
+// ChwMonthlyReportResourceHandler is a handler for retrieving a single CHW Report resource.
+func (c chwMonthlyReports) ChwMonthlyReportResourceHandler(w http.ResponseWriter, r *http.Request) {
+	handlerName := "ChwMonthlyReportResourceHandler"
+	defer r.Body.Close()
+	switch r.Method {
+	case http.MethodGet:
+		token := r.Context().Value("user").(app.JwtToken)
+		user := token.Email
+		vars := mux.Vars(r)
+		id := vars["id"]
+		report, err := c.chwMonthlyReport.GetById(id)
+		if err != nil {
+			log.WithFields(log.Fields{
+				"user":    user,
+				"handler": handlerName,
+				"method":  "GET",
+				"id":      id,
+			}).WithError(err).Error("error retrieving a chw monthly report")
+			http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
+			return
+		}
+		if err := json.NewEncoder(w).Encode(report); err != nil {
+			log.WithFields(log.Fields{
+				"user":    user,
+				"handler": handlerName,
+				"report":  report,
+				"method":  "GET",
+				"id":      id,
+			}).WithError(err).Error("failed to encode report")
+			http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
+			return
+		}
+	}
 }

@@ -151,7 +151,7 @@ const ChwMonthlyReportPage = () => {
       {reports.reports ? (
         <ChwMonthlyReportList
           reports={reports.reports}
-          onClickEdit={() => console.log('edit')}
+          onClickEdit={(r) => history.push(`/chw/monthlyReports/${r.id}`)}
         />
       ) : (
         <EmptyResults />

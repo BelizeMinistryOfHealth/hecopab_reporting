@@ -69,3 +69,25 @@ export interface ChwMonthlyReportRecord {
   updatedBy?: string;
   updatedAt?: Date;
 }
+
+export enum FormName {
+  BasicInfo,
+  Deaths,
+  Births,
+  PatientsSeen,
+  Complaints,
+  DutiesPerformed,
+}
+
+export enum FormStatus {
+  Start,
+  Submit,
+  Success,
+  Error,
+  Loading,
+}
+
+export interface FormEvent {
+  name: FormName;
+  status: FormStatus;
+}
