@@ -100,7 +100,6 @@ func (eg edMonthlyReportGroup) EdMonthlyReportHandlers(w http.ResponseWriter, r 
 				"handler": handlerName,
 			}).WithError(err).Error("failed to encode the health educator's monthly reports")
 		}
-
 	case http.MethodPut:
 		token := r.Context().Value("user").(app.JwtToken)
 		user := token.Email
