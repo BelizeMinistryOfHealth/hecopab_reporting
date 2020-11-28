@@ -159,3 +159,33 @@ func (c ChwReport) List(year int) ([]ChwMonthlyReportRecord, error) {
 	}
 	return reports, nil
 }
+
+// Update updates an existing chw monthly report. Returns the error if there is one.
+func (c ChwReport) Update(r ChwMonthlyReportRecord) error {
+	stmt := `
+	UPDATE monthly_chw_report
+	SET year=$2, month=$3, district=$4, district_health_educator=$5, community_health_worker=$6, rural_nurse=$7,
+	    deaths=$8, births=$9, duties_preformed=$10, patients_seen=$11, complaints=$12, updated_at=$13, updated_by=$14
+	WHERE
+		id=$1
+`
+	_, err := c.Exec(stmt,
+		r.ID,
+		r.Report.Year,
+		r.Report.Month,
+		r.Report.District,
+		r.Report.HealthEducator,
+		r.Report.CommunityHealthWorker,
+		r.Report.RuralNurse,
+		r.Report.Deaths,
+		r.Report.Births,
+		r.Report.DutiesPerformed,
+		r.Report.PatientsSeen,
+		r.Report.Complaints,
+		r.UpdatedAt,
+		r.UpdatedBy)
+	if err != nil {
+		return fmt.Errorf("error updating a chw monthly report: %w", err)
+	}
+	return nil
+}

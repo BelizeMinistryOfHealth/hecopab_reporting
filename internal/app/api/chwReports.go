@@ -109,6 +109,43 @@ func (c chwMonthlyReports) ChwMonthlyReportHandlers(w http.ResponseWriter, r *ht
 			http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
 			return
 		}
+	case http.MethodPut:
+		token := r.Context().Value("user").(app.JwtToken)
+		user := token.Email
+		var report chw.ChwMonthlyReportRecord
+		if err := json.NewDecoder(r.Body).Decode(&report); err != nil {
+			log.WithFields(log.Fields{
+				"user":    user,
+				"body":    r.Body,
+				"handler": handlerName,
+				"method":  "PUT",
+			}).WithError(err).Error("error decoding body in request")
+			http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
+			return
+		}
+		report.UpdatedBy = user
+		today := time.Now()
+		report.UpdatedAt = &today
+		if err := c.chwMonthlyReport.Update(report); err != nil {
+			log.WithFields(log.Fields{
+				"user":    user,
+				"report":  report,
+				"handler": handlerName,
+				"method":  "PUT",
+			}).WithError(err).Error("error updating a chw monthly report")
+			http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
+			return
+		}
+		if err := json.NewEncoder(w).Encode(report); err != nil {
+			log.WithFields(log.Fields{
+				"user":    user,
+				"report":  report,
+				"handler": handlerName,
+				"method":  "PUT",
+			}).WithError(err).Error("error decoding chw monthly report")
+			http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
+			return
+		}
 	}
 
 }
