@@ -9,11 +9,12 @@ import {
   Select,
   TextInput,
 } from 'grommet';
-import { Close } from 'grommet-icons';
+import { Close, Compass } from 'grommet-icons';
 import districts from '../../../api/district';
 import months from '../../../api/months';
-import { useHistory } from 'react-router';
+import { Redirect, useHistory } from 'react-router';
 import { useHttpApi } from '../../../providers/HttpApiProvider';
+import Spinner from '../../../components/Spinner/Spinner';
 
 enum FormStatus {
   Start,
@@ -79,8 +80,7 @@ const ChwMonthlyReportCreate = () => {
           '/chw/monthlyReport',
           JSON.stringify(report)
         );
-        console.dir({ result: result.json() });
-        setStatus(FormStatus.Submit);
+        setStatus(FormStatus.Success);
       } catch (e) {
         console.error(e);
         setStatus(FormStatus.Error);
@@ -90,6 +90,58 @@ const ChwMonthlyReportCreate = () => {
       post().then(() => console.log('posted'));
     }
   }, [status, report, httpClient]);
+
+  if (status === FormStatus.Success) {
+    return <Redirect to={'/chw/monthlyReports'} />;
+  }
+
+  if (status === FormStatus.Error) {
+    return (
+      <Box
+        round
+        pad={'small'}
+        direction={'column'}
+        margin={'small'}
+        background={'white'}
+        responsive={true}
+        animation={['fadeIn', { type: 'slideDown', size: 'small' }]}
+      >
+        <Box flex={false} direction={'row-reverse'} align={'end'}>
+          <Box>
+            <Button icon={<Close size={'medium'} />} onClick={onClickClose} />
+          </Box>
+        </Box>
+        <Box direction={'column'} fill>
+          <Heading level={3}>Oh Snap! Something went wrong!</Heading>
+          <Compass size={'large'} />
+        </Box>
+      </Box>
+    );
+  }
+
+  if (status === FormStatus.Submit) {
+    return (
+      <Box
+        round
+        pad={'small'}
+        direction={'column'}
+        margin={'small'}
+        background={'white'}
+        responsive={true}
+        animation={['fadeIn', { type: 'slideDown', size: 'small' }]}
+      >
+        <Box flex={false} direction={'row-reverse'} align={'end'}>
+          <Box>
+            <Button icon={<Close size={'medium'} />} onClick={onClickClose} />
+          </Box>
+        </Box>
+        <Box direction={'column'} fill>
+          <Heading level={3}>Saving...</Heading>
+          <Spinner size={228} />
+        </Box>
+      </Box>
+    );
+  }
 
   return (
     <Box
@@ -111,7 +163,7 @@ const ChwMonthlyReportCreate = () => {
         align={'center'}
         pad={{ bottom: 'small', left: 'xxsmall' }}
       >
-        <Heading level={2}>Health Educator Monthly Report</Heading>
+        <Heading level={2}>Community Health Worker Monthly Report</Heading>
       </Box>
       <Box direction={'column'} fill>
         <Form onSubmit={onSubmit}>
