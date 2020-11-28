@@ -10,6 +10,8 @@ import Home from './pages/Home/Home';
 import NotFound from './pages/NotFound/NotFound';
 import HttpApiProvider from './providers/HttpApiProvider';
 import MonthlyReport from './pages/HealthEducator/MonthlyReport';
+import ChwMonthlyReportPage from './pages/Chw/MonthlyReport';
+import ChwMonthlyReportCreate from './pages/Chw/MonthlyReport/MonthlyReportCreate';
 
 function App() {
   const { isAuthenticated, getIdTokenClaims } = useAuth0();
@@ -39,7 +41,7 @@ function App() {
 
   const sidebarButtons = [
     { label: 'Health Educators', link: '/educator/monthlyReports' },
-    { label: 'Community Health Workers', link: '/' },
+    { label: 'Community Health Workers', link: '/chw/monthlyReports' },
   ];
   if (isAuthenticated && idToken) {
     return (
@@ -54,6 +56,16 @@ function App() {
                     path={'/educator/monthlyReports'}
                     exact
                     component={MonthlyReport}
+                  />
+                  <Route
+                    path={'/chw/monthlyReports/new'}
+                    exact
+                    component={ChwMonthlyReportCreate}
+                  />
+                  <Route
+                    path={'/chw/monthlyReports'}
+                    exact
+                    component={ChwMonthlyReportPage}
                   />
                   <Route path={'/'} exact component={Home} />
                   <Route component={NotFound} />

@@ -1,21 +1,14 @@
 import React, { ReactNode } from 'react';
-import { MonthlyReportRecord } from '../../../api/healthEducator';
+import { ChwMonthlyReportRecord } from '../../../api/chws';
 import { useHttpApi } from '../../../providers/HttpApiProvider';
 import { Box, Form, Text, TextInput } from 'grommet';
 import Spinner from '../../../components/Spinner/Spinner';
 import AppHeader from '../../../components/AppHeader/AppHeader';
-import { Search } from 'grommet-icons';
-import EmptyResults from '../../../components/EmptyResults/EmptyResults';
 import AddActionButton from '../../../components/AddActionButton/AddActionButton';
-import MonthlyReportCreate from './MonthlyReportCreate';
-import MonthlyReportList from './MonthlyReportList';
-import MonthlyReportEdit from './MonthlyReportEdit';
-
-export interface MonthlyReportRecordState {
-  reports: MonthlyReportRecord[];
-  loading: boolean;
-  error: Error | undefined;
-}
+import { Search } from 'grommet-icons';
+import ChwMonthlyReportList from './MonthlyReportList';
+import EmptyResults from '../../../components/EmptyResults/EmptyResults';
+import { useHistory } from 'react-router';
 
 interface ScaffoldProps {
   onClickNew: () => void;
@@ -30,7 +23,7 @@ const Scaffold = (props: ScaffoldProps) => {
   return (
     <Box background={'light-3'} fill>
       <AppHeader
-        label={'Health Educator Monthly Reports'}
+        label={'Community Health Workers Monthly Reports'}
         actionComponent={<AddActionButton onClick={onClickNew} />}
       />
       <Box flex overflow='auto' gap='medium' pad='medium'>
@@ -81,23 +74,27 @@ const Scaffold = (props: ScaffoldProps) => {
   );
 };
 
+export interface ChwMonthlyReportRecordState {
+  reports: ChwMonthlyReportRecord[];
+  loading: boolean;
+  error: Error | undefined;
+}
+
 interface SearchParam {
   year: number;
   loading: boolean;
   error?: Error;
 }
 
-const MonthlyReport = () => {
+const ChwMonthlyReportPage = () => {
   const { httpClient } = useHttpApi();
-  const [reports, setReports] = React.useState<MonthlyReportRecordState>({
+  const history = useHistory();
+
+  const [reports, setReports] = React.useState<ChwMonthlyReportRecordState>({
     reports: [],
     loading: true,
     error: undefined,
   });
-  const [openNewForm, setOpenNewForm] = React.useState(false);
-  const [editReport, setEditReport] = React.useState<
-    MonthlyReportRecord | undefined
-  >(undefined);
   const [searchParam, setSearchParam] = React.useState<SearchParam>({
     year: 2020,
     loading: false,
@@ -107,26 +104,14 @@ const MonthlyReport = () => {
     setSearchParam({ year, loading: true });
   };
 
-  const onClickNew = () => setOpenNewForm(true);
-  const onClickNewClose = () => {
-    setOpenNewForm(false);
-    setEditReport(undefined);
-    setReports({ reports: [], loading: true, error: undefined });
-  };
-  const onClickEdit = (report: MonthlyReportRecord) => {
-    // Make sure that the "create form" is closed.
-    setOpenNewForm(false);
-    setEditReport(report);
-  };
-
   React.useEffect(() => {
     const fetchReports = async (): Promise<void> => {
-      let url = '/educator/monthlyReport';
+      let url = '/chw/monthlyReport';
       try {
         if (searchParam.loading && searchParam.year) {
           url = `${url}?year=${searchParam.year}`;
         }
-        const results: MonthlyReportRecord[] = await httpClient.get(url);
+        const results: ChwMonthlyReportRecord[] = await httpClient.get(url);
         setReports({
           reports: results,
           loading: false,
@@ -134,17 +119,13 @@ const MonthlyReport = () => {
         });
         setSearchParam({ ...searchParam, loading: false });
       } catch (e) {
-        setReports({
-          reports: [],
-          loading: false,
-          error: e,
-        });
+        // Stop waiting for `load` if an error happens
+        setReports({ reports: [], loading: false, error: e });
+        setSearchParam({ ...searchParam, loading: false });
       }
     };
     if (reports.loading || searchParam.loading) {
-      fetchReports().then(() =>
-        console.log('fetched health educator monthly reports')
-      );
+      fetchReports().then(() => console.log('fetched chw monthly reports'));
     }
   }, [httpClient, reports, searchParam]);
 
@@ -162,38 +143,15 @@ const MonthlyReport = () => {
     );
   }
 
-  if (openNewForm) {
-    return (
-      <Scaffold onClickNew={onClickNew} onSearch={onSearch}>
-        <MonthlyReportCreate onClickClose={onClickNewClose} />
-      </Scaffold>
-    );
-  }
-
-  const onUpdateReport = async (r: MonthlyReportRecord) => {
-    await httpClient.put('/educator/monthlyReport', JSON.stringify(r));
-    setEditReport(undefined);
-    setReports({ loading: true, error: undefined, reports: [] });
-  };
-
-  if (editReport) {
-    return (
-      <Scaffold onClickNew={onClickNew} onSearch={onSearch}>
-        <MonthlyReportEdit
-          report={editReport}
-          saveReport={onUpdateReport}
-          onClickClose={onClickNewClose}
-        />
-      </Scaffold>
-    );
-  }
-
   return (
-    <Scaffold onClickNew={onClickNew} onSearch={onSearch}>
+    <Scaffold
+      onClickNew={() => history.push('/chw/monthlyReports/new')}
+      onSearch={onSearch}
+    >
       {reports.reports ? (
-        <MonthlyReportList
+        <ChwMonthlyReportList
           reports={reports.reports}
-          onClickEdit={onClickEdit}
+          onClickEdit={() => console.log('edit')}
         />
       ) : (
         <EmptyResults />
@@ -202,4 +160,4 @@ const MonthlyReport = () => {
   );
 };
 
-export default MonthlyReport;
+export default ChwMonthlyReportPage;
