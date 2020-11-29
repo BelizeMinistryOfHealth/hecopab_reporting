@@ -18,6 +18,7 @@ import EmptyResults from '../../../../components/EmptyResults/EmptyResults';
 import MalnutritionComplaintsForm from './MalnutritionComplaintsForm';
 import DiarrheaComplaintsForm from './DiarrheaComplaintsForm';
 import ColdComplaintsForm from './ColdComplaintsForm';
+import FeverRashComplaintsForm from './FeverRashComplaintsForm';
 
 interface ParamTypes {
   id: string;
@@ -268,6 +269,14 @@ const ChwMonthlyReportEdit = () => {
             }),
         },
         {
+          label: 'Fever/Rash',
+          onClick: () =>
+            setFormEvent({
+              name: FormName.ComplaintsFeverRash,
+              status: FormStatus.Start,
+            }),
+        },
+        {
           label: 'Fever',
           onClick: () =>
             setFormEvent({
@@ -371,6 +380,21 @@ const ChwMonthlyReportEdit = () => {
     return (
       <Scaffold onClickClose={onClickClose} menu={menu} submenu={submenu}>
         <ColdComplaintsForm
+          report={report}
+          updateFn={setReport}
+          onSubmit={() =>
+            setFormEvent({ ...formEvent, status: FormStatus.Submit })
+          }
+          formEvent={formEvent}
+        />
+      </Scaffold>
+    );
+  }
+
+  if (formEvent.name === FormName.ComplaintsFeverRash && report) {
+    return (
+      <Scaffold onClickClose={onClickClose} menu={menu} submenu={submenu}>
+        <FeverRashComplaintsForm
           report={report}
           updateFn={setReport}
           onSubmit={() =>
