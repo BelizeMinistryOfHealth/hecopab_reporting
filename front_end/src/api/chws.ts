@@ -89,6 +89,7 @@ export enum FormName {
   ComplaintsFever,
   ComplaintsMalnutrition,
   ComplaintsDiarrhea,
+  ComplaintsCold,
   DutiesPerformed,
 }
 
