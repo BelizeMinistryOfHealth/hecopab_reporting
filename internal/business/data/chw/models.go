@@ -23,7 +23,7 @@ type Tallies struct {
 	FortyFiveToFortyNine   models.GenderCategories `json:"fortyFiveToFortyNine"`
 	FiftyToFiftyFour       models.GenderCategories `json:"fiftyToFiftyFour"`
 	FiftyFiveToFiftyNine   models.GenderCategories `json:"fiftyFiveToFiftyNine"`
-	SixtyToSixtyFour       models.GenderCategories `json:"sixtySixtyFour"`
+	SixtyToSixtyFour       models.GenderCategories `json:"sixtyToSixtyFour"`
 	SixtyFiveAndOver       models.GenderCategories `json:"sixtyFiveOrMore"`
 }
 

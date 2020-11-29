@@ -1,3 +1,5 @@
+import { ChangeEvent } from 'react';
+
 export interface GenderCategories {
   male: number;
   female: number;
@@ -18,7 +20,7 @@ export interface Tallies {
   fiftyToFiftyFour: GenderCategories;
   fiftyFiveToFiftyNine: GenderCategories;
   sixtyToSixtyFour: GenderCategories;
-  sixtyFiveAndOver: GenderCategories;
+  sixtyFiveOrMore: GenderCategories;
 }
 
 const emptyCategories = (): GenderCategories => {
@@ -43,7 +45,7 @@ export const createTallies = (): Tallies => {
     fiftyToFiftyFour: emptyCategories(),
     fiftyFiveToFiftyNine: emptyCategories(),
     sixtyToSixtyFour: emptyCategories(),
-    sixtyFiveAndOver: emptyCategories(),
+    sixtyFiveOrMore: emptyCategories(),
   };
 };
 
@@ -91,3 +93,19 @@ export interface FormEvent {
   name: FormName;
   status: FormStatus;
 }
+
+export const readEventValueAsNum = (
+  e: ChangeEvent<HTMLInputElement>
+): number => {
+  let v: number;
+  v = 0;
+  if (e.currentTarget.value.trim() === '') {
+    return v;
+  }
+  try {
+    v = parseInt(e.currentTarget.value.trim());
+  } catch (ex) {
+    //noop
+  }
+  return v;
+};

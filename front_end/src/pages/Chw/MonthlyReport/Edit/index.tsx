@@ -11,13 +11,18 @@ import { Close } from 'grommet-icons';
 import { useHttpApi } from '../../../../providers/HttpApiProvider';
 import Spinner from '../../../../components/Spinner/Spinner';
 import BasicInfoForm from './BasicInfoForm';
+import PatientsSeenForm from './PatientsSeenForm';
 
 interface ParamTypes {
   id: string;
 }
 
-const Scaffold = (props: { children: ReactNode; onClickClose: () => void }) => {
-  const { onClickClose, children } = props;
+const Scaffold = (props: {
+  children: ReactNode;
+  onClickClose: () => void;
+  menu?: { label: string; onClick: () => void }[];
+}) => {
+  const { onClickClose, children, menu } = props;
   return (
     <Box
       pad={'small'}
@@ -71,11 +76,9 @@ const Scaffold = (props: { children: ReactNode; onClickClose: () => void }) => {
               justify={'start'}
               fill
             >
-              Menu
-              <Button plain label={'Basic Info'} />
-              <Button plain label={'Patients Seen'} />
-              <Button plain label={'Births'} />
-              <Button plain label={'Deaths'} />
+              {menu?.map((m) => (
+                <Button plain label={m.label} onClick={m.onClick} />
+              ))}
             </Box>
           </Grid>
         </Box>
@@ -143,11 +146,47 @@ const ChwMonthlyReportEdit = () => {
       </Scaffold>
     );
   }
-
-  if (formOnScreen === FormName.BasicInfo && report) {
+  const menu = [
+    {
+      label: 'Basic Info',
+      onClick: () =>
+        setFormEvent({ name: FormName.BasicInfo, status: FormStatus.Start }),
+    },
+    {
+      label: 'Patients Seen',
+      onClick: () =>
+        setFormEvent({ name: FormName.PatientsSeen, status: FormStatus.Start }),
+    },
+    {
+      label: 'Births',
+      onClick: () =>
+        setFormEvent({ name: FormName.Births, status: FormStatus.Start }),
+    },
+    {
+      label: 'Deaths',
+      onClick: () =>
+        setFormEvent({ name: FormName.Deaths, status: FormStatus.Start }),
+    },
+  ];
+  if (formEvent.name === FormName.BasicInfo && report) {
     return (
-      <Scaffold onClickClose={onClickClose}>
+      <Scaffold onClickClose={onClickClose} menu={menu}>
         <BasicInfoForm
+          report={report}
+          updateFn={(r) => setReport(r)}
+          onSubmit={() => {
+            setFormEvent({ ...formEvent, status: FormStatus.Submit });
+          }}
+          formEvent={formEvent}
+        />
+      </Scaffold>
+    );
+  }
+
+  if (formEvent.name === FormName.PatientsSeen && report) {
+    return (
+      <Scaffold onClickClose={onClickClose} menu={menu}>
+        <PatientsSeenForm
           report={report}
           updateFn={(r) => setReport(r)}
           onSubmit={() => {
