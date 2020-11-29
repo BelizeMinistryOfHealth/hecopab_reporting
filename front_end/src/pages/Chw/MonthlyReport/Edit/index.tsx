@@ -19,6 +19,7 @@ import MalnutritionComplaintsForm from './MalnutritionComplaintsForm';
 import DiarrheaComplaintsForm from './DiarrheaComplaintsForm';
 import ColdComplaintsForm from './ColdComplaintsForm';
 import FeverRashComplaintsForm from './FeverRashComplaintsForm';
+import SoresRashesComplaintsForm from './SoresRashesComplaintsForm';
 
 interface ParamTypes {
   id: string;
@@ -284,6 +285,14 @@ const ChwMonthlyReportEdit = () => {
               status: FormStatus.Start,
             }),
         },
+        {
+          label: 'Sores & Rashes',
+          onClick: () =>
+            setFormEvent({
+              name: FormName.ComplaintsSoresRashes,
+              status: FormStatus.Start,
+            }),
+        },
       ],
     },
   ];
@@ -395,6 +404,21 @@ const ChwMonthlyReportEdit = () => {
     return (
       <Scaffold onClickClose={onClickClose} menu={menu} submenu={submenu}>
         <FeverRashComplaintsForm
+          report={report}
+          updateFn={setReport}
+          onSubmit={() =>
+            setFormEvent({ ...formEvent, status: FormStatus.Submit })
+          }
+          formEvent={formEvent}
+        />
+      </Scaffold>
+    );
+  }
+
+  if (formEvent.name === FormName.ComplaintsSoresRashes && report) {
+    return (
+      <Scaffold onClickClose={onClickClose} menu={menu} submenu={submenu}>
+        <SoresRashesComplaintsForm
           report={report}
           updateFn={setReport}
           onSubmit={() =>
