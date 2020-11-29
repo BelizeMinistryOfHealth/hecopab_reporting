@@ -13,8 +13,9 @@ import Spinner from '../../../../components/Spinner/Spinner';
 import BasicInfoForm from './BasicInfoForm';
 import PatientsSeenForm from './PatientsSeenForm';
 import DeathsForm from './DeathsForm';
-import ComplaintsForm from './ComplaintsForm';
+import FeverComplaintsForm from './FeverComplaintsForm';
 import EmptyResults from '../../../../components/EmptyResults/EmptyResults';
+import MalnutritionComplaintsForm from './MalnutritionComplaintsForm';
 
 interface ParamTypes {
   id: string;
@@ -33,7 +34,7 @@ const RichPanel = (props: RichPanelProps) => {
     <Box
       direction='row'
       align='center'
-      gap='xxsmall'
+      gap='xsmall'
       pad={{ horizontal: 'small' }}
     >
       <Heading level={4} color={hovering ? 'dark-1' : 'dark-3'}>
@@ -138,7 +139,12 @@ const Scaffold = (props: {
                 {submenu?.map((m) => (
                   <RichPanel label={m.label}>
                     {m.items.map((i) => (
-                      <Button plain label={i.label} onClick={i.onClick} />
+                      <Button
+                        margin={{ left: 'small', top: 'small' }}
+                        plain
+                        label={i.label}
+                        onClick={i.onClick}
+                      />
                     ))}
                   </RichPanel>
                 ))}
@@ -236,10 +242,18 @@ const ChwMonthlyReportEdit = () => {
       label: 'Complaints',
       items: [
         {
+          label: 'Malnutrition',
+          onClick: () =>
+            setFormEvent({
+              name: FormName.ComplaintsMalnutrition,
+              status: FormStatus.Start,
+            }),
+        },
+        {
           label: 'Fever',
           onClick: () =>
             setFormEvent({
-              name: FormName.Complaints,
+              name: FormName.ComplaintsFever,
               status: FormStatus.Start,
             }),
         },
@@ -291,10 +305,25 @@ const ChwMonthlyReportEdit = () => {
     );
   }
 
-  if (formEvent.name === FormName.Complaints && report) {
+  if (formEvent.name === FormName.ComplaintsFever && report) {
     return (
       <Scaffold onClickClose={onClickClose} menu={menu} submenu={submenu}>
-        <ComplaintsForm
+        <FeverComplaintsForm
+          report={report}
+          updateFn={setReport}
+          onSubmit={() =>
+            setFormEvent({ ...formEvent, status: FormStatus.Submit })
+          }
+          formEvent={formEvent}
+        />
+      </Scaffold>
+    );
+  }
+
+  if (formEvent.name === FormName.ComplaintsMalnutrition && report) {
+    return (
+      <Scaffold onClickClose={onClickClose} menu={menu} submenu={submenu}>
+        <MalnutritionComplaintsForm
           report={report}
           updateFn={setReport}
           onSubmit={() =>

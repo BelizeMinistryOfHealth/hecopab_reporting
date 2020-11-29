@@ -5,7 +5,7 @@ import { Box, Button, Form, Heading } from 'grommet';
 import Spinner from '../../../../components/Spinner/Spinner';
 import ChwFormField from './ChwFormField';
 
-const ComplaintsForm = (props: ChwEditFormProps) => {
+const MalnutritionComplaintsForm = (props: ChwEditFormProps) => {
   const { report, onSubmit, updateFn, formEvent } = props;
 
   if (formEvent.status === FormStatus.Submit) {
@@ -23,7 +23,7 @@ const ComplaintsForm = (props: ChwEditFormProps) => {
       margin={{ left: 'medium' }}
       overflow={'auto'}
     >
-      <Heading level={2}>Complaints: Fever</Heading>
+      <Heading level={2}>Complaints: Malnutrition</Heading>
       <Form onSubmit={onSubmit}>
         <Box
           direction={'row'}
@@ -33,8 +33,8 @@ const ComplaintsForm = (props: ChwEditFormProps) => {
         >
           <ChwFormField
             label={'1 - 4: '}
-            maleValue={report.report.complaints.fever.oneToFour.male}
-            femaleValue={report.report.complaints.fever.oneToFour.female}
+            maleValue={report.report.complaints.malnutrition.oneToFour.male}
+            femaleValue={report.report.complaints.malnutrition.oneToFour.female}
             maleOnChange={(e) => {
               updateFn({
                 ...report,
@@ -42,10 +42,10 @@ const ComplaintsForm = (props: ChwEditFormProps) => {
                   ...report.report,
                   complaints: {
                     ...report.report.complaints,
-                    fever: {
-                      ...report.report.complaints.fever,
+                    malnutrition: {
+                      ...report.report.complaints.malnutrition,
                       oneToFour: {
-                        ...report.report.complaints.fever.oneToFour,
+                        ...report.report.complaints.malnutrition.oneToFour,
                         male: readEventValueAsNum(e),
                       },
                     },
@@ -60,10 +60,10 @@ const ComplaintsForm = (props: ChwEditFormProps) => {
                   ...report.report,
                   complaints: {
                     ...report.report.complaints,
-                    fever: {
-                      ...report.report.complaints.fever,
+                    malnutrition: {
+                      ...report.report.complaints.malnutrition,
                       oneToFour: {
-                        ...report.report.complaints.fever.oneToFour,
+                        ...report.report.complaints.malnutrition.oneToFour,
                         female: readEventValueAsNum(e),
                       },
                     },
@@ -76,8 +76,10 @@ const ComplaintsForm = (props: ChwEditFormProps) => {
           />
           <ChwFormField
             label={'5 - 9: '}
-            maleValue={report.report.complaints.fever.fiveToNine.male}
-            femaleValue={report.report.complaints.fever.fiveToNine.female}
+            maleValue={report.report.complaints.malnutrition.fiveToNine.male}
+            femaleValue={
+              report.report.complaints.malnutrition.fiveToNine.female
+            }
             maleOnChange={(e) => {
               updateFn({
                 ...report,
@@ -85,10 +87,10 @@ const ComplaintsForm = (props: ChwEditFormProps) => {
                   ...report.report,
                   complaints: {
                     ...report.report.complaints,
-                    fever: {
-                      ...report.report.complaints.fever,
+                    malnutrition: {
+                      ...report.report.complaints.malnutrition,
                       fiveToNine: {
-                        ...report.report.complaints.fever.fiveToNine,
+                        ...report.report.complaints.malnutrition.fiveToNine,
                         male: readEventValueAsNum(e),
                       },
                     },
@@ -103,10 +105,10 @@ const ComplaintsForm = (props: ChwEditFormProps) => {
                   ...report.report,
                   complaints: {
                     ...report.report.complaints,
-                    fever: {
-                      ...report.report.complaints.fever,
+                    malnutrition: {
+                      ...report.report.complaints.malnutrition,
                       fiveToNine: {
-                        ...report.report.complaints.fever.fiveToNine,
+                        ...report.report.complaints.malnutrition.fiveToNine,
                         female: readEventValueAsNum(e),
                       },
                     },
@@ -119,8 +121,10 @@ const ComplaintsForm = (props: ChwEditFormProps) => {
           />
           <ChwFormField
             label={'10 - 14: '}
-            maleValue={report.report.complaints.fever.tenToFourteen.male}
-            femaleValue={report.report.complaints.fever.tenToFourteen.female}
+            maleValue={report.report.complaints.malnutrition.tenToFourteen.male}
+            femaleValue={
+              report.report.complaints.malnutrition.tenToFourteen.female
+            }
             maleOnChange={(e) => {
               updateFn({
                 ...report,
@@ -128,10 +132,10 @@ const ComplaintsForm = (props: ChwEditFormProps) => {
                   ...report.report,
                   complaints: {
                     ...report.report.complaints,
-                    fever: {
-                      ...report.report.complaints.fever,
+                    malnutrition: {
+                      ...report.report.complaints.malnutrition,
                       tenToFourteen: {
-                        ...report.report.complaints.fever.tenToFourteen,
+                        ...report.report.complaints.malnutrition.tenToFourteen,
                         male: readEventValueAsNum(e),
                       },
                     },
@@ -146,10 +150,10 @@ const ComplaintsForm = (props: ChwEditFormProps) => {
                   ...report.report,
                   complaints: {
                     ...report.report.complaints,
-                    fever: {
-                      ...report.report.complaints.fever,
+                    malnutrition: {
+                      ...report.report.complaints.malnutrition,
                       tenToFourteen: {
-                        ...report.report.complaints.fever.tenToFourteen,
+                        ...report.report.complaints.malnutrition.tenToFourteen,
                         female: readEventValueAsNum(e),
                       },
                     },
@@ -162,9 +166,11 @@ const ComplaintsForm = (props: ChwEditFormProps) => {
           />
           <ChwFormField
             label={'15 - 19: '}
-            maleValue={report.report.complaints.fever.fifteenToNineteen.male}
+            maleValue={
+              report.report.complaints.malnutrition.fifteenToNineteen.male
+            }
             femaleValue={
-              report.report.complaints.fever.fifteenToNineteen.female
+              report.report.complaints.malnutrition.fifteenToNineteen.female
             }
             maleOnChange={(e) => {
               updateFn({
@@ -173,10 +179,11 @@ const ComplaintsForm = (props: ChwEditFormProps) => {
                   ...report.report,
                   complaints: {
                     ...report.report.complaints,
-                    fever: {
-                      ...report.report.complaints.fever,
+                    malnutrition: {
+                      ...report.report.complaints.malnutrition,
                       fifteenToNineteen: {
-                        ...report.report.complaints.fever.fifteenToNineteen,
+                        ...report.report.complaints.malnutrition
+                          .fifteenToNineteen,
                         male: readEventValueAsNum(e),
                       },
                     },
@@ -191,10 +198,11 @@ const ComplaintsForm = (props: ChwEditFormProps) => {
                   ...report.report,
                   complaints: {
                     ...report.report.complaints,
-                    fever: {
-                      ...report.report.complaints.fever,
+                    malnutrition: {
+                      ...report.report.complaints.malnutrition,
                       fifteenToNineteen: {
-                        ...report.report.complaints.fever.fifteenToNineteen,
+                        ...report.report.complaints.malnutrition
+                          .fifteenToNineteen,
                         female: readEventValueAsNum(e),
                       },
                     },
@@ -215,9 +223,11 @@ const ComplaintsForm = (props: ChwEditFormProps) => {
         >
           <ChwFormField
             label={'20 - 24: '}
-            maleValue={report.report.complaints.fever.twentyToTwentyFour.male}
+            maleValue={
+              report.report.complaints.malnutrition.twentyToTwentyFour.male
+            }
             femaleValue={
-              report.report.complaints.fever.twentyToTwentyFour.female
+              report.report.complaints.malnutrition.twentyToTwentyFour.female
             }
             maleOnChange={(e) => {
               updateFn({
@@ -226,10 +236,11 @@ const ComplaintsForm = (props: ChwEditFormProps) => {
                   ...report.report,
                   complaints: {
                     ...report.report.complaints,
-                    fever: {
-                      ...report.report.complaints.fever,
+                    malnutrition: {
+                      ...report.report.complaints.malnutrition,
                       twentyToTwentyFour: {
-                        ...report.report.complaints.fever.twentyToTwentyFour,
+                        ...report.report.complaints.malnutrition
+                          .twentyToTwentyFour,
                         male: readEventValueAsNum(e),
                       },
                     },
@@ -244,10 +255,11 @@ const ComplaintsForm = (props: ChwEditFormProps) => {
                   ...report.report,
                   complaints: {
                     ...report.report.complaints,
-                    fever: {
-                      ...report.report.complaints.fever,
+                    malnutrition: {
+                      ...report.report.complaints.malnutrition,
                       twentyToTwentyFour: {
-                        ...report.report.complaints.fever.twentyToTwentyFour,
+                        ...report.report.complaints.malnutrition
+                          .twentyToTwentyFour,
                         female: readEventValueAsNum(e),
                       },
                     },
@@ -261,10 +273,11 @@ const ComplaintsForm = (props: ChwEditFormProps) => {
           <ChwFormField
             label={'25 - 29: '}
             maleValue={
-              report.report.complaints.fever.twentyFiveToTwentyNine.male
+              report.report.complaints.malnutrition.twentyFiveToTwentyNine.male
             }
             femaleValue={
-              report.report.complaints.fever.twentyFiveToTwentyNine.female
+              report.report.complaints.malnutrition.twentyFiveToTwentyNine
+                .female
             }
             maleOnChange={(e) => {
               updateFn({
@@ -273,10 +286,10 @@ const ComplaintsForm = (props: ChwEditFormProps) => {
                   ...report.report,
                   complaints: {
                     ...report.report.complaints,
-                    fever: {
-                      ...report.report.complaints.fever,
+                    malnutrition: {
+                      ...report.report.complaints.malnutrition,
                       twentyFiveToTwentyNine: {
-                        ...report.report.complaints.fever
+                        ...report.report.complaints.malnutrition
                           .twentyFiveToTwentyNine,
                         male: readEventValueAsNum(e),
                       },
@@ -292,10 +305,10 @@ const ComplaintsForm = (props: ChwEditFormProps) => {
                   ...report.report,
                   complaints: {
                     ...report.report.complaints,
-                    fever: {
-                      ...report.report.complaints.fever,
+                    malnutrition: {
+                      ...report.report.complaints.malnutrition,
                       twentyFiveToTwentyNine: {
-                        ...report.report.complaints.fever
+                        ...report.report.complaints.malnutrition
                           .twentyFiveToTwentyNine,
                         female: readEventValueAsNum(e),
                       },
@@ -309,9 +322,11 @@ const ComplaintsForm = (props: ChwEditFormProps) => {
           />
           <ChwFormField
             label={'30 - 34: '}
-            maleValue={report.report.complaints.fever.thirtyToThirtyFour.male}
+            maleValue={
+              report.report.complaints.malnutrition.thirtyToThirtyFour.male
+            }
             femaleValue={
-              report.report.complaints.fever.thirtyToThirtyFour.female
+              report.report.complaints.malnutrition.thirtyToThirtyFour.female
             }
             maleOnChange={(e) => {
               updateFn({
@@ -320,10 +335,11 @@ const ComplaintsForm = (props: ChwEditFormProps) => {
                   ...report.report,
                   complaints: {
                     ...report.report.complaints,
-                    fever: {
-                      ...report.report.complaints.fever,
+                    malnutrition: {
+                      ...report.report.complaints.malnutrition,
                       thirtyToThirtyFour: {
-                        ...report.report.complaints.fever.thirtyToThirtyFour,
+                        ...report.report.complaints.malnutrition
+                          .thirtyToThirtyFour,
                         male: readEventValueAsNum(e),
                       },
                     },
@@ -338,10 +354,11 @@ const ComplaintsForm = (props: ChwEditFormProps) => {
                   ...report.report,
                   complaints: {
                     ...report.report.complaints,
-                    fever: {
-                      ...report.report.complaints.fever,
+                    malnutrition: {
+                      ...report.report.complaints.malnutrition,
                       thirtyToThirtyFour: {
-                        ...report.report.complaints.fever.thirtyToThirtyFour,
+                        ...report.report.complaints.malnutrition
+                          .thirtyToThirtyFour,
                         female: readEventValueAsNum(e),
                       },
                     },
@@ -355,10 +372,11 @@ const ComplaintsForm = (props: ChwEditFormProps) => {
           <ChwFormField
             label={'35 - 39: '}
             maleValue={
-              report.report.complaints.fever.thirtyFiveToThirtyNine.male
+              report.report.complaints.malnutrition.thirtyFiveToThirtyNine.male
             }
             femaleValue={
-              report.report.complaints.fever.thirtyFiveToThirtyNine.female
+              report.report.complaints.malnutrition.thirtyFiveToThirtyNine
+                .female
             }
             maleOnChange={(e) => {
               updateFn({
@@ -367,10 +385,10 @@ const ComplaintsForm = (props: ChwEditFormProps) => {
                   ...report.report,
                   complaints: {
                     ...report.report.complaints,
-                    fever: {
-                      ...report.report.complaints.fever,
+                    malnutrition: {
+                      ...report.report.complaints.malnutrition,
                       thirtyFiveToThirtyNine: {
-                        ...report.report.complaints.fever
+                        ...report.report.complaints.malnutrition
                           .thirtyFiveToThirtyNine,
                         male: readEventValueAsNum(e),
                       },
@@ -386,10 +404,10 @@ const ComplaintsForm = (props: ChwEditFormProps) => {
                   ...report.report,
                   complaints: {
                     ...report.report.complaints,
-                    fever: {
-                      ...report.report.complaints.fever,
+                    malnutrition: {
+                      ...report.report.complaints.malnutrition,
                       thirtyFiveToThirtyNine: {
-                        ...report.report.complaints.fever
+                        ...report.report.complaints.malnutrition
                           .thirtyFiveToThirtyNine,
                         female: readEventValueAsNum(e),
                       },
@@ -411,8 +429,12 @@ const ComplaintsForm = (props: ChwEditFormProps) => {
         >
           <ChwFormField
             label={'40 - 44: '}
-            maleValue={report.report.complaints.fever.fortyToFortyFour.male}
-            femaleValue={report.report.complaints.fever.fortyToFortyFour.female}
+            maleValue={
+              report.report.complaints.malnutrition.fortyToFortyFour.male
+            }
+            femaleValue={
+              report.report.complaints.malnutrition.fortyToFortyFour.female
+            }
             maleOnChange={(e) => {
               updateFn({
                 ...report,
@@ -420,10 +442,11 @@ const ComplaintsForm = (props: ChwEditFormProps) => {
                   ...report.report,
                   complaints: {
                     ...report.report.complaints,
-                    fever: {
-                      ...report.report.complaints.fever,
+                    malnutrition: {
+                      ...report.report.complaints.malnutrition,
                       fortyToFortyFour: {
-                        ...report.report.complaints.fever.fortyToFortyFour,
+                        ...report.report.complaints.malnutrition
+                          .fortyToFortyFour,
                         male: readEventValueAsNum(e),
                       },
                     },
@@ -438,10 +461,11 @@ const ComplaintsForm = (props: ChwEditFormProps) => {
                   ...report.report,
                   complaints: {
                     ...report.report.complaints,
-                    fever: {
-                      ...report.report.complaints.fever,
+                    malnutrition: {
+                      ...report.report.complaints.malnutrition,
                       fortyToFortyFour: {
-                        ...report.report.complaints.fever.fortyToFortyFour,
+                        ...report.report.complaints.malnutrition
+                          .fortyToFortyFour,
                         female: readEventValueAsNum(e),
                       },
                     },
@@ -454,9 +478,11 @@ const ComplaintsForm = (props: ChwEditFormProps) => {
           />
           <ChwFormField
             label={'45 - 49: '}
-            maleValue={report.report.complaints.fever.fortyFiveToFortyNine.male}
+            maleValue={
+              report.report.complaints.malnutrition.fortyFiveToFortyNine.male
+            }
             femaleValue={
-              report.report.complaints.fever.fortyFiveToFortyNine.female
+              report.report.complaints.malnutrition.fortyFiveToFortyNine.female
             }
             maleOnChange={(e) => {
               updateFn({
@@ -465,10 +491,11 @@ const ComplaintsForm = (props: ChwEditFormProps) => {
                   ...report.report,
                   complaints: {
                     ...report.report.complaints,
-                    fever: {
-                      ...report.report.complaints.fever,
+                    malnutrition: {
+                      ...report.report.complaints.malnutrition,
                       fortyFiveToFortyNine: {
-                        ...report.report.complaints.fever.fortyFiveToFortyNine,
+                        ...report.report.complaints.malnutrition
+                          .fortyFiveToFortyNine,
                         male: readEventValueAsNum(e),
                       },
                     },
@@ -483,10 +510,11 @@ const ComplaintsForm = (props: ChwEditFormProps) => {
                   ...report.report,
                   complaints: {
                     ...report.report.complaints,
-                    fever: {
-                      ...report.report.complaints.fever,
+                    malnutrition: {
+                      ...report.report.complaints.malnutrition,
                       fortyFiveToFortyNine: {
-                        ...report.report.complaints.fever.fortyFiveToFortyNine,
+                        ...report.report.complaints.malnutrition
+                          .fortyFiveToFortyNine,
                         female: readEventValueAsNum(e),
                       },
                     },
@@ -499,8 +527,12 @@ const ComplaintsForm = (props: ChwEditFormProps) => {
           />
           <ChwFormField
             label={'50 - 54: '}
-            maleValue={report.report.complaints.fever.fiftyToFiftyFour.male}
-            femaleValue={report.report.complaints.fever.fiftyToFiftyFour.female}
+            maleValue={
+              report.report.complaints.malnutrition.fiftyToFiftyFour.male
+            }
+            femaleValue={
+              report.report.complaints.malnutrition.fiftyToFiftyFour.female
+            }
             maleOnChange={(e) => {
               updateFn({
                 ...report,
@@ -508,10 +540,11 @@ const ComplaintsForm = (props: ChwEditFormProps) => {
                   ...report.report,
                   complaints: {
                     ...report.report.complaints,
-                    fever: {
-                      ...report.report.complaints.fever,
+                    malnutrition: {
+                      ...report.report.complaints.malnutrition,
                       fiftyToFiftyFour: {
-                        ...report.report.complaints.fever.fiftyToFiftyFour,
+                        ...report.report.complaints.malnutrition
+                          .fiftyToFiftyFour,
                         male: readEventValueAsNum(e),
                       },
                     },
@@ -526,10 +559,11 @@ const ComplaintsForm = (props: ChwEditFormProps) => {
                   ...report.report,
                   complaints: {
                     ...report.report.complaints,
-                    fever: {
-                      ...report.report.complaints.fever,
+                    malnutrition: {
+                      ...report.report.complaints.malnutrition,
                       fiftyToFiftyFour: {
-                        ...report.report.complaints.fever.fiftyToFiftyFour,
+                        ...report.report.complaints.malnutrition
+                          .fiftyToFiftyFour,
                         female: readEventValueAsNum(e),
                       },
                     },
@@ -542,9 +576,11 @@ const ComplaintsForm = (props: ChwEditFormProps) => {
           />
           <ChwFormField
             label={'55 - 59: '}
-            maleValue={report.report.complaints.fever.fiftyFiveToFiftyNine.male}
+            maleValue={
+              report.report.complaints.malnutrition.fiftyFiveToFiftyNine.male
+            }
             femaleValue={
-              report.report.complaints.fever.fiftyFiveToFiftyNine.female
+              report.report.complaints.malnutrition.fiftyFiveToFiftyNine.female
             }
             maleOnChange={(e) => {
               updateFn({
@@ -553,10 +589,11 @@ const ComplaintsForm = (props: ChwEditFormProps) => {
                   ...report.report,
                   complaints: {
                     ...report.report.complaints,
-                    fever: {
-                      ...report.report.complaints.fever,
+                    malnutrition: {
+                      ...report.report.complaints.malnutrition,
                       fiftyFiveToFiftyNine: {
-                        ...report.report.complaints.fever.fiftyFiveToFiftyNine,
+                        ...report.report.complaints.malnutrition
+                          .fiftyFiveToFiftyNine,
                         male: readEventValueAsNum(e),
                       },
                     },
@@ -571,10 +608,11 @@ const ComplaintsForm = (props: ChwEditFormProps) => {
                   ...report.report,
                   complaints: {
                     ...report.report.complaints,
-                    fever: {
-                      ...report.report.complaints.fever,
+                    malnutrition: {
+                      ...report.report.complaints.malnutrition,
                       fiftyFiveToFiftyNine: {
-                        ...report.report.complaints.fever.fiftyFiveToFiftyNine,
+                        ...report.report.complaints.malnutrition
+                          .fiftyFiveToFiftyNine,
                         female: readEventValueAsNum(e),
                       },
                     },
@@ -595,8 +633,12 @@ const ComplaintsForm = (props: ChwEditFormProps) => {
         >
           <ChwFormField
             label={'60 - 64: '}
-            maleValue={report.report.complaints.fever.sixtyToSixtyFour.male}
-            femaleValue={report.report.complaints.fever.sixtyToSixtyFour.female}
+            maleValue={
+              report.report.complaints.malnutrition.sixtyToSixtyFour.male
+            }
+            femaleValue={
+              report.report.complaints.malnutrition.sixtyToSixtyFour.female
+            }
             maleOnChange={(e) => {
               updateFn({
                 ...report,
@@ -604,10 +646,11 @@ const ComplaintsForm = (props: ChwEditFormProps) => {
                   ...report.report,
                   complaints: {
                     ...report.report.complaints,
-                    fever: {
-                      ...report.report.complaints.fever,
+                    malnutrition: {
+                      ...report.report.complaints.malnutrition,
                       sixtyToSixtyFour: {
-                        ...report.report.complaints.fever.sixtyToSixtyFour,
+                        ...report.report.complaints.malnutrition
+                          .sixtyToSixtyFour,
                         male: readEventValueAsNum(e),
                       },
                     },
@@ -622,10 +665,11 @@ const ComplaintsForm = (props: ChwEditFormProps) => {
                   ...report.report,
                   complaints: {
                     ...report.report.complaints,
-                    fever: {
-                      ...report.report.complaints.fever,
+                    malnutrition: {
+                      ...report.report.complaints.malnutrition,
                       sixtyToSixtyFour: {
-                        ...report.report.complaints.fever.sixtyToSixtyFour,
+                        ...report.report.complaints.malnutrition
+                          .sixtyToSixtyFour,
                         female: readEventValueAsNum(e),
                       },
                     },
@@ -638,8 +682,12 @@ const ComplaintsForm = (props: ChwEditFormProps) => {
           />
           <ChwFormField
             label={'65+: '}
-            maleValue={report.report.complaints.fever.sixtyFiveOrMore.male}
-            femaleValue={report.report.complaints.fever.sixtyFiveOrMore.female}
+            maleValue={
+              report.report.complaints.malnutrition.sixtyFiveOrMore.male
+            }
+            femaleValue={
+              report.report.complaints.malnutrition.sixtyFiveOrMore.female
+            }
             maleOnChange={(e) => {
               updateFn({
                 ...report,
@@ -647,10 +695,11 @@ const ComplaintsForm = (props: ChwEditFormProps) => {
                   ...report.report,
                   complaints: {
                     ...report.report.complaints,
-                    fever: {
-                      ...report.report.complaints.fever,
+                    malnutrition: {
+                      ...report.report.complaints.malnutrition,
                       sixtyFiveOrMore: {
-                        ...report.report.complaints.fever.sixtyFiveOrMore,
+                        ...report.report.complaints.malnutrition
+                          .sixtyFiveOrMore,
                         male: readEventValueAsNum(e),
                       },
                     },
@@ -665,10 +714,11 @@ const ComplaintsForm = (props: ChwEditFormProps) => {
                   ...report.report,
                   complaints: {
                     ...report.report.complaints,
-                    fever: {
-                      ...report.report.complaints.fever,
+                    malnutrition: {
+                      ...report.report.complaints.malnutrition,
                       sixtyFiveOrMore: {
-                        ...report.report.complaints.fever.sixtyFiveOrMore,
+                        ...report.report.complaints.malnutrition
+                          .sixtyFiveOrMore,
                         female: readEventValueAsNum(e),
                       },
                     },
@@ -688,4 +738,4 @@ const ComplaintsForm = (props: ChwEditFormProps) => {
   );
 };
 
-export default ComplaintsForm;
+export default MalnutritionComplaintsForm;
