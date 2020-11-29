@@ -49,6 +49,15 @@ export const createTallies = (): Tallies => {
   };
 };
 
+export interface Complaints {
+  malnutrition: Tallies;
+  diarrhea: Tallies;
+  cold: Tallies;
+  fever: Tallies;
+  feverRash: Tallies;
+  soresRashes: Tallies;
+}
+
 export interface ChwMonthlyReport {
   healthEducator: string;
   ruralNurse: string;
@@ -58,7 +67,7 @@ export interface ChwMonthlyReport {
   year: number;
   patientsSeen: Tallies;
   deaths: Tallies;
-  complaints: Tallies;
+  complaints: Complaints;
   births: Tallies;
   dutiesPerformed: Tallies;
 }

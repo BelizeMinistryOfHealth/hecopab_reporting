@@ -72,7 +72,7 @@ func TestChwReport_Create(t *testing.T) {
 			SixtyToSixtyFour:       models.GenderCategories{},
 			SixtyFiveAndOver:       models.GenderCategories{},
 		},
-		Complaints:      Tallies{},
+		Complaints:      Complaints{},
 		DutiesPerformed: Tallies{},
 		Births: models.GenderCategories{
 			Male:   10,
@@ -150,7 +150,7 @@ func TestChwReport_List(t *testing.T) {
 			SixtyToSixtyFour:       models.GenderCategories{},
 			SixtyFiveAndOver:       models.GenderCategories{},
 		},
-		Complaints:      Tallies{},
+		Complaints:      Complaints{},
 		DutiesPerformed: Tallies{},
 		Births: models.GenderCategories{
 			Male:   10,
@@ -214,7 +214,7 @@ func TestChwReport_Update(t *testing.T) {
 			SixtyToSixtyFour:       models.GenderCategories{},
 			SixtyFiveAndOver:       models.GenderCategories{},
 		},
-		Complaints:      Tallies{},
+		Complaints:      Complaints{},
 		DutiesPerformed: Tallies{},
 		Births: models.GenderCategories{
 			Male:   10,
@@ -234,7 +234,7 @@ func TestChwReport_Update(t *testing.T) {
 	}
 
 	//Update the report
-	record.Report.Complaints = Tallies{
+	record.Report.PatientsSeen = Tallies{
 		OneToFour:         models.GenderCategories{},
 		FiveToNine:        models.GenderCategories{},
 		TenToFourteen:     models.GenderCategories{},
@@ -256,6 +256,38 @@ func TestChwReport_Update(t *testing.T) {
 		SixtyToSixtyFour:       models.GenderCategories{},
 		SixtyFiveAndOver:       models.GenderCategories{},
 	}
+	record.Report.Complaints = Complaints{
+		Malnutrition: Tallies{},
+		Diarrhea:     Tallies{},
+		Cold:         Tallies{},
+		Fever: Tallies{
+			OneToFour:              models.GenderCategories{},
+			FiveToNine:             models.GenderCategories{},
+			TenToFourteen:          models.GenderCategories{},
+			FifteenToNineteen:      models.GenderCategories{},
+			TwentyToTwentyFour:     models.GenderCategories{},
+			TwentyFiveToTwentyNine: models.GenderCategories{},
+			ThirtyToThirtyFour:     models.GenderCategories{},
+			ThirtyFiveToThirtyNine: models.GenderCategories{},
+			FortyToFortyFour:       models.GenderCategories{},
+			FortyFiveToFortyNine:   models.GenderCategories{},
+			FiftyToFiftyFour: models.GenderCategories{
+				Male:   20,
+				Female: 19,
+			},
+			FiftyFiveToFiftyNine: models.GenderCategories{
+				Male:   17,
+				Female: 10,
+			},
+			SixtyToSixtyFour: models.GenderCategories{
+				Male:   21,
+				Female: 13,
+			},
+			SixtyFiveAndOver: models.GenderCategories{},
+		},
+		FeverRash:   Tallies{},
+		SoresRashes: Tallies{},
+	}
 	record.UpdatedBy = "chw@moh.gov.bz"
 	today := time.Now()
 	record.UpdatedAt = &today
@@ -271,14 +303,29 @@ func TestChwReport_Update(t *testing.T) {
 	if r.UpdatedBy != record.UpdatedBy {
 		t.Errorf("want: %s got: %s", record.UpdatedBy, r.UpdatedBy)
 	}
-	if r.Report.Complaints.TwentyToTwentyFour.Male != record.Report.Complaints.TwentyToTwentyFour.Male {
+	if r.Report.PatientsSeen.TwentyToTwentyFour.Male != record.Report.PatientsSeen.TwentyToTwentyFour.Male {
 		t.Errorf("want: %+v got: %+v",
-			record.Report.Complaints.TwentyToTwentyFour.Male,
-			r.Report.Complaints.TwentyToTwentyFour.Male)
+			record.Report.PatientsSeen.TwentyToTwentyFour.Male,
+			r.Report.PatientsSeen.TwentyToTwentyFour.Male)
 	}
-	if r.Report.Complaints.TwentyToTwentyFour.Total != record.Report.Complaints.TwentyToTwentyFour.Male+record.Report.Complaints.TwentyToTwentyFour.Female {
+	if r.Report.PatientsSeen.TwentyToTwentyFour.Total != record.Report.PatientsSeen.TwentyToTwentyFour.Male+record.Report.PatientsSeen.TwentyToTwentyFour.Female {
 		t.Errorf("want: %+v got: %+v",
-			record.Report.Complaints.TwentyToTwentyFour.Total,
-			r.Report.Complaints.TwentyToTwentyFour.Male+r.Report.Complaints.TwentyToTwentyFour.Female)
+			record.Report.PatientsSeen.TwentyToTwentyFour.Total,
+			r.Report.PatientsSeen.TwentyToTwentyFour.Male+r.Report.PatientsSeen.TwentyToTwentyFour.Female)
 	}
+	savedComplaints := r.Report.Complaints
+	expectedComplaints := record.Report.Complaints
+	if savedComplaints.SoresRashes.OneToFour.Total != expectedComplaints.SoresRashes.OneToFour.Total {
+		t.Errorf("want: %d got: %d",
+			expectedComplaints.SoresRashes.OneToFour.Total,
+			savedComplaints.SoresRashes.OneToFour.Total)
+	}
+
+	if savedComplaints.Fever.FiftyFiveToFiftyNine.Total != 27 {
+		t.Errorf("want: %d, got: %d", 27, savedComplaints.Fever.FiftyFiveToFiftyNine.Total)
+	}
+	if savedComplaints.Fever.SixtyToSixtyFour.Total != 34 {
+		t.Errorf("want: %d, got: %d", 34, savedComplaints.Fever.SixtyToSixtyFour.Total)
+	}
+
 }

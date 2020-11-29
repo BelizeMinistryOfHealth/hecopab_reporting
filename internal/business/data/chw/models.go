@@ -27,6 +27,12 @@ type Tallies struct {
 	SixtyFiveAndOver       models.GenderCategories `json:"sixtyFiveOrMore"`
 }
 
+// AgeGroupCounter is an interface for calculating the sum of the values assigned
+// to GenderCategories.
+type AgeGroupCounter interface {
+	CalculateTotal()
+}
+
 // Value implements the driver.Valuer interface. It is used by the sql driver
 // to convert a struct to JSON before persisting it.
 func (e Tallies) Value() (driver.Value, error) {
@@ -44,22 +50,26 @@ func (e *Tallies) Scan(value interface{}) error {
 	if err != nil {
 		return err
 	}
-	e.OneToFour.CalculateTotal()
-	e.FiveToNine.CalculateTotal()
-	e.TenToFourteen.CalculateTotal()
-	e.FifteenToNineteen.CalculateTotal()
-	e.TwentyToTwentyFour.CalculateTotal()
-	e.TwentyFiveToTwentyNine.CalculateTotal()
-	e.ThirtyToThirtyFour.CalculateTotal()
-	e.ThirtyFiveToThirtyNine.CalculateTotal()
-	e.FortyToFortyFour.CalculateTotal()
-	e.FortyFiveToFortyNine.CalculateTotal()
-	e.FiftyToFiftyFour.CalculateTotal()
-	e.FiftyFiveToFiftyNine.CalculateTotal()
-	e.SixtyToSixtyFour.CalculateTotal()
-	e.SixtyFiveAndOver.CalculateTotal()
-
+	e.CalculateTotal()
 	return nil
+}
+
+// CalculateTotal calculates the total sum for all the age groups
+func (t *Tallies) CalculateTotal() {
+	t.OneToFour.CalculateTotal()
+	t.FiveToNine.CalculateTotal()
+	t.TenToFourteen.CalculateTotal()
+	t.FifteenToNineteen.CalculateTotal()
+	t.TwentyToTwentyFour.CalculateTotal()
+	t.TwentyFiveToTwentyNine.CalculateTotal()
+	t.ThirtyToThirtyFour.CalculateTotal()
+	t.ThirtyFiveToThirtyNine.CalculateTotal()
+	t.FortyToFortyFour.CalculateTotal()
+	t.FortyFiveToFortyNine.CalculateTotal()
+	t.FiftyToFiftyFour.CalculateTotal()
+	t.FiftyFiveToFiftyNine.CalculateTotal()
+	t.SixtyToSixtyFour.CalculateTotal()
+	t.SixtyFiveAndOver.CalculateTotal()
 }
 
 // ChwMonthlyReport is the community health worker's monthly report
@@ -73,7 +83,7 @@ type ChwMonthlyReport struct {
 	Year                  int                     `json:"year"`
 	PatientsSeen          Tallies                 `json:"patientsSeen"`
 	Deaths                Tallies                 `json:"deaths"`
-	Complaints            Tallies                 `json:"complaints"`
+	Complaints            Complaints              `json:"complaints"`
 	DutiesPerformed       Tallies                 `json:"dutiesPreformed"`
 	Births                models.GenderCategories `json:"births"`
 }

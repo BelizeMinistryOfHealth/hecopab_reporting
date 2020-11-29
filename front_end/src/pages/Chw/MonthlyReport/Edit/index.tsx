@@ -6,24 +6,68 @@ import {
   FormName,
   FormStatus,
 } from '../../../../api/chws';
-import { Box, Button, Grid, Heading } from 'grommet';
+import { Accordion, AccordionPanel, Box, Button, Grid, Heading } from 'grommet';
 import { Close } from 'grommet-icons';
 import { useHttpApi } from '../../../../providers/HttpApiProvider';
 import Spinner from '../../../../components/Spinner/Spinner';
 import BasicInfoForm from './BasicInfoForm';
 import PatientsSeenForm from './PatientsSeenForm';
 import DeathsForm from './DeathsForm';
+import ComplaintsForm from './ComplaintsForm';
+import EmptyResults from '../../../../components/EmptyResults/EmptyResults';
 
 interface ParamTypes {
   id: string;
+}
+
+interface RichPanelProps {
+  label: string;
+  children: ReactNode;
+}
+
+const RichPanel = (props: RichPanelProps) => {
+  const { children, label } = props;
+  const [hovering, setHovering] = React.useState(false);
+
+  const renderPanelTitle = () => (
+    <Box
+      direction='row'
+      align='center'
+      gap='xxsmall'
+      pad={{ horizontal: 'small' }}
+    >
+      <Heading level={4} color={hovering ? 'dark-1' : 'dark-3'}>
+        {label}
+      </Heading>
+    </Box>
+  );
+
+  return (
+    <AccordionPanel
+      label={renderPanelTitle()}
+      onMouseOver={() => setHovering(true)}
+      onMouseOut={() => setHovering(false)}
+      onFocus={() => setHovering(true)}
+      onBlur={() => setHovering(false)}
+    >
+      {children}
+    </AccordionPanel>
+  );
+};
+
+interface MenuItem {
+  label: string;
+  onClick: () => void;
 }
 
 const Scaffold = (props: {
   children: ReactNode;
   onClickClose: () => void;
   menu?: { label: string; onClick: () => void }[];
+  submenu?: { label: string; items: MenuItem[] }[];
 }) => {
-  const { onClickClose, children, menu } = props;
+  const { onClickClose, children, menu, submenu } = props;
+
   return (
     <Box
       pad={'small'}
@@ -78,8 +122,27 @@ const Scaffold = (props: {
               fill
             >
               {menu?.map((m) => (
-                <Button plain label={m.label} onClick={m.onClick} />
+                <Button
+                  plain
+                  margin={'none'}
+                  label={
+                    <Heading margin={'none'} level={4} color={'dark-3'}>
+                      {m.label}
+                    </Heading>
+                  }
+                  onClick={m.onClick}
+                />
               ))}
+
+              <Accordion multiple>
+                {submenu?.map((m) => (
+                  <RichPanel label={m.label}>
+                    {m.items.map((i) => (
+                      <Button plain label={i.label} onClick={i.onClick} />
+                    ))}
+                  </RichPanel>
+                ))}
+              </Accordion>
             </Box>
           </Grid>
         </Box>
@@ -93,9 +156,7 @@ const ChwMonthlyReportEdit = () => {
   const { httpClient } = useHttpApi();
   const { id } = useParams<ParamTypes>();
   const [status, setStatus] = React.useState<FormStatus>(FormStatus.Loading);
-  const [formOnScreen, setFormOnScreen] = React.useState<FormName>(
-    FormName.BasicInfo
-  );
+  const [, setFormOnScreen] = React.useState<FormName>(FormName.BasicInfo);
   const [formEvent, setFormEvent] = React.useState<FormEvent>({
     name: FormName.BasicInfo,
     status: FormStatus.Start,
@@ -169,9 +230,25 @@ const ChwMonthlyReportEdit = () => {
         setFormEvent({ name: FormName.Births, status: FormStatus.Start }),
     },
   ];
+
+  const submenu = [
+    {
+      label: 'Complaints',
+      items: [
+        {
+          label: 'Fever',
+          onClick: () =>
+            setFormEvent({
+              name: FormName.Complaints,
+              status: FormStatus.Start,
+            }),
+        },
+      ],
+    },
+  ];
   if (formEvent.name === FormName.BasicInfo && report) {
     return (
-      <Scaffold onClickClose={onClickClose} menu={menu}>
+      <Scaffold onClickClose={onClickClose} menu={menu} submenu={submenu}>
         <BasicInfoForm
           report={report}
           updateFn={(r) => setReport(r)}
@@ -186,7 +263,7 @@ const ChwMonthlyReportEdit = () => {
 
   if (formEvent.name === FormName.PatientsSeen && report) {
     return (
-      <Scaffold onClickClose={onClickClose} menu={menu}>
+      <Scaffold onClickClose={onClickClose} menu={menu} submenu={submenu}>
         <PatientsSeenForm
           report={report}
           updateFn={(r) => setReport(r)}
@@ -201,7 +278,7 @@ const ChwMonthlyReportEdit = () => {
 
   if (formEvent.name === FormName.Deaths && report) {
     return (
-      <Scaffold onClickClose={onClickClose} menu={menu}>
+      <Scaffold onClickClose={onClickClose} menu={menu} submenu={submenu}>
         <DeathsForm
           report={report}
           updateFn={setReport}
@@ -214,7 +291,26 @@ const ChwMonthlyReportEdit = () => {
     );
   }
 
-  return <Scaffold onClickClose={onClickClose}>Form goes here....</Scaffold>;
+  if (formEvent.name === FormName.Complaints && report) {
+    return (
+      <Scaffold onClickClose={onClickClose} menu={menu} submenu={submenu}>
+        <ComplaintsForm
+          report={report}
+          updateFn={setReport}
+          onSubmit={() =>
+            setFormEvent({ ...formEvent, status: FormStatus.Submit })
+          }
+          formEvent={formEvent}
+        />
+      </Scaffold>
+    );
+  }
+
+  return (
+    <Scaffold onClickClose={onClickClose}>
+      <EmptyResults />
+    </Scaffold>
+  );
 };
 
 export default ChwMonthlyReportEdit;
