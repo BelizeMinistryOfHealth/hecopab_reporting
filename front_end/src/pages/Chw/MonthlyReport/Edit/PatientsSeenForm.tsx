@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import {
   ChwMonthlyReportRecord,
   FormEvent,
@@ -15,6 +15,64 @@ import {
   TextInput,
 } from 'grommet';
 import Spinner from '../../../../components/Spinner/Spinner';
+
+interface ChwFormFieldProps {
+  label: string;
+  maleValue: number;
+  femaleValue: number;
+  maleOnChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  femaleOnChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  maleFieldName: string;
+  femaleFieldName: string;
+}
+
+const ChwFormField = (props: ChwFormFieldProps) => {
+  const {
+    label,
+    maleValue,
+    femaleValue,
+    maleOnChange,
+    femaleOnChange,
+    maleFieldName,
+    femaleFieldName,
+  } = props;
+  return (
+    <Box
+      border
+      direction={'column'}
+      align={'start'}
+      pad={{ top: 'small', left: 'small', right: 'small' }}
+    >
+      <Text size={'medium'}>{label}</Text>
+      <Box direction={'row'} align={'start'}>
+        <FormField
+          name={maleFieldName}
+          label={<Text size={'small'}>Male</Text>}
+          pad={false}
+        >
+          <TextInput
+            name={maleFieldName}
+            size={'small'}
+            value={maleValue}
+            onChange={maleOnChange}
+          />
+        </FormField>
+        <FormField
+          name={femaleFieldName}
+          label={<Text size={'small'}>Female</Text>}
+          pad={false}
+        >
+          <TextInput
+            name={femaleFieldName}
+            size={'small'}
+            value={femaleValue}
+            onChange={femaleOnChange}
+          />
+        </FormField>
+      </Box>
+    </Box>
+  );
+};
 
 export interface PatientsSeenFormProps {
   report: ChwMonthlyReportRecord;
@@ -49,255 +107,154 @@ const PatientsSeenForm = (props: PatientsSeenFormProps) => {
           gap={'small'}
           margin={{ right: 'large' }}
         >
-          <Box
-            border
-            direction={'column'}
-            align={'start'}
-            pad={{ top: 'small', left: 'small', right: 'small' }}
-          >
-            <Text size={'medium'}>1 - 4:</Text>
-            <Box direction={'row'} align={'start'}>
-              <FormField
-                name={'oneToFour.male'}
-                label={<Text size={'small'}>Male</Text>}
-                pad={false}
-              >
-                <TextInput
-                  name={'oneToFour.male'}
-                  size={'small'}
-                  value={report.report.patientsSeen.oneToFour.male}
-                  onChange={(e) => {
-                    updateFn({
-                      ...report,
-                      report: {
-                        ...report.report,
-                        patientsSeen: {
-                          ...report.report.patientsSeen,
-                          oneToFour: {
-                            ...report.report.patientsSeen.oneToFour,
-                            male: readEventValueAsNum(e),
-                          },
-                        },
-                      },
-                    });
-                  }}
-                />
-              </FormField>
-              <FormField
-                name={'oneToFour.female'}
-                label={<Text size={'small'}>Female</Text>}
-                pad={false}
-              >
-                <TextInput
-                  name={'oneToFour.female'}
-                  size={'small'}
-                  value={report.report.patientsSeen.oneToFour.female}
-                  onChange={(e) => {
-                    updateFn({
-                      ...report,
-                      report: {
-                        ...report.report,
-                        patientsSeen: {
-                          ...report.report.patientsSeen,
-                          oneToFour: {
-                            ...report.report.patientsSeen.oneToFour,
-                            female: readEventValueAsNum(e),
-                          },
-                        },
-                      },
-                    });
-                  }}
-                />
-              </FormField>
-            </Box>
-          </Box>
-          <Box
-            border
-            direction={'column'}
-            align={'start'}
-            pad={{ top: 'small', left: 'small', right: 'small' }}
-          >
-            <Text size={'medium'}>5 - 9:</Text>
-            <Box direction={'row'} align={'start'}>
-              <FormField
-                name={'fiveToNine.male'}
-                label={<Text size={'small'}>Male</Text>}
-                pad={false}
-              >
-                <TextInput
-                  name={'fiveToNine.male'}
-                  size={'small'}
-                  value={report.report.patientsSeen.fiveToNine.male}
-                  onChange={(e) => {
-                    updateFn({
-                      ...report,
-                      report: {
-                        ...report.report,
-                        patientsSeen: {
-                          ...report.report.patientsSeen,
-                          fiveToNine: {
-                            ...report.report.patientsSeen.fiveToNine,
-                            male: readEventValueAsNum(e),
-                          },
-                        },
-                      },
-                    });
-                  }}
-                />
-              </FormField>
-              <FormField
-                name={'fiveToNine.female'}
-                label={<Text size={'small'}>Female</Text>}
-                pad={false}
-              >
-                <TextInput
-                  name={'fiveToNine.female'}
-                  size={'small'}
-                  value={report.report.patientsSeen.fiveToNine.female}
-                  onChange={(e) => {
-                    updateFn({
-                      ...report,
-                      report: {
-                        ...report.report,
-                        patientsSeen: {
-                          ...report.report.patientsSeen,
-                          fiveToNine: {
-                            ...report.report.patientsSeen.fiveToNine,
-                            female: readEventValueAsNum(e),
-                          },
-                        },
-                      },
-                    });
-                  }}
-                />
-              </FormField>
-            </Box>
-          </Box>
-          <Box
-            border
-            direction={'column'}
-            align={'start'}
-            pad={{ top: 'small', left: 'small', right: 'small' }}
-          >
-            <Text size={'medium'}>10 - 14:</Text>
-            <Box direction={'row'} align={'start'}>
-              <FormField
-                name={'tenToFourteen.male'}
-                label={<Text size={'small'}>Male</Text>}
-                pad={false}
-              >
-                <TextInput
-                  name={'tentToFourteen.male'}
-                  size={'small'}
-                  value={report.report.patientsSeen.tenToFourteen.male}
-                  onChange={(e) => {
-                    updateFn({
-                      ...report,
-                      report: {
-                        ...report.report,
-                        patientsSeen: {
-                          ...report.report.patientsSeen,
-                          tenToFourteen: {
-                            ...report.report.patientsSeen.tenToFourteen,
-                            male: readEventValueAsNum(e),
-                          },
-                        },
-                      },
-                    });
-                  }}
-                />
-              </FormField>
-              <FormField
-                name={'tenToFourteen.female'}
-                label={<Text size={'small'}>Female</Text>}
-                pad={false}
-              >
-                <TextInput
-                  name={'tenToFourteen.female'}
-                  size={'small'}
-                  value={report.report.patientsSeen.tenToFourteen.female}
-                  onChange={(e) => {
-                    const v = readEventValueAsNum(e);
-                    updateFn({
-                      ...report,
-                      report: {
-                        ...report.report,
-                        patientsSeen: {
-                          ...report.report.patientsSeen,
-                          tenToFourteen: {
-                            ...report.report.patientsSeen.tenToFourteen,
-                            female: v,
-                          },
-                        },
-                      },
-                    });
-                  }}
-                />
-              </FormField>
-            </Box>
-          </Box>
-          <Box
-            border
-            direction={'column'}
-            align={'start'}
-            pad={{ top: 'small', left: 'small', right: 'small' }}
-          >
-            <Text size={'medium'}>15 - 19:</Text>
-            <Box direction={'row'} align={'start'}>
-              <FormField
-                name={'twentyToTwentyFour.female'}
-                label={<Text size={'small'}>Male</Text>}
-                pad={false}
-              >
-                <TextInput
-                  name={'fifteenToNineteen.male'}
-                  size={'small'}
-                  value={report.report.patientsSeen.fifteenToNineteen.male}
-                  onChange={(e) => {
-                    updateFn({
-                      ...report,
-                      report: {
-                        ...report.report,
-                        patientsSeen: {
-                          ...report.report.patientsSeen,
-                          fifteenToNineteen: {
-                            ...report.report.patientsSeen.fifteenToNineteen,
-                            male: readEventValueAsNum(e),
-                          },
-                        },
-                      },
-                    });
-                  }}
-                />
-              </FormField>
-              <FormField
-                name={'twentyToTwentyFour.female'}
-                label={<Text size={'small'}>Female</Text>}
-                pad={false}
-              >
-                <TextInput
-                  name={'twentyToTwentyFour.female'}
-                  size={'small'}
-                  value={report.report.patientsSeen.twentyToTwentyFour.female}
-                  onChange={(e) => {
-                    updateFn({
-                      ...report,
-                      report: {
-                        ...report.report,
-                        patientsSeen: {
-                          ...report.report.patientsSeen,
-                          twentyToTwentyFour: {
-                            ...report.report.patientsSeen.twentyToTwentyFour,
-                            female: readEventValueAsNum(e),
-                          },
-                        },
-                      },
-                    });
-                  }}
-                />
-              </FormField>
-            </Box>
-          </Box>
+          <ChwFormField
+            label={'1 - 4: '}
+            maleValue={report.report.patientsSeen.oneToFour.male}
+            femaleValue={report.report.patientsSeen.oneToFour.female}
+            maleOnChange={(e) => {
+              updateFn({
+                ...report,
+                report: {
+                  ...report.report,
+                  patientsSeen: {
+                    ...report.report.patientsSeen,
+                    oneToFour: {
+                      ...report.report.patientsSeen.oneToFour,
+                      male: readEventValueAsNum(e),
+                    },
+                  },
+                },
+              });
+            }}
+            femaleOnChange={(e) => {
+              updateFn({
+                ...report,
+                report: {
+                  ...report.report,
+                  patientsSeen: {
+                    ...report.report.patientsSeen,
+                    oneToFour: {
+                      ...report.report.patientsSeen.oneToFour,
+                      female: readEventValueAsNum(e),
+                    },
+                  },
+                },
+              });
+            }}
+            maleFieldName={'oneToFour.male'}
+            femaleFieldName={'oneToFour.female'}
+          />
+          <ChwFormField
+            label={'5 - 9: '}
+            maleValue={report.report.patientsSeen.fiveToNine.male}
+            femaleValue={report.report.patientsSeen.fiveToNine.female}
+            maleOnChange={(e) => {
+              updateFn({
+                ...report,
+                report: {
+                  ...report.report,
+                  patientsSeen: {
+                    ...report.report.patientsSeen,
+                    fiveToNine: {
+                      ...report.report.patientsSeen.fiveToNine,
+                      male: readEventValueAsNum(e),
+                    },
+                  },
+                },
+              });
+            }}
+            femaleOnChange={(e) => {
+              updateFn({
+                ...report,
+                report: {
+                  ...report.report,
+                  patientsSeen: {
+                    ...report.report.patientsSeen,
+                    fiveToNine: {
+                      ...report.report.patientsSeen.fiveToNine,
+                      female: readEventValueAsNum(e),
+                    },
+                  },
+                },
+              });
+            }}
+            maleFieldName={'fiveToNine.male'}
+            femaleFieldName={'fiveToNine.female'}
+          />
+          <ChwFormField
+            label={'10 - 14: '}
+            maleValue={report.report.patientsSeen.tenToFourteen.male}
+            femaleValue={report.report.patientsSeen.tenToFourteen.female}
+            maleOnChange={(e) => {
+              updateFn({
+                ...report,
+                report: {
+                  ...report.report,
+                  patientsSeen: {
+                    ...report.report.patientsSeen,
+                    tenToFourteen: {
+                      ...report.report.patientsSeen.tenToFourteen,
+                      male: readEventValueAsNum(e),
+                    },
+                  },
+                },
+              });
+            }}
+            femaleOnChange={(e) => {
+              updateFn({
+                ...report,
+                report: {
+                  ...report.report,
+                  patientsSeen: {
+                    ...report.report.patientsSeen,
+                    tenToFourteen: {
+                      ...report.report.patientsSeen.tenToFourteen,
+                      female: readEventValueAsNum(e),
+                    },
+                  },
+                },
+              });
+            }}
+            maleFieldName={'tenToFourteen.male'}
+            femaleFieldName={'tenToFourteen.female'}
+          />
+          <ChwFormField
+            label={'15 - 19: '}
+            maleValue={report.report.patientsSeen.fifteenToNineteen.male}
+            femaleValue={report.report.patientsSeen.fifteenToNineteen.female}
+            maleOnChange={(e) => {
+              updateFn({
+                ...report,
+                report: {
+                  ...report.report,
+                  patientsSeen: {
+                    ...report.report.patientsSeen,
+                    fifteenToNineteen: {
+                      ...report.report.patientsSeen.fifteenToNineteen,
+                      male: readEventValueAsNum(e),
+                    },
+                  },
+                },
+              });
+            }}
+            femaleOnChange={(e) => {
+              updateFn({
+                ...report,
+                report: {
+                  ...report.report,
+                  patientsSeen: {
+                    ...report.report.patientsSeen,
+                    fifteenToNineteen: {
+                      ...report.report.patientsSeen.fifteenToNineteen,
+                      female: readEventValueAsNum(e),
+                    },
+                  },
+                },
+              });
+            }}
+            maleFieldName={'fifteenToNineteen.male'}
+            femaleFieldName={'fifteenToNineteen.female'}
+          />
         </Box>
 
         <Box
@@ -306,262 +263,158 @@ const PatientsSeenForm = (props: PatientsSeenFormProps) => {
           gap={'small'}
           margin={{ right: 'large', top: 'small' }}
         >
-          <Box
-            border
-            direction={'column'}
-            align={'start'}
-            pad={{ top: 'small', left: 'small', right: 'small' }}
-          >
-            <Text size={'medium'}>20 - 24:</Text>
-            <Box direction={'row'} align={'start'}>
-              <FormField
-                name={'twentyToTwentyFour.male'}
-                label={<Text size={'small'}>Male</Text>}
-                pad={false}
-              >
-                <TextInput
-                  name={'twentyToTwentyFour.male'}
-                  size={'small'}
-                  value={report.report.patientsSeen.twentyToTwentyFour.male}
-                  onChange={(e) => {
-                    updateFn({
-                      ...report,
-                      report: {
-                        ...report.report,
-                        patientsSeen: {
-                          ...report.report.patientsSeen,
-                          twentyToTwentyFour: {
-                            ...report.report.patientsSeen.twentyToTwentyFour,
-                            male: readEventValueAsNum(e),
-                          },
-                        },
-                      },
-                    });
-                  }}
-                />
-              </FormField>
-              <FormField
-                name={'twentyToTwentyFour.female'}
-                label={<Text size={'small'}>Female</Text>}
-                pad={false}
-              >
-                <TextInput
-                  name={'twentyToTwentyFour.female'}
-                  size={'small'}
-                  value={report.report.patientsSeen.twentyToTwentyFour.female}
-                  onChange={(e) => {
-                    updateFn({
-                      ...report,
-                      report: {
-                        ...report.report,
-                        patientsSeen: {
-                          ...report.report.patientsSeen,
-                          twentyToTwentyFour: {
-                            ...report.report.patientsSeen.twentyToTwentyFour,
-                            female: readEventValueAsNum(e),
-                          },
-                        },
-                      },
-                    });
-                  }}
-                />
-              </FormField>
-            </Box>
-          </Box>
-          <Box
-            border
-            direction={'column'}
-            align={'start'}
-            pad={{ top: 'small', left: 'small', right: 'small' }}
-          >
-            <Text size={'medium'}>25 - 29:</Text>
-            <Box direction={'row'} align={'start'}>
-              <FormField
-                name={'twentyFiveToTwentyNine.male'}
-                label={<Text size={'small'}>Male</Text>}
-                pad={false}
-              >
-                <TextInput
-                  name={'twentyFiveToTwentyNine.male'}
-                  size={'small'}
-                  value={report.report.patientsSeen.twentyFiveToTwentyNine.male}
-                  onChange={(e) => {
-                    updateFn({
-                      ...report,
-                      report: {
-                        ...report.report,
-                        patientsSeen: {
-                          ...report.report.patientsSeen,
-                          twentyFiveToTwentyNine: {
-                            ...report.report.patientsSeen
-                              .twentyFiveToTwentyNine,
-                            male: readEventValueAsNum(e),
-                          },
-                        },
-                      },
-                    });
-                  }}
-                />
-              </FormField>
-              <FormField
-                name={'twentyFiveToTwentyNine.female'}
-                label={<Text size={'small'}>Female</Text>}
-                pad={false}
-              >
-                <TextInput
-                  name={'twentyFiveToTwentyNine.female'}
-                  size={'small'}
-                  value={
-                    report.report.patientsSeen.twentyFiveToTwentyNine.female
-                  }
-                  onChange={(e) => {
-                    updateFn({
-                      ...report,
-                      report: {
-                        ...report.report,
-                        patientsSeen: {
-                          ...report.report.patientsSeen,
-                          twentyFiveToTwentyNine: {
-                            ...report.report.patientsSeen
-                              .twentyFiveToTwentyNine,
-                            female: readEventValueAsNum(e),
-                          },
-                        },
-                      },
-                    });
-                  }}
-                />
-              </FormField>
-            </Box>
-          </Box>
-          <Box
-            border
-            direction={'column'}
-            align={'start'}
-            pad={{ top: 'small', left: 'small', right: 'small' }}
-          >
-            <Text size={'medium'}>30 - 34:</Text>
-            <Box direction={'row'} align={'start'}>
-              <FormField
-                name={'thirtyToThirtyFour.male'}
-                label={<Text size={'small'}>Male</Text>}
-                pad={false}
-              >
-                <TextInput
-                  name={'thirtyToThirtyFour.male'}
-                  size={'small'}
-                  value={report.report.patientsSeen.thirtyToThirtyFour.male}
-                  onChange={(e) => {
-                    updateFn({
-                      ...report,
-                      report: {
-                        ...report.report,
-                        patientsSeen: {
-                          ...report.report.patientsSeen,
-                          thirtyToThirtyFour: {
-                            ...report.report.patientsSeen.thirtyToThirtyFour,
-                            male: readEventValueAsNum(e),
-                          },
-                        },
-                      },
-                    });
-                  }}
-                />
-              </FormField>
-              <FormField
-                name={'thirtyToThirtyFour.female'}
-                label={<Text size={'small'}>Female</Text>}
-                pad={false}
-              >
-                <TextInput
-                  name={'thirtyToThirtyFour.female'}
-                  size={'small'}
-                  value={report.report.patientsSeen.thirtyToThirtyFour.female}
-                  onChange={(e) => {
-                    updateFn({
-                      ...report,
-                      report: {
-                        ...report.report,
-                        patientsSeen: {
-                          ...report.report.patientsSeen,
-                          thirtyToThirtyFour: {
-                            ...report.report.patientsSeen.thirtyToThirtyFour,
-                            female: readEventValueAsNum(e),
-                          },
-                        },
-                      },
-                    });
-                  }}
-                />
-              </FormField>
-            </Box>
-          </Box>
-          <Box
-            border
-            direction={'column'}
-            align={'start'}
-            pad={{ top: 'small', left: 'small', right: 'small' }}
-          >
-            <Text size={'medium'}>35 - 39:</Text>
-            <Box direction={'row'} align={'start'}>
-              <FormField
-                name={'thirtyFiveToThirtyNine.male'}
-                label={<Text size={'small'}>Male</Text>}
-                pad={false}
-              >
-                <TextInput
-                  name={'thirtyFiveToThirtyNine.male'}
-                  size={'small'}
-                  value={report.report.patientsSeen.thirtyFiveToThirtyNine.male}
-                  onChange={(e) => {
-                    updateFn({
-                      ...report,
-                      report: {
-                        ...report.report,
-                        patientsSeen: {
-                          ...report.report.patientsSeen,
-                          thirtyFiveToThirtyNine: {
-                            ...report.report.patientsSeen
-                              .thirtyFiveToThirtyNine,
-                            male: readEventValueAsNum(e),
-                          },
-                        },
-                      },
-                    });
-                  }}
-                />
-              </FormField>
-              <FormField
-                name={'thirtyFiveToThirtyNine.female'}
-                label={<Text size={'small'}>Female</Text>}
-                pad={false}
-              >
-                <TextInput
-                  name={'thirtyFiveToThirtyNine.female'}
-                  size={'small'}
-                  value={
-                    report.report.patientsSeen.thirtyFiveToThirtyNine.female
-                  }
-                  onChange={(e) => {
-                    updateFn({
-                      ...report,
-                      report: {
-                        ...report.report,
-                        patientsSeen: {
-                          ...report.report.patientsSeen,
-                          thirtyFiveToThirtyNine: {
-                            ...report.report.patientsSeen
-                              .thirtyFiveToThirtyNine,
-                            female: readEventValueAsNum(e),
-                          },
-                        },
-                      },
-                    });
-                  }}
-                />
-              </FormField>
-            </Box>
-          </Box>
+          <ChwFormField
+            label={'20 - 24: '}
+            maleValue={report.report.patientsSeen.twentyToTwentyFour.male}
+            femaleValue={report.report.patientsSeen.twentyToTwentyFour.female}
+            maleOnChange={(e) => {
+              updateFn({
+                ...report,
+                report: {
+                  ...report.report,
+                  patientsSeen: {
+                    ...report.report.patientsSeen,
+                    twentyToTwentyFour: {
+                      ...report.report.patientsSeen.twentyToTwentyFour,
+                      male: readEventValueAsNum(e),
+                    },
+                  },
+                },
+              });
+            }}
+            femaleOnChange={(e) => {
+              updateFn({
+                ...report,
+                report: {
+                  ...report.report,
+                  patientsSeen: {
+                    ...report.report.patientsSeen,
+                    twentyToTwentyFour: {
+                      ...report.report.patientsSeen.twentyToTwentyFour,
+                      female: readEventValueAsNum(e),
+                    },
+                  },
+                },
+              });
+            }}
+            maleFieldName={'twentyToTwentyFour.male'}
+            femaleFieldName={'twentyToTwentyFour.female'}
+          />
+          <ChwFormField
+            label={'25 - 29: '}
+            maleValue={report.report.patientsSeen.twentyFiveToTwentyNine.male}
+            femaleValue={
+              report.report.patientsSeen.twentyFiveToTwentyNine.female
+            }
+            maleOnChange={(e) => {
+              updateFn({
+                ...report,
+                report: {
+                  ...report.report,
+                  patientsSeen: {
+                    ...report.report.patientsSeen,
+                    twentyFiveToTwentyNine: {
+                      ...report.report.patientsSeen.twentyFiveToTwentyNine,
+                      male: readEventValueAsNum(e),
+                    },
+                  },
+                },
+              });
+            }}
+            femaleOnChange={(e) => {
+              updateFn({
+                ...report,
+                report: {
+                  ...report.report,
+                  patientsSeen: {
+                    ...report.report.patientsSeen,
+                    twentyFiveToTwentyNine: {
+                      ...report.report.patientsSeen.twentyFiveToTwentyNine,
+                      female: readEventValueAsNum(e),
+                    },
+                  },
+                },
+              });
+            }}
+            maleFieldName={'twentyFiveToTwentyNine.male'}
+            femaleFieldName={'twentyFiveToTwentyNine.female'}
+          />
+          <ChwFormField
+            label={'30 - 34: '}
+            maleValue={report.report.patientsSeen.thirtyToThirtyFour.male}
+            femaleValue={report.report.patientsSeen.thirtyToThirtyFour.female}
+            maleOnChange={(e) => {
+              updateFn({
+                ...report,
+                report: {
+                  ...report.report,
+                  patientsSeen: {
+                    ...report.report.patientsSeen,
+                    thirtyToThirtyFour: {
+                      ...report.report.patientsSeen.thirtyToThirtyFour,
+                      male: readEventValueAsNum(e),
+                    },
+                  },
+                },
+              });
+            }}
+            femaleOnChange={(e) => {
+              updateFn({
+                ...report,
+                report: {
+                  ...report.report,
+                  patientsSeen: {
+                    ...report.report.patientsSeen,
+                    thirtyToThirtyFour: {
+                      ...report.report.patientsSeen.thirtyToThirtyFour,
+                      female: readEventValueAsNum(e),
+                    },
+                  },
+                },
+              });
+            }}
+            maleFieldName={'thirtyToThirtyFour.male'}
+            femaleFieldName={'thirtyToThirtyFour.female'}
+          />
+          <ChwFormField
+            label={'35 - 39: '}
+            maleValue={report.report.patientsSeen.thirtyFiveToThirtyNine.male}
+            femaleValue={
+              report.report.patientsSeen.thirtyFiveToThirtyNine.female
+            }
+            maleOnChange={(e) => {
+              updateFn({
+                ...report,
+                report: {
+                  ...report.report,
+                  patientsSeen: {
+                    ...report.report.patientsSeen,
+                    thirtyFiveToThirtyNine: {
+                      ...report.report.patientsSeen.thirtyFiveToThirtyNine,
+                      male: readEventValueAsNum(e),
+                    },
+                  },
+                },
+              });
+            }}
+            femaleOnChange={(e) => {
+              updateFn({
+                ...report,
+                report: {
+                  ...report.report,
+                  patientsSeen: {
+                    ...report.report.patientsSeen,
+                    thirtyFiveToThirtyNine: {
+                      ...report.report.patientsSeen.thirtyFiveToThirtyNine,
+                      female: readEventValueAsNum(e),
+                    },
+                  },
+                },
+              });
+            }}
+            maleFieldName={'thirtyFiveToThirtyNine.male'}
+            femaleFieldName={'thirtyFiveToThirtyNine.female'}
+          />
         </Box>
 
         <Box
