@@ -12,6 +12,7 @@ import { useHttpApi } from '../../../../providers/HttpApiProvider';
 import Spinner from '../../../../components/Spinner/Spinner';
 import BasicInfoForm from './BasicInfoForm';
 import PatientsSeenForm from './PatientsSeenForm';
+import DeathsForm from './DeathsForm';
 
 interface ParamTypes {
   id: string;
@@ -158,14 +159,14 @@ const ChwMonthlyReportEdit = () => {
         setFormEvent({ name: FormName.PatientsSeen, status: FormStatus.Start }),
     },
     {
-      label: 'Births',
-      onClick: () =>
-        setFormEvent({ name: FormName.Births, status: FormStatus.Start }),
-    },
-    {
       label: 'Deaths',
       onClick: () =>
         setFormEvent({ name: FormName.Deaths, status: FormStatus.Start }),
+    },
+    {
+      label: 'Births',
+      onClick: () =>
+        setFormEvent({ name: FormName.Births, status: FormStatus.Start }),
     },
   ];
   if (formEvent.name === FormName.BasicInfo && report) {
@@ -192,6 +193,21 @@ const ChwMonthlyReportEdit = () => {
           onSubmit={() => {
             setFormEvent({ ...formEvent, status: FormStatus.Submit });
           }}
+          formEvent={formEvent}
+        />
+      </Scaffold>
+    );
+  }
+
+  if (formEvent.name === FormName.Deaths && report) {
+    return (
+      <Scaffold onClickClose={onClickClose} menu={menu}>
+        <DeathsForm
+          report={report}
+          updateFn={setReport}
+          onSubmit={() =>
+            setFormEvent({ ...formEvent, status: FormStatus.Submit })
+          }
           formEvent={formEvent}
         />
       </Scaffold>

@@ -36,7 +36,7 @@ const Scaffold = (props: ScaffoldProps) => {
       <Box flex overflow='auto' gap='medium' pad='medium'>
         <Form
           onSubmit={() => {
-            if (yearToSearch != undefined) {
+            if (yearToSearch !== undefined) {
               try {
                 const yr = parseInt(yearToSearch);
                 onSearch(yr);

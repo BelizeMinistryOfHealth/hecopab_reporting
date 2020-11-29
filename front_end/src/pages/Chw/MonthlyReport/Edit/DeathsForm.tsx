@@ -1,11 +1,11 @@
 import React from 'react';
+import ChwEditFormProps from './ChwEditFormProps';
 import { FormStatus, readEventValueAsNum } from '../../../../api/chws';
 import { Box, Button, Form, Heading } from 'grommet';
 import Spinner from '../../../../components/Spinner/Spinner';
 import ChwFormField from './ChwFormField';
-import ChwEditFormProps from './ChwEditFormProps';
 
-const PatientsSeenForm = (props: ChwEditFormProps) => {
+const DeathsForm = (props: ChwEditFormProps) => {
   const { report, onSubmit, updateFn, formEvent } = props;
 
   if (formEvent.status === FormStatus.Submit) {
@@ -23,7 +23,7 @@ const PatientsSeenForm = (props: ChwEditFormProps) => {
       margin={{ left: 'medium' }}
       overflow={'auto'}
     >
-      <Heading level={2}>Patients Seen</Heading>
+      <Heading level={2}>Deaths</Heading>
       <Form onSubmit={onSubmit}>
         <Box
           direction={'row'}
@@ -33,17 +33,17 @@ const PatientsSeenForm = (props: ChwEditFormProps) => {
         >
           <ChwFormField
             label={'1 - 4: '}
-            maleValue={report.report.patientsSeen.oneToFour.male}
-            femaleValue={report.report.patientsSeen.oneToFour.female}
+            maleValue={report.report.deaths.oneToFour.male}
+            femaleValue={report.report.deaths.oneToFour.female}
             maleOnChange={(e) => {
               updateFn({
                 ...report,
                 report: {
                   ...report.report,
-                  patientsSeen: {
-                    ...report.report.patientsSeen,
+                  deaths: {
+                    ...report.report.deaths,
                     oneToFour: {
-                      ...report.report.patientsSeen.oneToFour,
+                      ...report.report.deaths.oneToFour,
                       male: readEventValueAsNum(e),
                     },
                   },
@@ -55,10 +55,10 @@ const PatientsSeenForm = (props: ChwEditFormProps) => {
                 ...report,
                 report: {
                   ...report.report,
-                  patientsSeen: {
-                    ...report.report.patientsSeen,
+                  deaths: {
+                    ...report.report.deaths,
                     oneToFour: {
-                      ...report.report.patientsSeen.oneToFour,
+                      ...report.report.deaths.oneToFour,
                       female: readEventValueAsNum(e),
                     },
                   },
@@ -70,17 +70,17 @@ const PatientsSeenForm = (props: ChwEditFormProps) => {
           />
           <ChwFormField
             label={'5 - 9: '}
-            maleValue={report.report.patientsSeen.fiveToNine.male}
-            femaleValue={report.report.patientsSeen.fiveToNine.female}
+            maleValue={report.report.deaths.fiveToNine.male}
+            femaleValue={report.report.deaths.fiveToNine.female}
             maleOnChange={(e) => {
               updateFn({
                 ...report,
                 report: {
                   ...report.report,
-                  patientsSeen: {
-                    ...report.report.patientsSeen,
+                  deaths: {
+                    ...report.report.deaths,
                     fiveToNine: {
-                      ...report.report.patientsSeen.fiveToNine,
+                      ...report.report.deaths.fiveToNine,
                       male: readEventValueAsNum(e),
                     },
                   },
@@ -92,10 +92,10 @@ const PatientsSeenForm = (props: ChwEditFormProps) => {
                 ...report,
                 report: {
                   ...report.report,
-                  patientsSeen: {
-                    ...report.report.patientsSeen,
+                  deaths: {
+                    ...report.report.deaths,
                     fiveToNine: {
-                      ...report.report.patientsSeen.fiveToNine,
+                      ...report.report.deaths.fiveToNine,
                       female: readEventValueAsNum(e),
                     },
                   },
@@ -107,17 +107,17 @@ const PatientsSeenForm = (props: ChwEditFormProps) => {
           />
           <ChwFormField
             label={'10 - 14: '}
-            maleValue={report.report.patientsSeen.tenToFourteen.male}
-            femaleValue={report.report.patientsSeen.tenToFourteen.female}
+            maleValue={report.report.deaths.tenToFourteen.male}
+            femaleValue={report.report.deaths.tenToFourteen.female}
             maleOnChange={(e) => {
               updateFn({
                 ...report,
                 report: {
                   ...report.report,
-                  patientsSeen: {
-                    ...report.report.patientsSeen,
+                  deaths: {
+                    ...report.report.deaths,
                     tenToFourteen: {
-                      ...report.report.patientsSeen.tenToFourteen,
+                      ...report.report.deaths.tenToFourteen,
                       male: readEventValueAsNum(e),
                     },
                   },
@@ -129,10 +129,10 @@ const PatientsSeenForm = (props: ChwEditFormProps) => {
                 ...report,
                 report: {
                   ...report.report,
-                  patientsSeen: {
-                    ...report.report.patientsSeen,
+                  deaths: {
+                    ...report.report.deaths,
                     tenToFourteen: {
-                      ...report.report.patientsSeen.tenToFourteen,
+                      ...report.report.deaths.tenToFourteen,
                       female: readEventValueAsNum(e),
                     },
                   },
@@ -144,17 +144,17 @@ const PatientsSeenForm = (props: ChwEditFormProps) => {
           />
           <ChwFormField
             label={'15 - 19: '}
-            maleValue={report.report.patientsSeen.fifteenToNineteen.male}
-            femaleValue={report.report.patientsSeen.fifteenToNineteen.female}
+            maleValue={report.report.deaths.fifteenToNineteen.male}
+            femaleValue={report.report.deaths.fifteenToNineteen.female}
             maleOnChange={(e) => {
               updateFn({
                 ...report,
                 report: {
                   ...report.report,
-                  patientsSeen: {
-                    ...report.report.patientsSeen,
+                  deaths: {
+                    ...report.report.deaths,
                     fifteenToNineteen: {
-                      ...report.report.patientsSeen.fifteenToNineteen,
+                      ...report.report.deaths.fifteenToNineteen,
                       male: readEventValueAsNum(e),
                     },
                   },
@@ -166,10 +166,10 @@ const PatientsSeenForm = (props: ChwEditFormProps) => {
                 ...report,
                 report: {
                   ...report.report,
-                  patientsSeen: {
-                    ...report.report.patientsSeen,
+                  deaths: {
+                    ...report.report.deaths,
                     fifteenToNineteen: {
-                      ...report.report.patientsSeen.fifteenToNineteen,
+                      ...report.report.deaths.fifteenToNineteen,
                       female: readEventValueAsNum(e),
                     },
                   },
@@ -189,17 +189,17 @@ const PatientsSeenForm = (props: ChwEditFormProps) => {
         >
           <ChwFormField
             label={'20 - 24: '}
-            maleValue={report.report.patientsSeen.twentyToTwentyFour.male}
-            femaleValue={report.report.patientsSeen.twentyToTwentyFour.female}
+            maleValue={report.report.deaths.twentyToTwentyFour.male}
+            femaleValue={report.report.deaths.twentyToTwentyFour.female}
             maleOnChange={(e) => {
               updateFn({
                 ...report,
                 report: {
                   ...report.report,
-                  patientsSeen: {
-                    ...report.report.patientsSeen,
+                  deaths: {
+                    ...report.report.deaths,
                     twentyToTwentyFour: {
-                      ...report.report.patientsSeen.twentyToTwentyFour,
+                      ...report.report.deaths.twentyToTwentyFour,
                       male: readEventValueAsNum(e),
                     },
                   },
@@ -211,10 +211,10 @@ const PatientsSeenForm = (props: ChwEditFormProps) => {
                 ...report,
                 report: {
                   ...report.report,
-                  patientsSeen: {
-                    ...report.report.patientsSeen,
+                  deaths: {
+                    ...report.report.deaths,
                     twentyToTwentyFour: {
-                      ...report.report.patientsSeen.twentyToTwentyFour,
+                      ...report.report.deaths.twentyToTwentyFour,
                       female: readEventValueAsNum(e),
                     },
                   },
@@ -226,19 +226,17 @@ const PatientsSeenForm = (props: ChwEditFormProps) => {
           />
           <ChwFormField
             label={'25 - 29: '}
-            maleValue={report.report.patientsSeen.twentyFiveToTwentyNine.male}
-            femaleValue={
-              report.report.patientsSeen.twentyFiveToTwentyNine.female
-            }
+            maleValue={report.report.deaths.twentyFiveToTwentyNine.male}
+            femaleValue={report.report.deaths.twentyFiveToTwentyNine.female}
             maleOnChange={(e) => {
               updateFn({
                 ...report,
                 report: {
                   ...report.report,
-                  patientsSeen: {
-                    ...report.report.patientsSeen,
+                  deaths: {
+                    ...report.report.deaths,
                     twentyFiveToTwentyNine: {
-                      ...report.report.patientsSeen.twentyFiveToTwentyNine,
+                      ...report.report.deaths.twentyFiveToTwentyNine,
                       male: readEventValueAsNum(e),
                     },
                   },
@@ -250,10 +248,10 @@ const PatientsSeenForm = (props: ChwEditFormProps) => {
                 ...report,
                 report: {
                   ...report.report,
-                  patientsSeen: {
-                    ...report.report.patientsSeen,
+                  deaths: {
+                    ...report.report.deaths,
                     twentyFiveToTwentyNine: {
-                      ...report.report.patientsSeen.twentyFiveToTwentyNine,
+                      ...report.report.deaths.twentyFiveToTwentyNine,
                       female: readEventValueAsNum(e),
                     },
                   },
@@ -265,17 +263,17 @@ const PatientsSeenForm = (props: ChwEditFormProps) => {
           />
           <ChwFormField
             label={'30 - 34: '}
-            maleValue={report.report.patientsSeen.thirtyToThirtyFour.male}
-            femaleValue={report.report.patientsSeen.thirtyToThirtyFour.female}
+            maleValue={report.report.deaths.thirtyToThirtyFour.male}
+            femaleValue={report.report.deaths.thirtyToThirtyFour.female}
             maleOnChange={(e) => {
               updateFn({
                 ...report,
                 report: {
                   ...report.report,
-                  patientsSeen: {
-                    ...report.report.patientsSeen,
+                  deaths: {
+                    ...report.report.deaths,
                     thirtyToThirtyFour: {
-                      ...report.report.patientsSeen.thirtyToThirtyFour,
+                      ...report.report.deaths.thirtyToThirtyFour,
                       male: readEventValueAsNum(e),
                     },
                   },
@@ -287,10 +285,10 @@ const PatientsSeenForm = (props: ChwEditFormProps) => {
                 ...report,
                 report: {
                   ...report.report,
-                  patientsSeen: {
-                    ...report.report.patientsSeen,
+                  deaths: {
+                    ...report.report.deaths,
                     thirtyToThirtyFour: {
-                      ...report.report.patientsSeen.thirtyToThirtyFour,
+                      ...report.report.deaths.thirtyToThirtyFour,
                       female: readEventValueAsNum(e),
                     },
                   },
@@ -302,19 +300,17 @@ const PatientsSeenForm = (props: ChwEditFormProps) => {
           />
           <ChwFormField
             label={'35 - 39: '}
-            maleValue={report.report.patientsSeen.thirtyFiveToThirtyNine.male}
-            femaleValue={
-              report.report.patientsSeen.thirtyFiveToThirtyNine.female
-            }
+            maleValue={report.report.deaths.thirtyFiveToThirtyNine.male}
+            femaleValue={report.report.deaths.thirtyFiveToThirtyNine.female}
             maleOnChange={(e) => {
               updateFn({
                 ...report,
                 report: {
                   ...report.report,
-                  patientsSeen: {
-                    ...report.report.patientsSeen,
+                  deaths: {
+                    ...report.report.deaths,
                     thirtyFiveToThirtyNine: {
-                      ...report.report.patientsSeen.thirtyFiveToThirtyNine,
+                      ...report.report.deaths.thirtyFiveToThirtyNine,
                       male: readEventValueAsNum(e),
                     },
                   },
@@ -326,10 +322,10 @@ const PatientsSeenForm = (props: ChwEditFormProps) => {
                 ...report,
                 report: {
                   ...report.report,
-                  patientsSeen: {
-                    ...report.report.patientsSeen,
+                  deaths: {
+                    ...report.report.deaths,
                     thirtyFiveToThirtyNine: {
-                      ...report.report.patientsSeen.thirtyFiveToThirtyNine,
+                      ...report.report.deaths.thirtyFiveToThirtyNine,
                       female: readEventValueAsNum(e),
                     },
                   },
@@ -349,17 +345,17 @@ const PatientsSeenForm = (props: ChwEditFormProps) => {
         >
           <ChwFormField
             label={'40 - 44: '}
-            maleValue={report.report.patientsSeen.fortyToFortyFour.male}
-            femaleValue={report.report.patientsSeen.fortyToFortyFour.female}
+            maleValue={report.report.deaths.fortyToFortyFour.male}
+            femaleValue={report.report.deaths.fortyToFortyFour.female}
             maleOnChange={(e) => {
               updateFn({
                 ...report,
                 report: {
                   ...report.report,
-                  patientsSeen: {
-                    ...report.report.patientsSeen,
+                  deaths: {
+                    ...report.report.deaths,
                     fortyToFortyFour: {
-                      ...report.report.patientsSeen.fortyToFortyFour,
+                      ...report.report.deaths.fortyToFortyFour,
                       male: readEventValueAsNum(e),
                     },
                   },
@@ -371,10 +367,10 @@ const PatientsSeenForm = (props: ChwEditFormProps) => {
                 ...report,
                 report: {
                   ...report.report,
-                  patientsSeen: {
-                    ...report.report.patientsSeen,
+                  deaths: {
+                    ...report.report.deaths,
                     fortyToFortyFour: {
-                      ...report.report.patientsSeen.fortyToFortyFour,
+                      ...report.report.deaths.fortyToFortyFour,
                       female: readEventValueAsNum(e),
                     },
                   },
@@ -386,17 +382,17 @@ const PatientsSeenForm = (props: ChwEditFormProps) => {
           />
           <ChwFormField
             label={'45 - 49: '}
-            maleValue={report.report.patientsSeen.fortyFiveToFortyNine.male}
-            femaleValue={report.report.patientsSeen.fortyFiveToFortyNine.female}
+            maleValue={report.report.deaths.fortyFiveToFortyNine.male}
+            femaleValue={report.report.deaths.fortyFiveToFortyNine.female}
             maleOnChange={(e) => {
               updateFn({
                 ...report,
                 report: {
                   ...report.report,
-                  patientsSeen: {
-                    ...report.report.patientsSeen,
+                  deaths: {
+                    ...report.report.deaths,
                     fortyFiveToFortyNine: {
-                      ...report.report.patientsSeen.fortyFiveToFortyNine,
+                      ...report.report.deaths.fortyFiveToFortyNine,
                       male: readEventValueAsNum(e),
                     },
                   },
@@ -408,10 +404,10 @@ const PatientsSeenForm = (props: ChwEditFormProps) => {
                 ...report,
                 report: {
                   ...report.report,
-                  patientsSeen: {
-                    ...report.report.patientsSeen,
+                  deaths: {
+                    ...report.report.deaths,
                     fortyFiveToFortyNine: {
-                      ...report.report.patientsSeen.fortyFiveToFortyNine,
+                      ...report.report.deaths.fortyFiveToFortyNine,
                       female: readEventValueAsNum(e),
                     },
                   },
@@ -423,17 +419,17 @@ const PatientsSeenForm = (props: ChwEditFormProps) => {
           />
           <ChwFormField
             label={'50 - 54: '}
-            maleValue={report.report.patientsSeen.fiftyToFiftyFour.male}
-            femaleValue={report.report.patientsSeen.fiftyToFiftyFour.female}
+            maleValue={report.report.deaths.fiftyToFiftyFour.male}
+            femaleValue={report.report.deaths.fiftyToFiftyFour.female}
             maleOnChange={(e) => {
               updateFn({
                 ...report,
                 report: {
                   ...report.report,
-                  patientsSeen: {
-                    ...report.report.patientsSeen,
+                  deaths: {
+                    ...report.report.deaths,
                     fiftyToFiftyFour: {
-                      ...report.report.patientsSeen.fiftyToFiftyFour,
+                      ...report.report.deaths.fiftyToFiftyFour,
                       male: readEventValueAsNum(e),
                     },
                   },
@@ -445,10 +441,10 @@ const PatientsSeenForm = (props: ChwEditFormProps) => {
                 ...report,
                 report: {
                   ...report.report,
-                  patientsSeen: {
-                    ...report.report.patientsSeen,
+                  deaths: {
+                    ...report.report.deaths,
                     fiftyToFiftyFour: {
-                      ...report.report.patientsSeen.fiftyToFiftyFour,
+                      ...report.report.deaths.fiftyToFiftyFour,
                       female: readEventValueAsNum(e),
                     },
                   },
@@ -460,17 +456,17 @@ const PatientsSeenForm = (props: ChwEditFormProps) => {
           />
           <ChwFormField
             label={'55 - 59: '}
-            maleValue={report.report.patientsSeen.fiftyFiveToFiftyNine.male}
-            femaleValue={report.report.patientsSeen.fiftyFiveToFiftyNine.female}
+            maleValue={report.report.deaths.fiftyFiveToFiftyNine.male}
+            femaleValue={report.report.deaths.fiftyFiveToFiftyNine.female}
             maleOnChange={(e) => {
               updateFn({
                 ...report,
                 report: {
                   ...report.report,
-                  patientsSeen: {
-                    ...report.report.patientsSeen,
+                  deaths: {
+                    ...report.report.deaths,
                     fiftyFiveToFiftyNine: {
-                      ...report.report.patientsSeen.fiftyFiveToFiftyNine,
+                      ...report.report.deaths.fiftyFiveToFiftyNine,
                       male: readEventValueAsNum(e),
                     },
                   },
@@ -482,10 +478,10 @@ const PatientsSeenForm = (props: ChwEditFormProps) => {
                 ...report,
                 report: {
                   ...report.report,
-                  patientsSeen: {
-                    ...report.report.patientsSeen,
+                  deaths: {
+                    ...report.report.deaths,
                     fiftyFiveToFiftyNine: {
-                      ...report.report.patientsSeen.fiftyFiveToFiftyNine,
+                      ...report.report.deaths.fiftyFiveToFiftyNine,
                       female: readEventValueAsNum(e),
                     },
                   },
@@ -505,17 +501,17 @@ const PatientsSeenForm = (props: ChwEditFormProps) => {
         >
           <ChwFormField
             label={'60 - 64: '}
-            maleValue={report.report.patientsSeen.sixtyToSixtyFour.male}
-            femaleValue={report.report.patientsSeen.sixtyToSixtyFour.female}
+            maleValue={report.report.deaths.sixtyToSixtyFour.male}
+            femaleValue={report.report.deaths.sixtyToSixtyFour.female}
             maleOnChange={(e) => {
               updateFn({
                 ...report,
                 report: {
                   ...report.report,
-                  patientsSeen: {
-                    ...report.report.patientsSeen,
+                  deaths: {
+                    ...report.report.deaths,
                     sixtyToSixtyFour: {
-                      ...report.report.patientsSeen.sixtyToSixtyFour,
+                      ...report.report.deaths.sixtyToSixtyFour,
                       male: readEventValueAsNum(e),
                     },
                   },
@@ -527,10 +523,10 @@ const PatientsSeenForm = (props: ChwEditFormProps) => {
                 ...report,
                 report: {
                   ...report.report,
-                  patientsSeen: {
-                    ...report.report.patientsSeen,
+                  deaths: {
+                    ...report.report.deaths,
                     sixtyToSixtyFour: {
-                      ...report.report.patientsSeen.sixtyToSixtyFour,
+                      ...report.report.deaths.sixtyToSixtyFour,
                       female: readEventValueAsNum(e),
                     },
                   },
@@ -542,17 +538,17 @@ const PatientsSeenForm = (props: ChwEditFormProps) => {
           />
           <ChwFormField
             label={'65+: '}
-            maleValue={report.report.patientsSeen.sixtyFiveOrMore.male}
-            femaleValue={report.report.patientsSeen.sixtyFiveOrMore.female}
+            maleValue={report.report.deaths.sixtyFiveOrMore.male}
+            femaleValue={report.report.deaths.sixtyFiveOrMore.female}
             maleOnChange={(e) => {
               updateFn({
                 ...report,
                 report: {
                   ...report.report,
-                  patientsSeen: {
-                    ...report.report.patientsSeen,
+                  deaths: {
+                    ...report.report.deaths,
                     sixtyFiveOrMore: {
-                      ...report.report.patientsSeen.sixtyFiveOrMore,
+                      ...report.report.deaths.sixtyFiveOrMore,
                       male: readEventValueAsNum(e),
                     },
                   },
@@ -564,10 +560,10 @@ const PatientsSeenForm = (props: ChwEditFormProps) => {
                 ...report,
                 report: {
                   ...report.report,
-                  patientsSeen: {
-                    ...report.report.patientsSeen,
+                  deaths: {
+                    ...report.report.deaths,
                     sixtyFiveOrMore: {
-                      ...report.report.patientsSeen.sixtyFiveOrMore,
+                      ...report.report.deaths.sixtyFiveOrMore,
                       female: readEventValueAsNum(e),
                     },
                   },
@@ -586,4 +582,4 @@ const PatientsSeenForm = (props: ChwEditFormProps) => {
   );
 };
 
-export default PatientsSeenForm;
+export default DeathsForm;
