@@ -17,12 +17,12 @@ func New(db *sql.DB) ChwReport {
 }
 
 // Create creates a new chw monthly report
-func (c ChwReport) Create(r ChwMonthlyReportRecord) error {
+func (c ChwReport) Create(r MonthlyReportRecord) error {
 	stmt := `
 	INSERT INTO monthly_chw_report
 		(id, district, month, year, community_health_worker, district_health_educator, rural_nurse,
-		 patients_seen, deaths, births, complaints, duties_preformed, created_by, created_at)
-	VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14);	 
+		 patients_seen, deaths, births, complaints, duties_preformed, ed_sessions, meetings, created_by, created_at)
+	VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16);	 
 `
 	ps, err := json.Marshal(r.Report.PatientsSeen)
 	if err != nil {
@@ -44,6 +44,14 @@ func (c ChwReport) Create(r ChwMonthlyReportRecord) error {
 	if err != nil {
 		return fmt.Errorf("could not decode duties performed: %w", err)
 	}
+	edSessions, err := json.Marshal(r.Report.HealthEdSessions)
+	if err != nil {
+		return fmt.Errorf("could not decode health education sessions when inserting into db: %w", err)
+	}
+	meetings, err := json.Marshal(r.Report.Meetings)
+	if err != nil {
+		return fmt.Errorf("could not decode meetings when inserting into db: %w", err)
+	}
 	_, err = c.Exec(stmt,
 		r.ID,
 		r.Report.District,
@@ -57,6 +65,8 @@ func (c ChwReport) Create(r ChwMonthlyReportRecord) error {
 		bs,
 		cs,
 		dp,
+		edSessions,
+		meetings,
 		r.CreatedBy,
 		r.CreatedAt)
 	if err != nil {
@@ -67,17 +77,17 @@ func (c ChwReport) Create(r ChwMonthlyReportRecord) error {
 }
 
 // GetById fetches a chw monthly report from the database that matches the id
-func (c ChwReport) GetById(id string) (*ChwMonthlyReportRecord, error) {
+func (c ChwReport) GetById(id string) (*MonthlyReportRecord, error) {
 	stmt := `
 	SELECT 
 		id, district_health_educator, rural_nurse, community_health_worker, district, month, year,
-	       patients_seen, deaths, births, complaints, duties_preformed, created_by, created_at,
+	       patients_seen, deaths, births, complaints, duties_preformed, ed_sessions, meetings, created_by, created_at,
 	       updated_by, updated_at
 	FROM monthly_chw_report
 	WHERE id= $1
 `
 	row := c.QueryRow(stmt, id)
-	var report ChwMonthlyReportRecord
+	var report MonthlyReportRecord
 	var updatedBy sql.NullString
 	err := row.Scan(
 		&report.ID,
@@ -92,6 +102,8 @@ func (c ChwReport) GetById(id string) (*ChwMonthlyReportRecord, error) {
 		&report.Report.Births,
 		&report.Report.Complaints,
 		&report.Report.DutiesPerformed,
+		&report.Report.HealthEdSessions,
+		&report.Report.Meetings,
 		&report.CreatedBy,
 		&report.CreatedAt,
 		&updatedBy,
@@ -111,11 +123,11 @@ func (c ChwReport) GetById(id string) (*ChwMonthlyReportRecord, error) {
 }
 
 // List retrieves all chw monthly reports for the specified year
-func (c ChwReport) List(year int) ([]ChwMonthlyReportRecord, error) {
+func (c ChwReport) List(year int) ([]MonthlyReportRecord, error) {
 	stmt := `
 	SELECT
 		id, district, month, year, district_health_educator, rural_nurse, community_health_worker, deaths, births,
-	    patients_seen, complaints, duties_preformed, created_by, created_at, updated_by, updated_at   
+	    patients_seen, complaints, duties_preformed, ed_sessions, meetings, created_by, created_at, updated_by, updated_at   
 	FROM 
 	     monthly_chw_report
 	WHERE
@@ -128,9 +140,9 @@ func (c ChwReport) List(year int) ([]ChwMonthlyReportRecord, error) {
 	if err != nil {
 		return nil, fmt.Errorf("error retrieving chw monthly report from database: %w", err)
 	}
-	var reports []ChwMonthlyReportRecord
+	var reports []MonthlyReportRecord
 	for rows.Next() {
-		var report ChwMonthlyReportRecord
+		var report MonthlyReportRecord
 		var updatedBy sql.NullString
 		err := rows.Scan(
 			&report.ID,
@@ -145,6 +157,8 @@ func (c ChwReport) List(year int) ([]ChwMonthlyReportRecord, error) {
 			&report.Report.PatientsSeen,
 			&report.Report.Complaints,
 			&report.Report.DutiesPerformed,
+			&report.Report.HealthEdSessions,
+			&report.Report.Meetings,
 			&report.CreatedBy,
 			&report.CreatedAt,
 			&updatedBy,
@@ -161,11 +175,12 @@ func (c ChwReport) List(year int) ([]ChwMonthlyReportRecord, error) {
 }
 
 // Update updates an existing chw monthly report. Returns the error if there is one.
-func (c ChwReport) Update(r ChwMonthlyReportRecord) error {
+func (c ChwReport) Update(r MonthlyReportRecord) error {
 	stmt := `
 	UPDATE monthly_chw_report
 	SET year=$2, month=$3, district=$4, district_health_educator=$5, community_health_worker=$6, rural_nurse=$7,
-	    deaths=$8, births=$9, duties_preformed=$10, patients_seen=$11, complaints=$12, updated_at=$13, updated_by=$14
+	    deaths=$8, births=$9, duties_preformed=$10, patients_seen=$11, complaints=$12, ed_sessions=$13, 
+	    meetings=$14, updated_at=$15, updated_by=$16
 	WHERE
 		id=$1
 `
@@ -182,6 +197,8 @@ func (c ChwReport) Update(r ChwMonthlyReportRecord) error {
 		r.Report.DutiesPerformed,
 		r.Report.PatientsSeen,
 		r.Report.Complaints,
+		r.Report.HealthEdSessions,
+		r.Report.Meetings,
 		r.UpdatedAt,
 		r.UpdatedBy)
 	if err != nil {

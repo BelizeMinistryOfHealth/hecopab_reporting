@@ -73,7 +73,7 @@ func (t *Tallies) CalculateTotal() {
 }
 
 // ChwMonthlyReport is the community health worker's monthly report
-type ChwMonthlyReport struct {
+type MonthlyReport struct {
 	HealthEducator        string                  `json:"healthEducator"`
 	RuralNurse            string                  `json:"ruralNurse"`
 	CommunityHealthWorker string                  `json:"chw"`
@@ -84,16 +84,18 @@ type ChwMonthlyReport struct {
 	PatientsSeen          Tallies                 `json:"patientsSeen"`
 	Deaths                Tallies                 `json:"deaths"`
 	Complaints            Complaints              `json:"complaints"`
-	DutiesPerformed       Tallies                 `json:"dutiesPreformed"`
+	DutiesPerformed       DutiesPerformed         `json:"dutiesPerformed"`
+	HealthEdSessions      HealthEdSession         `json:"healthEdSessions"`
+	Meetings              Meetings                `json:"meetings"`
 	Births                models.GenderCategories `json:"births"`
 }
 
 //ChwMonthlyReportRecord represents the persisted entity that stores a ChwMonthlyReport
-type ChwMonthlyReportRecord struct {
-	ID        string           `json:"id"`
-	Report    ChwMonthlyReport `json:"report"`
-	CreatedBy string           `json:"createdBy"`
-	CreatedAt time.Time        `json:"createdAt"`
-	UpdatedBy string           `json:"updatedBy"`
-	UpdatedAt *time.Time       `json:"updatedAt"`
+type MonthlyReportRecord struct {
+	ID        string        `json:"id"`
+	Report    MonthlyReport `json:"report"`
+	CreatedBy string        `json:"createdBy"`
+	CreatedAt time.Time     `json:"createdAt"`
+	UpdatedBy string        `json:"updatedBy"`
+	UpdatedAt *time.Time    `json:"updatedAt"`
 }

@@ -44,7 +44,7 @@ func TestChwReport_Create(t *testing.T) {
 	if err != nil {
 		t.Fatalf("error opening database connection: %+v", err)
 	}
-	report := ChwMonthlyReport{
+	report := MonthlyReport{
 		HealthEducator:        "Jon Jones",
 		RuralNurse:            "Jane Janes",
 		CommunityHealthWorker: "Jeff Jeffs",
@@ -73,13 +73,15 @@ func TestChwReport_Create(t *testing.T) {
 			SixtyFiveAndOver:       models.GenderCategories{},
 		},
 		Complaints:      Complaints{},
-		DutiesPerformed: Tallies{},
+		DutiesPerformed: DutiesPerformed{},
 		Births: models.GenderCategories{
 			Male:   10,
 			Female: 15,
 		},
+		HealthEdSessions: HealthEdSession{},
+		Meetings:         Meetings{},
 	}
-	record := ChwMonthlyReportRecord{
+	record := MonthlyReportRecord{
 		ID:        uuid.New().String(),
 		Report:    report,
 		CreatedBy: "editor@health.com",
@@ -122,7 +124,7 @@ func TestChwReport_List(t *testing.T) {
 	if err != nil {
 		t.Fatalf("error opening database connection: %+v", err)
 	}
-	report := ChwMonthlyReport{
+	report := MonthlyReport{
 		HealthEducator:        "Jon Jones",
 		RuralNurse:            "Jane Janes",
 		CommunityHealthWorker: "Jeff Jeffs",
@@ -150,14 +152,16 @@ func TestChwReport_List(t *testing.T) {
 			SixtyToSixtyFour:       models.GenderCategories{},
 			SixtyFiveAndOver:       models.GenderCategories{},
 		},
-		Complaints:      Complaints{},
-		DutiesPerformed: Tallies{},
+		Complaints:       Complaints{},
+		DutiesPerformed:  DutiesPerformed{},
+		HealthEdSessions: HealthEdSession{},
+		Meetings:         Meetings{},
 		Births: models.GenderCategories{
 			Male:   10,
 			Female: 15,
 		},
 	}
-	record := ChwMonthlyReportRecord{
+	record := MonthlyReportRecord{
 		ID:        uuid.New().String(),
 		Report:    report,
 		CreatedBy: "editor@health.com",
@@ -186,7 +190,7 @@ func TestChwReport_Update(t *testing.T) {
 	if err != nil {
 		t.Fatalf("error opening database connection: %+v", err)
 	}
-	report := ChwMonthlyReport{
+	report := MonthlyReport{
 		HealthEducator:        "Jon Jones",
 		RuralNurse:            "Jane Janes",
 		CommunityHealthWorker: "Jeff Jeffs",
@@ -214,14 +218,16 @@ func TestChwReport_Update(t *testing.T) {
 			SixtyToSixtyFour:       models.GenderCategories{},
 			SixtyFiveAndOver:       models.GenderCategories{},
 		},
-		Complaints:      Complaints{},
-		DutiesPerformed: Tallies{},
+		Complaints:       Complaints{},
+		DutiesPerformed:  DutiesPerformed{},
+		HealthEdSessions: HealthEdSession{},
+		Meetings:         Meetings{},
 		Births: models.GenderCategories{
 			Male:   10,
 			Female: 15,
 		},
 	}
-	record := ChwMonthlyReportRecord{
+	record := MonthlyReportRecord{
 		ID:        uuid.New().String(),
 		Report:    report,
 		CreatedBy: "editor@health.com",

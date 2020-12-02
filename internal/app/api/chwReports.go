@@ -73,7 +73,7 @@ func (c chwMonthlyReports) ChwMonthlyReportHandlers(w http.ResponseWriter, r *ht
 	case http.MethodPost:
 		token := r.Context().Value("user").(app.JwtToken)
 		user := token.Email
-		var report chw.ChwMonthlyReport
+		var report chw.MonthlyReport
 		if err := json.NewDecoder(r.Body).Decode(&report); err != nil {
 			log.WithFields(log.Fields{
 				"user":    user,
@@ -84,7 +84,7 @@ func (c chwMonthlyReports) ChwMonthlyReportHandlers(w http.ResponseWriter, r *ht
 			http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
 			return
 		}
-		reportRecord := chw.ChwMonthlyReportRecord{
+		reportRecord := chw.MonthlyReportRecord{
 			ID:        uuid.New().String(),
 			Report:    report,
 			CreatedBy: user,
@@ -113,7 +113,7 @@ func (c chwMonthlyReports) ChwMonthlyReportHandlers(w http.ResponseWriter, r *ht
 	case http.MethodPut:
 		token := r.Context().Value("user").(app.JwtToken)
 		user := token.Email
-		var report chw.ChwMonthlyReportRecord
+		var report chw.MonthlyReportRecord
 		if err := json.NewDecoder(r.Body).Decode(&report); err != nil {
 			log.WithFields(log.Fields{
 				"user":    user,
