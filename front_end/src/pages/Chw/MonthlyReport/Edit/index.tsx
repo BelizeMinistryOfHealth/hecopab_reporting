@@ -26,6 +26,7 @@ import HealthEdHomeDutiesForm from './HealthEdHomeDutiesForm';
 import HealthEdSchoolsDutiesForm from './HealthEdSchoolsDutiesForm';
 import HealthEdGroupsDutiesForm from './HealthEdGroupsDutiesForm';
 import BloodPressureDutiesForm from './BloodPressureDutiesForm';
+import BloodSugarDutiesForm from './BloodSugarDutiesForm';
 
 interface ParamTypes {
   id: string;
@@ -349,6 +350,14 @@ const ChwMonthlyReportEdit = () => {
               status: FormStatus.Start,
             }),
         },
+        {
+          label: 'Blood Sugar Checks',
+          onClick: () =>
+            setFormEvent({
+              name: FormName.DutiesPerformedBloodSugarChecks,
+              status: FormStatus.Start,
+            }),
+        },
       ],
     },
   ];
@@ -568,6 +577,21 @@ const ChwMonthlyReportEdit = () => {
     return (
       <Scaffold onClickClose={onClickClose} menu={menu} submenu={submenu}>
         <BloodPressureDutiesForm
+          report={report}
+          updateFn={setReport}
+          onSubmit={() =>
+            setFormEvent({ ...formEvent, status: FormStatus.Submit })
+          }
+          formEvent={formEvent}
+        />
+      </Scaffold>
+    );
+  }
+
+  if (formEvent.name === FormName.DutiesPerformedBloodSugarChecks && report) {
+    return (
+      <Scaffold onClickClose={onClickClose} menu={menu} submenu={submenu}>
+        <BloodSugarDutiesForm
           report={report}
           updateFn={setReport}
           onSubmit={() =>
