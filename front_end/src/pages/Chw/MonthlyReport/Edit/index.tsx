@@ -20,6 +20,7 @@ import DiarrheaComplaintsForm from './DiarrheaComplaintsForm';
 import ColdComplaintsForm from './ColdComplaintsForm';
 import FeverRashComplaintsForm from './FeverRashComplaintsForm';
 import SoresRashesComplaintsForm from './SoresRashesComplaintsForm';
+import MeetingsForm from './MeetingsForm';
 
 interface ParamTypes {
   id: string;
@@ -239,6 +240,11 @@ const ChwMonthlyReportEdit = () => {
       onClick: () =>
         setFormEvent({ name: FormName.Births, status: FormStatus.Start }),
     },
+    {
+      label: 'Meetings',
+      onClick: () =>
+        setFormEvent({ name: FormName.Meetings, status: FormStatus.Start }),
+    },
   ];
 
   const submenu = [
@@ -419,6 +425,21 @@ const ChwMonthlyReportEdit = () => {
     return (
       <Scaffold onClickClose={onClickClose} menu={menu} submenu={submenu}>
         <SoresRashesComplaintsForm
+          report={report}
+          updateFn={setReport}
+          onSubmit={() =>
+            setFormEvent({ ...formEvent, status: FormStatus.Submit })
+          }
+          formEvent={formEvent}
+        />
+      </Scaffold>
+    );
+  }
+
+  if (formEvent.name === FormName.Meetings && report) {
+    return (
+      <Scaffold onClickClose={onClickClose} menu={menu} submenu={submenu}>
+        <MeetingsForm
           report={report}
           updateFn={setReport}
           onSubmit={() =>

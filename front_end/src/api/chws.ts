@@ -58,6 +58,26 @@ export interface Complaints {
   soresRashes: Tallies;
 }
 
+export interface EdSession {
+  dateHeld: Date;
+  topic: string;
+  venue: string;
+  total: GenderCategories;
+}
+
+export interface HealthEdSessions {
+  sessions: EdSession[];
+}
+
+export interface Meetings {
+  communityMeetings: number;
+  meetingsOrganized: number;
+  trainingSessions: number;
+  workshops: number;
+  other: number;
+  comments: string;
+}
+
 export interface ChwMonthlyReport {
   healthEducator: string;
   ruralNurse: string;
@@ -68,6 +88,8 @@ export interface ChwMonthlyReport {
   patientsSeen: Tallies;
   deaths: Tallies;
   complaints: Complaints;
+  healthEdSessions: HealthEdSessions;
+  meetings: Meetings;
   births: Tallies;
   dutiesPerformed: Tallies;
 }
@@ -93,6 +115,7 @@ export enum FormName {
   ComplaintsFeverRash,
   ComplaintsSoresRashes,
   DutiesPerformed,
+  Meetings,
 }
 
 export enum FormStatus {
