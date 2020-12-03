@@ -29,6 +29,7 @@ import BloodPressureDutiesForm from './BloodPressureDutiesForm';
 import BloodSugarDutiesForm from './BloodSugarDutiesForm';
 import PregnancyTestDutiesForm from './PregnancyTestDutiesForm';
 import WeightHeightChecksDutiesForm from './WeightHeightChecksDutiesForm';
+import OrsDistributedDutiesForm from './OrsDistributedDutiesForm';
 
 interface ParamTypes {
   id: string;
@@ -376,6 +377,14 @@ const ChwMonthlyReportEdit = () => {
               status: FormStatus.Start,
             }),
         },
+        {
+          label: 'Ors Distributed',
+          onClick: () =>
+            setFormEvent({
+              name: FormName.DutiesPerformedOrsDistributed,
+              status: FormStatus.Start,
+            }),
+        },
       ],
     },
   ];
@@ -643,6 +652,21 @@ const ChwMonthlyReportEdit = () => {
     return (
       <Scaffold onClickClose={onClickClose} menu={menu} submenu={submenu}>
         <WeightHeightChecksDutiesForm
+          report={report}
+          updateFn={setReport}
+          onSubmit={() =>
+            setFormEvent({ ...formEvent, status: FormStatus.Submit })
+          }
+          formEvent={formEvent}
+        />
+      </Scaffold>
+    );
+  }
+
+  if (formEvent.name === FormName.DutiesPerformedOrsDistributed && report) {
+    return (
+      <Scaffold onClickClose={onClickClose} menu={menu} submenu={submenu}>
+        <OrsDistributedDutiesForm
           report={report}
           updateFn={setReport}
           onSubmit={() =>
