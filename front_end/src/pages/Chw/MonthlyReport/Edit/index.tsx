@@ -24,6 +24,7 @@ import MeetingsForm from './MeetingsForm';
 import HomeVisitsDutiesForm from './HomeVisitsDutiesForm';
 import HealthEdHomeDutiesForm from './HealthEdHomeDutiesForm';
 import HealthEdSchoolsDutiesForm from './HealthEdSchoolsDutiesForm';
+import HealthEdGroupsDutiesForm from './HealthEdGroupsDutiesForm';
 
 interface ParamTypes {
   id: string;
@@ -331,6 +332,14 @@ const ChwMonthlyReportEdit = () => {
               status: FormStatus.Start,
             }),
         },
+        {
+          label: 'Health Ed To Different Groups',
+          onClick: () =>
+            setFormEvent({
+              name: FormName.DutiesPerformedHealthEdGroups,
+              status: FormStatus.Start,
+            }),
+        },
       ],
     },
   ];
@@ -517,6 +526,21 @@ const ChwMonthlyReportEdit = () => {
     return (
       <Scaffold onClickClose={onClickClose} menu={menu} submenu={submenu}>
         <HealthEdSchoolsDutiesForm
+          report={report}
+          updateFn={setReport}
+          onSubmit={() =>
+            setFormEvent({ ...formEvent, status: FormStatus.Submit })
+          }
+          formEvent={formEvent}
+        />
+      </Scaffold>
+    );
+  }
+
+  if (formEvent.name === FormName.DutiesPerformedHealthEdGroups && report) {
+    return (
+      <Scaffold onClickClose={onClickClose} menu={menu} submenu={submenu}>
+        <HealthEdGroupsDutiesForm
           report={report}
           updateFn={setReport}
           onSubmit={() =>
