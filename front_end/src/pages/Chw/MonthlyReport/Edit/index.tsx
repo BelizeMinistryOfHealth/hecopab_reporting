@@ -25,6 +25,7 @@ import HomeVisitsDutiesForm from './HomeVisitsDutiesForm';
 import HealthEdHomeDutiesForm from './HealthEdHomeDutiesForm';
 import HealthEdSchoolsDutiesForm from './HealthEdSchoolsDutiesForm';
 import HealthEdGroupsDutiesForm from './HealthEdGroupsDutiesForm';
+import BloodPressureDutiesForm from './BloodPressureDutiesForm';
 
 interface ParamTypes {
   id: string;
@@ -340,6 +341,14 @@ const ChwMonthlyReportEdit = () => {
               status: FormStatus.Start,
             }),
         },
+        {
+          label: 'Blood Pressure Checks',
+          onClick: () =>
+            setFormEvent({
+              name: FormName.DutiesPerformedBloodPressureChecks,
+              status: FormStatus.Start,
+            }),
+        },
       ],
     },
   ];
@@ -541,6 +550,24 @@ const ChwMonthlyReportEdit = () => {
     return (
       <Scaffold onClickClose={onClickClose} menu={menu} submenu={submenu}>
         <HealthEdGroupsDutiesForm
+          report={report}
+          updateFn={setReport}
+          onSubmit={() =>
+            setFormEvent({ ...formEvent, status: FormStatus.Submit })
+          }
+          formEvent={formEvent}
+        />
+      </Scaffold>
+    );
+  }
+
+  if (
+    formEvent.name === FormName.DutiesPerformedBloodPressureChecks &&
+    report
+  ) {
+    return (
+      <Scaffold onClickClose={onClickClose} menu={menu} submenu={submenu}>
+        <BloodPressureDutiesForm
           report={report}
           updateFn={setReport}
           onSubmit={() =>
