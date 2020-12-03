@@ -78,6 +78,25 @@ export interface Meetings {
   comments: string;
 }
 
+export interface DutiesPerformed {
+  homeVisits: Tallies;
+  healthEdAtHome: Tallies;
+  healthEdInSchools: Tallies;
+  healthEdWithGroups: Tallies;
+  bloodPressureChecks: Tallies;
+  bloodSugarChecks: Tallies;
+  pregnancyTest: Tallies;
+  weightAndHeightCheck: Tallies;
+  orsDistributed: Tallies;
+  incaparinaDistributed: Tallies;
+  referralsGiven: Tallies;
+  counterReferralsReceived: Tallies;
+  healthFairsInCommunity: Tallies;
+  firstAid: Tallies;
+  mobileClinicAssistance: Tallies;
+  rabiesCampaign: Tallies;
+}
+
 export interface ChwMonthlyReport {
   healthEducator: string;
   ruralNurse: string;
@@ -91,7 +110,7 @@ export interface ChwMonthlyReport {
   healthEdSessions: HealthEdSessions;
   meetings: Meetings;
   births: Tallies;
-  dutiesPerformed: Tallies;
+  dutiesPerformed: DutiesPerformed;
 }
 
 export interface ChwMonthlyReportRecord {
@@ -114,7 +133,7 @@ export enum FormName {
   ComplaintsCold,
   ComplaintsFeverRash,
   ComplaintsSoresRashes,
-  DutiesPerformed,
+  DutiesPerformedHomeVisits,
   Meetings,
 }
 
