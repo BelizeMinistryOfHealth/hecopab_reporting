@@ -6,7 +6,15 @@ import {
   FormName,
   FormStatus,
 } from '../../../../api/chws';
-import { Accordion, AccordionPanel, Box, Button, Grid, Heading } from 'grommet';
+import {
+  Accordion,
+  AccordionPanel,
+  Box,
+  Button,
+  Grid,
+  Heading,
+  Text,
+} from 'grommet';
 import { Close } from 'grommet-icons';
 import { useHttpApi } from '../../../../providers/HttpApiProvider';
 import Spinner from '../../../../components/Spinner/Spinner';
@@ -31,6 +39,8 @@ import PregnancyTestDutiesForm from './PregnancyTestDutiesForm';
 import WeightHeightChecksDutiesForm from './WeightHeightChecksDutiesForm';
 import OrsDistributedDutiesForm from './OrsDistributedDutiesForm';
 import IncaparinaDutiesForm from './IncaparinaDutiesForm';
+import ReferralsToHealthFacilitiesForm from '../../../HealthEducator/MonthlyReport/ReferralsToHealthFacilitiesForm';
+import ReferralsDutiesForm from './ReferralsDutiesForm';
 
 interface ParamTypes {
   id: string;
@@ -135,7 +145,7 @@ const Scaffold = (props: {
               pad={{ top: 'small', left: 'large' }}
               gap={'medium'}
               justify={'start'}
-              fill
+              fill={'horizontal'}
             >
               {menu?.map((m) => (
                 <Button
@@ -155,9 +165,10 @@ const Scaffold = (props: {
                   <RichPanel label={m.label}>
                     {m.items.map((i) => (
                       <Button
-                        margin={{ left: 'small', top: 'small' }}
+                        margin={{ left: 'small', top: 'xxsmall' }}
                         plain
-                        label={i.label}
+                        label={<Text size={'xsmall'}>{i.label}</Text>}
+                        size={'small'}
                         onClick={i.onClick}
                       />
                     ))}
@@ -259,59 +270,6 @@ const ChwMonthlyReportEdit = () => {
 
   const submenu = [
     {
-      label: 'Complaints',
-      items: [
-        {
-          label: 'Malnutrition',
-          onClick: () =>
-            setFormEvent({
-              name: FormName.ComplaintsMalnutrition,
-              status: FormStatus.Start,
-            }),
-        },
-        {
-          label: 'Diarrhea',
-          onClick: () =>
-            setFormEvent({
-              name: FormName.ComplaintsDiarrhea,
-              status: FormStatus.Start,
-            }),
-        },
-        {
-          label: 'Cold',
-          onClick: () =>
-            setFormEvent({
-              name: FormName.ComplaintsCold,
-              status: FormStatus.Start,
-            }),
-        },
-        {
-          label: 'Fever/Rash',
-          onClick: () =>
-            setFormEvent({
-              name: FormName.ComplaintsFeverRash,
-              status: FormStatus.Start,
-            }),
-        },
-        {
-          label: 'Fever',
-          onClick: () =>
-            setFormEvent({
-              name: FormName.ComplaintsFever,
-              status: FormStatus.Start,
-            }),
-        },
-        {
-          label: 'Sores & Rashes',
-          onClick: () =>
-            setFormEvent({
-              name: FormName.ComplaintsSoresRashes,
-              status: FormStatus.Start,
-            }),
-        },
-      ],
-    },
-    {
       label: 'Duties Performed',
       items: [
         {
@@ -391,6 +349,67 @@ const ChwMonthlyReportEdit = () => {
           onClick: () =>
             setFormEvent({
               name: FormName.DutiesPerformedIncaparinaDistributed,
+              status: FormStatus.Start,
+            }),
+        },
+        {
+          label: 'Referrals Given',
+          onClick: () =>
+            setFormEvent({
+              name: FormName.DutiesPerformedReferralsGiven,
+              status: FormStatus.Start,
+            }),
+        },
+      ],
+    },
+    {
+      label: 'Complaints',
+      items: [
+        {
+          label: 'Malnutrition',
+          onClick: () =>
+            setFormEvent({
+              name: FormName.ComplaintsMalnutrition,
+              status: FormStatus.Start,
+            }),
+        },
+        {
+          label: 'Diarrhea',
+          onClick: () =>
+            setFormEvent({
+              name: FormName.ComplaintsDiarrhea,
+              status: FormStatus.Start,
+            }),
+        },
+        {
+          label: 'Cold',
+          onClick: () =>
+            setFormEvent({
+              name: FormName.ComplaintsCold,
+              status: FormStatus.Start,
+            }),
+        },
+        {
+          label: 'Fever/Rash',
+          onClick: () =>
+            setFormEvent({
+              name: FormName.ComplaintsFeverRash,
+              status: FormStatus.Start,
+            }),
+        },
+        {
+          label: 'Fever',
+          onClick: () =>
+            setFormEvent({
+              name: FormName.ComplaintsFever,
+              status: FormStatus.Start,
+            }),
+        },
+        {
+          label: 'Sores & Rashes',
+          onClick: () =>
+            setFormEvent({
+              name: FormName.ComplaintsSoresRashes,
               status: FormStatus.Start,
             }),
         },
@@ -694,6 +713,21 @@ const ChwMonthlyReportEdit = () => {
     return (
       <Scaffold onClickClose={onClickClose} menu={menu} submenu={submenu}>
         <IncaparinaDutiesForm
+          report={report}
+          updateFn={setReport}
+          onSubmit={() =>
+            setFormEvent({ ...formEvent, status: FormStatus.Submit })
+          }
+          formEvent={formEvent}
+        />
+      </Scaffold>
+    );
+  }
+
+  if (formEvent.name === FormName.DutiesPerformedReferralsGiven && report) {
+    return (
+      <Scaffold onClickClose={onClickClose} menu={menu} submenu={submenu}>
+        <ReferralsDutiesForm
           report={report}
           updateFn={setReport}
           onSubmit={() =>
