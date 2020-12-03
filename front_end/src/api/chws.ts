@@ -140,6 +140,8 @@ export enum FormName {
   DutiesPerformedBloodPressureChecks,
   DutiesPerformedBloodSugarChecks,
   DutiesPerformedPregnancyTest,
+  DutiesPerformedWeightAndHeightChecks,
+  DutiesPerformedOrsDistributed,
   Meetings,
 }
 

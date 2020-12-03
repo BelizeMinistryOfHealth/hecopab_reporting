@@ -28,6 +28,7 @@ import HealthEdGroupsDutiesForm from './HealthEdGroupsDutiesForm';
 import BloodPressureDutiesForm from './BloodPressureDutiesForm';
 import BloodSugarDutiesForm from './BloodSugarDutiesForm';
 import PregnancyTestDutiesForm from './PregnancyTestDutiesForm';
+import WeightHeightChecksDutiesForm from './WeightHeightChecksDutiesForm';
 
 interface ParamTypes {
   id: string;
@@ -367,6 +368,14 @@ const ChwMonthlyReportEdit = () => {
               status: FormStatus.Start,
             }),
         },
+        {
+          label: 'Weight & Height Checks',
+          onClick: () =>
+            setFormEvent({
+              name: FormName.DutiesPerformedWeightAndHeightChecks,
+              status: FormStatus.Start,
+            }),
+        },
       ],
     },
   ];
@@ -616,6 +625,24 @@ const ChwMonthlyReportEdit = () => {
     return (
       <Scaffold onClickClose={onClickClose} menu={menu} submenu={submenu}>
         <PregnancyTestDutiesForm
+          report={report}
+          updateFn={setReport}
+          onSubmit={() =>
+            setFormEvent({ ...formEvent, status: FormStatus.Submit })
+          }
+          formEvent={formEvent}
+        />
+      </Scaffold>
+    );
+  }
+
+  if (
+    formEvent.name === FormName.DutiesPerformedWeightAndHeightChecks &&
+    report
+  ) {
+    return (
+      <Scaffold onClickClose={onClickClose} menu={menu} submenu={submenu}>
+        <WeightHeightChecksDutiesForm
           report={report}
           updateFn={setReport}
           onSubmit={() =>
