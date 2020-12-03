@@ -142,7 +142,13 @@ export enum FormName {
   DutiesPerformedPregnancyTest,
   DutiesPerformedWeightAndHeightChecks,
   DutiesPerformedOrsDistributed,
-  DutiesIncaparinaDistributed,
+  DutiesPerformedIncaparinaDistributed,
+  DutiesPerformedReferralsGiven,
+  DutiesPerformedCounterReferrals,
+  DutiesPerformedHealthFairs,
+  DutiesPerformedFirstAid,
+  DutiesPerformedCMobileClinics,
+  DutiesPerformedRabies,
   Meetings,
 }
 

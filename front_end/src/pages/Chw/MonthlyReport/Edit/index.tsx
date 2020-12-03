@@ -30,6 +30,7 @@ import BloodSugarDutiesForm from './BloodSugarDutiesForm';
 import PregnancyTestDutiesForm from './PregnancyTestDutiesForm';
 import WeightHeightChecksDutiesForm from './WeightHeightChecksDutiesForm';
 import OrsDistributedDutiesForm from './OrsDistributedDutiesForm';
+import IncaparinaDutiesForm from './IncaparinaDutiesForm';
 
 interface ParamTypes {
   id: string;
@@ -385,6 +386,14 @@ const ChwMonthlyReportEdit = () => {
               status: FormStatus.Start,
             }),
         },
+        {
+          label: 'Incaparina Distributed',
+          onClick: () =>
+            setFormEvent({
+              name: FormName.DutiesPerformedIncaparinaDistributed,
+              status: FormStatus.Start,
+            }),
+        },
       ],
     },
   ];
@@ -667,6 +676,24 @@ const ChwMonthlyReportEdit = () => {
     return (
       <Scaffold onClickClose={onClickClose} menu={menu} submenu={submenu}>
         <OrsDistributedDutiesForm
+          report={report}
+          updateFn={setReport}
+          onSubmit={() =>
+            setFormEvent({ ...formEvent, status: FormStatus.Submit })
+          }
+          formEvent={formEvent}
+        />
+      </Scaffold>
+    );
+  }
+
+  if (
+    formEvent.name === FormName.DutiesPerformedIncaparinaDistributed &&
+    report
+  ) {
+    return (
+      <Scaffold onClickClose={onClickClose} menu={menu} submenu={submenu}>
+        <IncaparinaDutiesForm
           report={report}
           updateFn={setReport}
           onSubmit={() =>
