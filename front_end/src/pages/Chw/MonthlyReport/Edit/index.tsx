@@ -22,6 +22,7 @@ import FeverRashComplaintsForm from './FeverRashComplaintsForm';
 import SoresRashesComplaintsForm from './SoresRashesComplaintsForm';
 import MeetingsForm from './MeetingsForm';
 import HomeVisitsDutiesForm from './HomeVisitsDutiesForm';
+import HealthEdHomeDutiesForm from './HealthEdHomeDutiesForm';
 
 interface ParamTypes {
   id: string;
@@ -313,6 +314,14 @@ const ChwMonthlyReportEdit = () => {
               status: FormStatus.Start,
             }),
         },
+        {
+          label: 'Health Ed At Home',
+          onClick: () =>
+            setFormEvent({
+              name: FormName.DutiesPerformedHealthEdHome,
+              status: FormStatus.Start,
+            }),
+        },
       ],
     },
   ];
@@ -469,6 +478,21 @@ const ChwMonthlyReportEdit = () => {
     return (
       <Scaffold onClickClose={onClickClose} menu={menu} submenu={submenu}>
         <HomeVisitsDutiesForm
+          report={report}
+          updateFn={setReport}
+          onSubmit={() =>
+            setFormEvent({ ...formEvent, status: FormStatus.Submit })
+          }
+          formEvent={formEvent}
+        />
+      </Scaffold>
+    );
+  }
+
+  if (formEvent.name === FormName.DutiesPerformedHealthEdHome && report) {
+    return (
+      <Scaffold onClickClose={onClickClose} menu={menu} submenu={submenu}>
+        <HealthEdHomeDutiesForm
           report={report}
           updateFn={setReport}
           onSubmit={() =>

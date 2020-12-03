@@ -134,6 +134,7 @@ export enum FormName {
   ComplaintsFeverRash,
   ComplaintsSoresRashes,
   DutiesPerformedHomeVisits,
+  DutiesPerformedHealthEdHome,
   Meetings,
 }
 
