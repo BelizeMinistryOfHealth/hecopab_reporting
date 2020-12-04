@@ -41,6 +41,7 @@ import OrsDistributedDutiesForm from './OrsDistributedDutiesForm';
 import IncaparinaDutiesForm from './IncaparinaDutiesForm';
 import ReferralsToHealthFacilitiesForm from '../../../HealthEducator/MonthlyReport/ReferralsToHealthFacilitiesForm';
 import ReferralsDutiesForm from './ReferralsDutiesForm';
+import CounterReferralsDutiesForm from './CounterReferralsDutiesForm';
 
 interface ParamTypes {
   id: string;
@@ -357,6 +358,14 @@ const ChwMonthlyReportEdit = () => {
           onClick: () =>
             setFormEvent({
               name: FormName.DutiesPerformedReferralsGiven,
+              status: FormStatus.Start,
+            }),
+        },
+        {
+          label: 'Counter Referrals',
+          onClick: () =>
+            setFormEvent({
+              name: FormName.DutiesPerformedCounterReferrals,
               status: FormStatus.Start,
             }),
         },
@@ -728,6 +737,21 @@ const ChwMonthlyReportEdit = () => {
     return (
       <Scaffold onClickClose={onClickClose} menu={menu} submenu={submenu}>
         <ReferralsDutiesForm
+          report={report}
+          updateFn={setReport}
+          onSubmit={() =>
+            setFormEvent({ ...formEvent, status: FormStatus.Submit })
+          }
+          formEvent={formEvent}
+        />
+      </Scaffold>
+    );
+  }
+
+  if (formEvent.name === FormName.DutiesPerformedCounterReferrals && report) {
+    return (
+      <Scaffold onClickClose={onClickClose} menu={menu} submenu={submenu}>
+        <CounterReferralsDutiesForm
           report={report}
           updateFn={setReport}
           onSubmit={() =>
