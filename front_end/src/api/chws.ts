@@ -109,7 +109,7 @@ export interface ChwMonthlyReport {
   complaints: Complaints;
   healthEdSessions: HealthEdSessions;
   meetings: Meetings;
-  births: Tallies;
+  births: GenderCategories;
   dutiesPerformed: DutiesPerformed;
 }
 

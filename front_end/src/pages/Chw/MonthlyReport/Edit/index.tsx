@@ -46,6 +46,7 @@ import HealthFairsDutiesForm from './HealthFairsDutiesForm';
 import FirstAidDutiesForm from './FirstAidDutiesForm';
 import MobileClinicDutiesForm from './MobileClinicDutiesForm';
 import RabiesDutiesForm from './RabiesDutiesForm';
+import BirthsForm from './BirthsForm';
 
 interface ParamTypes {
   id: string;
@@ -848,6 +849,21 @@ const ChwMonthlyReportEdit = () => {
     return (
       <Scaffold onClickClose={onClickClose} menu={menu} submenu={submenu}>
         <RabiesDutiesForm
+          report={report}
+          updateFn={setReport}
+          onSubmit={() =>
+            setFormEvent({ ...formEvent, status: FormStatus.Submit })
+          }
+          formEvent={formEvent}
+        />
+      </Scaffold>
+    );
+  }
+
+  if (formEvent.name === FormName.Births && report) {
+    return (
+      <Scaffold onClickClose={onClickClose} menu={menu} submenu={submenu}>
+        <BirthsForm
           report={report}
           updateFn={setReport}
           onSubmit={() =>
