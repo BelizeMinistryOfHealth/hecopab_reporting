@@ -44,6 +44,7 @@ import ReferralsDutiesForm from './ReferralsDutiesForm';
 import CounterReferralsDutiesForm from './CounterReferralsDutiesForm';
 import HealthFairsDutiesForm from './HealthFairsDutiesForm';
 import FirstAidDutiesForm from './FirstAidDutiesForm';
+import MobileClinicDutiesForm from './MobileClinicDutiesForm';
 
 interface ParamTypes {
   id: string;
@@ -384,6 +385,14 @@ const ChwMonthlyReportEdit = () => {
           onClick: () =>
             setFormEvent({
               name: FormName.DutiesPerformedFirstAid,
+              status: FormStatus.Start,
+            }),
+        },
+        {
+          label: 'Mobile Clinics',
+          onClick: () =>
+            setFormEvent({
+              name: FormName.DutiesPerformedCMobileClinics,
               status: FormStatus.Start,
             }),
         },
@@ -800,6 +809,21 @@ const ChwMonthlyReportEdit = () => {
     return (
       <Scaffold onClickClose={onClickClose} menu={menu} submenu={submenu}>
         <FirstAidDutiesForm
+          report={report}
+          updateFn={setReport}
+          onSubmit={() =>
+            setFormEvent({ ...formEvent, status: FormStatus.Submit })
+          }
+          formEvent={formEvent}
+        />
+      </Scaffold>
+    );
+  }
+
+  if (formEvent.name === FormName.DutiesPerformedCMobileClinics && report) {
+    return (
+      <Scaffold onClickClose={onClickClose} menu={menu} submenu={submenu}>
+        <MobileClinicDutiesForm
           report={report}
           updateFn={setReport}
           onSubmit={() =>
