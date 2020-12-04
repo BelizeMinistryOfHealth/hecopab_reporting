@@ -45,6 +45,7 @@ import CounterReferralsDutiesForm from './CounterReferralsDutiesForm';
 import HealthFairsDutiesForm from './HealthFairsDutiesForm';
 import FirstAidDutiesForm from './FirstAidDutiesForm';
 import MobileClinicDutiesForm from './MobileClinicDutiesForm';
+import RabiesDutiesForm from './RabiesDutiesForm';
 
 interface ParamTypes {
   id: string;
@@ -393,6 +394,14 @@ const ChwMonthlyReportEdit = () => {
           onClick: () =>
             setFormEvent({
               name: FormName.DutiesPerformedCMobileClinics,
+              status: FormStatus.Start,
+            }),
+        },
+        {
+          label: 'Rabies Campaigns',
+          onClick: () =>
+            setFormEvent({
+              name: FormName.DutiesPerformedRabies,
               status: FormStatus.Start,
             }),
         },
@@ -824,6 +833,21 @@ const ChwMonthlyReportEdit = () => {
     return (
       <Scaffold onClickClose={onClickClose} menu={menu} submenu={submenu}>
         <MobileClinicDutiesForm
+          report={report}
+          updateFn={setReport}
+          onSubmit={() =>
+            setFormEvent({ ...formEvent, status: FormStatus.Submit })
+          }
+          formEvent={formEvent}
+        />
+      </Scaffold>
+    );
+  }
+
+  if (formEvent.name === FormName.DutiesPerformedRabies && report) {
+    return (
+      <Scaffold onClickClose={onClickClose} menu={menu} submenu={submenu}>
+        <RabiesDutiesForm
           report={report}
           updateFn={setReport}
           onSubmit={() =>
