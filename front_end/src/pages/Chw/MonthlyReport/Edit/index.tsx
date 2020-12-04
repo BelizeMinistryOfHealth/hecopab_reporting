@@ -43,6 +43,7 @@ import ReferralsToHealthFacilitiesForm from '../../../HealthEducator/MonthlyRepo
 import ReferralsDutiesForm from './ReferralsDutiesForm';
 import CounterReferralsDutiesForm from './CounterReferralsDutiesForm';
 import HealthFairsDutiesForm from './HealthFairsDutiesForm';
+import FirstAidDutiesForm from './FirstAidDutiesForm';
 
 interface ParamTypes {
   id: string;
@@ -375,6 +376,14 @@ const ChwMonthlyReportEdit = () => {
           onClick: () =>
             setFormEvent({
               name: FormName.DutiesPerformedHealthFairs,
+              status: FormStatus.Start,
+            }),
+        },
+        {
+          label: 'First Aid',
+          onClick: () =>
+            setFormEvent({
+              name: FormName.DutiesPerformedFirstAid,
               status: FormStatus.Start,
             }),
         },
@@ -776,6 +785,21 @@ const ChwMonthlyReportEdit = () => {
     return (
       <Scaffold onClickClose={onClickClose} menu={menu} submenu={submenu}>
         <HealthFairsDutiesForm
+          report={report}
+          updateFn={setReport}
+          onSubmit={() =>
+            setFormEvent({ ...formEvent, status: FormStatus.Submit })
+          }
+          formEvent={formEvent}
+        />
+      </Scaffold>
+    );
+  }
+
+  if (formEvent.name === FormName.DutiesPerformedFirstAid && report) {
+    return (
+      <Scaffold onClickClose={onClickClose} menu={menu} submenu={submenu}>
+        <FirstAidDutiesForm
           report={report}
           updateFn={setReport}
           onSubmit={() =>
