@@ -3,16 +3,14 @@ package app
 import "moh.gov.bz/hecopab/reporting/internal/db"
 
 type App struct {
-	Db   *db.Db
-	Auth Auth
+	Firestore       *db.FirestoreClient
+	Auth            Auth
+	ProjectID       string
+	FirestoreApiKey string
 }
 
 type Auth struct {
 	JwkUrl string
 	Iss    string
 	Aud    string
-}
-
-type JwtToken struct {
-	Email string
 }

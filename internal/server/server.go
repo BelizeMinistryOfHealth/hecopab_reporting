@@ -17,20 +17,19 @@ import (
 	"moh.gov.bz/hecopab/reporting/internal/db"
 )
 
-func RegisterHandlers(cnf config.AppConf) *mux.Router {
-	store, err := db.NewConnection(&cnf.Db)
+func RegisterHandlers(ctx context.Context, cnf config.AppConf) *mux.Router {
+	firestoreDb, err := db.NewFirestore(ctx, cnf.ProjectId)
+
 	if err != nil {
 		log.Errorf("could not establish connection to the database: %+v", err)
 		os.Exit(1)
 	}
 
 	app := app.App{
-		Db: store,
-		Auth: app.Auth{
-			JwkUrl: cnf.Auth.JwkUrl,
-			Iss:    cnf.Auth.Issuer,
-			Aud:    cnf.Auth.Audience,
-		}}
+		ProjectID:       cnf.ProjectId,
+		Firestore:       firestoreDb,
+		FirestoreApiKey: cnf.FirestoreApiKey,
+	}
 	router := api.API(app)
 	log.Infof("Initiated App: %+v", app)
 	//apiRouter := r.PathPrefix("/api").Subrouter()
@@ -44,7 +43,8 @@ func RegisterHandlers(cnf config.AppConf) *mux.Router {
 }
 
 func NewServer(cnf config.AppConf) {
-	r := RegisterHandlers(cnf)
+	firestoreContext := context.Background()
+	r := RegisterHandlers(firestoreContext, cnf)
 	srv := &http.Server{
 		Addr: "0.0.0.0:8080",
 		// Good practice to set timeouts to avoid Slowloris attacks.
