@@ -1,11 +1,3 @@
-db:
-  username: postgres
-  password: password
-  database: hecopab
-  host: localhost
-  port: 5432
-auth:
-  jwkUrl: 'https://emtct-dev.us.auth0.com/.well-known/jwks.json'
-  issuer: 'https://emtct-dev.us.auth0.com/'
-  audience: k46hfbBUDsOaPgNU9IlUd7hoWJ5Ku0EB
-
+firebase:
+  projectId: "emtct"
+  apiKey: "API_KEY"

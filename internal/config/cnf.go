@@ -3,24 +3,15 @@ package config
 import "github.com/spf13/viper"
 import log "github.com/sirupsen/logrus"
 
-type DbConf struct {
-	Username string
-	Password string
-	Database string
-	Host     string
-	Port     string
-	Sslmode  string
-}
-
-type AuthConf struct {
-	JwkUrl   string
-	Issuer   string
-	Audience string
+type Firebase struct {
+	ProjectId string
+	ApiKey    string
 }
 
 type AppConf struct {
-	Db   DbConf
-	Auth AuthConf
+	ProjectId       string
+	Port            int
+	FirestoreApiKey string
 }
 
 // ReadConf reads a yaml file and unmarshalls its content.
@@ -37,21 +28,15 @@ func ReadConf(fileName string) (*AppConf, error) {
 
 	log.Infof("using configuration file: %s", fileName)
 
-	var c DbConf
-	err := viper.Sub("db").Unmarshal(&c)
-	if err != nil {
-		return nil, err
-	}
-
-	var a AuthConf
-	err = viper.Sub("auth").Unmarshal(&a)
+	var firebase Firebase
+	err := viper.Sub("firebase").Unmarshal(&firebase)
 	if err != nil {
 		return nil, err
 	}
 
 	appConf := AppConf{
-		Db:   c,
-		Auth: a,
+		ProjectId:       firebase.ProjectId,
+		FirestoreApiKey: firebase.ApiKey,
 	}
 
 	return &appConf, nil
