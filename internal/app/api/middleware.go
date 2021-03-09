@@ -2,11 +2,9 @@ package api
 
 import (
 	"context"
+	"moh.gov.bz/hecopab/reporting/internal/app/auth"
 	"net/http"
-
-	"github.com/uris77/auth0"
-
-	"moh.gov.bz/hecopab/reporting/internal/app"
+	"strings"
 )
 
 // EnableCors enables CORS
@@ -21,26 +19,39 @@ func EnableCors() Middleware {
 	}
 }
 
-// VerifyToken is a middleware that verifies an auth0 token.
-func VerifyToken(jwkUrl, aud, iss string, auth0Client auth0.Auth0) Middleware {
+// VerifyToken is a middleware that verifies firestore token.
+func VerifyToken(userStore auth.UserStore) Middleware {
 	return func(f http.HandlerFunc) http.HandlerFunc {
 		return func(w http.ResponseWriter, r *http.Request) {
 			// OPTIONS request might not include the Authorization header.
 			// We don't need to verify a token for OPTIONS.
-			if r.Method == "OPTIONS" {
+			if r.Method == http.MethodOptions {
 				f(w, r)
 				return
 			}
-			token := r.Header.Get("Authorization")
-			jwtToken, err := auth0Client.Validate(jwkUrl, aud, iss, token)
+			h := r.Header
+			bearer := h.Get("Authorization")
+			if len(strings.Trim(bearer, "")) == 0 {
+				// No Authorization Token was provided
+				http.Error(w, http.StatusText(http.StatusUnauthorized), http.StatusUnauthorized)
+				return
+			}
+			bearerParts := strings.Split(bearer, " ")
+			if bearerParts[0] != "Bearer" {
+				// Wrong header format... return error
+				http.Error(w, http.StatusText(http.StatusUnauthorized), http.StatusUnauthorized)
+				return
+			}
+			token := bearerParts[1]
+			jwtToken, err := userStore.VerifyToken(r.Context(), token)
 			if err != nil {
 				http.Error(w, http.StatusText(http.StatusUnauthorized), http.StatusUnauthorized)
 				return
 			}
-			email, _ := jwtToken.Get("email")
-			ctx := context.WithValue(r.Context(), "user", app.JwtToken{Email: email.(string)})
+			ctx := context.WithValue(r.Context(), "user", jwtToken)
 			r = r.WithContext(ctx)
 			f(w, r)
 		}
 	}
+
 }
