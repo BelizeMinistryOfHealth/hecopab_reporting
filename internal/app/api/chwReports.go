@@ -2,6 +2,7 @@ package api
 
 import (
 	"encoding/json"
+	"moh.gov.bz/hecopab/reporting/internal/app/auth"
 	"net/http"
 	"strconv"
 	"time"
@@ -10,12 +11,11 @@ import (
 	"github.com/gorilla/mux"
 	log "github.com/sirupsen/logrus"
 
-	"moh.gov.bz/hecopab/reporting/internal/app"
 	"moh.gov.bz/hecopab/reporting/internal/business/data/chw"
 )
 
 type chwMonthlyReports struct {
-	chwMonthlyReport chw.ChwReport
+	chwMonthlyReport chw.Report
 }
 
 func (c chwMonthlyReports) ChwMonthlyReportHandlers(w http.ResponseWriter, r *http.Request) {
@@ -25,7 +25,7 @@ func (c chwMonthlyReports) ChwMonthlyReportHandlers(w http.ResponseWriter, r *ht
 	case http.MethodOptions:
 		return
 	case http.MethodGet:
-		token := r.Context().Value("user").(app.JwtToken)
+		token := r.Context().Value("user").(auth.JwtToken)
 		user := token.Email
 		year := r.URL.Query().Get("year")
 		var yr int
@@ -48,7 +48,7 @@ func (c chwMonthlyReports) ChwMonthlyReportHandlers(w http.ResponseWriter, r *ht
 			yr = y
 		}
 
-		reports, err := c.chwMonthlyReport.List(yr)
+		reports, err := c.chwMonthlyReport.List(r.Context(), yr)
 		if err != nil {
 			log.WithFields(log.Fields{
 				"user":    user,
@@ -71,7 +71,7 @@ func (c chwMonthlyReports) ChwMonthlyReportHandlers(w http.ResponseWriter, r *ht
 			return
 		}
 	case http.MethodPost:
-		token := r.Context().Value("user").(app.JwtToken)
+		token := r.Context().Value("user").(auth.JwtToken)
 		user := token.Email
 		var report chw.MonthlyReport
 		if err := json.NewDecoder(r.Body).Decode(&report); err != nil {
@@ -90,7 +90,7 @@ func (c chwMonthlyReports) ChwMonthlyReportHandlers(w http.ResponseWriter, r *ht
 			CreatedBy: user,
 			CreatedAt: time.Now(),
 		}
-		if err := c.chwMonthlyReport.Create(reportRecord); err != nil {
+		if err := c.chwMonthlyReport.Create(r.Context(), reportRecord); err != nil {
 			log.WithFields(log.Fields{
 				"user":    user,
 				"report":  reportRecord,
@@ -111,7 +111,7 @@ func (c chwMonthlyReports) ChwMonthlyReportHandlers(w http.ResponseWriter, r *ht
 			return
 		}
 	case http.MethodPut:
-		token := r.Context().Value("user").(app.JwtToken)
+		token := r.Context().Value("user").(auth.JwtToken)
 		user := token.Email
 		var report chw.MonthlyReportRecord
 		if err := json.NewDecoder(r.Body).Decode(&report); err != nil {
@@ -127,7 +127,7 @@ func (c chwMonthlyReports) ChwMonthlyReportHandlers(w http.ResponseWriter, r *ht
 		report.UpdatedBy = user
 		today := time.Now()
 		report.UpdatedAt = &today
-		if err := c.chwMonthlyReport.Update(report); err != nil {
+		if err := c.chwMonthlyReport.Update(r.Context(), report); err != nil {
 			log.WithFields(log.Fields{
 				"user":    user,
 				"report":  report,
@@ -156,11 +156,11 @@ func (c chwMonthlyReports) ChwMonthlyReportResourceHandler(w http.ResponseWriter
 	defer r.Body.Close()
 	switch r.Method {
 	case http.MethodGet:
-		token := r.Context().Value("user").(app.JwtToken)
+		token := r.Context().Value("user").(auth.JwtToken)
 		user := token.Email
 		vars := mux.Vars(r)
 		id := vars["id"]
-		report, err := c.chwMonthlyReport.GetById(id)
+		report, err := c.chwMonthlyReport.GetById(r.Context(), id)
 		if err != nil {
 			log.WithFields(log.Fields{
 				"user":    user,

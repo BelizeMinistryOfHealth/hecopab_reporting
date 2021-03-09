@@ -11,20 +11,20 @@ import (
 
 // Tallies holds the tallied numbers for each age group broken down by gender.
 type Tallies struct {
-	OneToFour              models.GenderCategories `json:"oneToFour"`
-	FiveToNine             models.GenderCategories `json:"fiveToNine"`
-	TenToFourteen          models.GenderCategories `json:"tenToFourteen"`
-	FifteenToNineteen      models.GenderCategories `json:"fifteenToNineteen"`
-	TwentyToTwentyFour     models.GenderCategories `json:"twentyToTwentyFour"`
-	TwentyFiveToTwentyNine models.GenderCategories `json:"twentyFiveToTwentyNine"`
-	ThirtyToThirtyFour     models.GenderCategories `json:"thirtyToThirtyFour"`
-	ThirtyFiveToThirtyNine models.GenderCategories `json:"thirtyFiveToThirtyNine"`
-	FortyToFortyFour       models.GenderCategories `json:"fortyToFortyFour"`
-	FortyFiveToFortyNine   models.GenderCategories `json:"fortyFiveToFortyNine"`
-	FiftyToFiftyFour       models.GenderCategories `json:"fiftyToFiftyFour"`
-	FiftyFiveToFiftyNine   models.GenderCategories `json:"fiftyFiveToFiftyNine"`
-	SixtyToSixtyFour       models.GenderCategories `json:"sixtyToSixtyFour"`
-	SixtyFiveAndOver       models.GenderCategories `json:"sixtyFiveOrMore"`
+	OneToFour              models.GenderCategories `json:"oneToFour" firestore:"oneToFour"`
+	FiveToNine             models.GenderCategories `json:"fiveToNine" firestore:"fiveToNine"`
+	TenToFourteen          models.GenderCategories `json:"tenToFourteen" firestore:"tenToFourteen"`
+	FifteenToNineteen      models.GenderCategories `json:"fifteenToNineteen" firestore:"fifteenToNineteen"`
+	TwentyToTwentyFour     models.GenderCategories `json:"twentyToTwentyFour" firestore:"twentyToTwentyFour"`
+	TwentyFiveToTwentyNine models.GenderCategories `json:"twentyFiveToTwentyNine" firestore:"twentyFiveToTwentyNine"`
+	ThirtyToThirtyFour     models.GenderCategories `json:"thirtyToThirtyFour" firestore:"thirtyToThirtyFour"`
+	ThirtyFiveToThirtyNine models.GenderCategories `json:"thirtyFiveToThirtyNine" firestore:"thirtyFiveToThirtyNine"`
+	FortyToFortyFour       models.GenderCategories `json:"fortyToFortyFour" firestore:"fortyToFortyFour"`
+	FortyFiveToFortyNine   models.GenderCategories `json:"fortyFiveToFortyNine" firestore:"fortyFiveToFortyNine"`
+	FiftyToFiftyFour       models.GenderCategories `json:"fiftyToFiftyFour" firestore:"fiftyToFiftyFour"`
+	FiftyFiveToFiftyNine   models.GenderCategories `json:"fiftyFiveToFiftyNine" firestore:"fiftyFiveToFiftyNine"`
+	SixtyToSixtyFour       models.GenderCategories `json:"sixtyToSixtyFour" firestore:"sixtyToSixtyFour"`
+	SixtyFiveAndOver       models.GenderCategories `json:"sixtyFiveOrMore" firestore:"sixtyFiveOrMore"`
 }
 
 // AgeGroupCounter is an interface for calculating the sum of the values assigned
@@ -74,28 +74,28 @@ func (t *Tallies) CalculateTotal() {
 
 // ChwMonthlyReport is the community health worker's monthly report
 type MonthlyReport struct {
-	HealthEducator        string                  `json:"healthEducator"`
-	RuralNurse            string                  `json:"ruralNurse"`
-	CommunityHealthWorker string                  `json:"chw"`
-	District              string                  `json:"district"`
-	Facility              string                  `json:"facility"`
-	Month                 int                     `json:"month"`
-	Year                  int                     `json:"year"`
-	PatientsSeen          Tallies                 `json:"patientsSeen"`
-	Deaths                Tallies                 `json:"deaths"`
-	Complaints            Complaints              `json:"complaints"`
-	DutiesPerformed       DutiesPerformed         `json:"dutiesPerformed"`
-	HealthEdSessions      HealthEdSession         `json:"healthEdSessions"`
-	Meetings              Meetings                `json:"meetings"`
-	Births                models.GenderCategories `json:"births"`
+	HealthEducator        string                  `json:"healthEducator" firestore:"healthEducator"`
+	RuralNurse            string                  `json:"ruralNurse" firestore:"ruralNurse"`
+	CommunityHealthWorker string                  `json:"chw" firestore:"chw"`
+	District              string                  `json:"district" firestore:"district"`
+	Facility              string                  `json:"facility" firestore:"facility"`
+	Month                 int                     `json:"month" firestore:"month"`
+	Year                  int                     `json:"year" firestore:"year"`
+	PatientsSeen          Tallies                 `json:"patientsSeen" firestore:"patientsSeen"`
+	Deaths                Tallies                 `json:"deaths" firestore:"deaths"`
+	Complaints            Complaints              `json:"complaints" firestore:"complaints"`
+	DutiesPerformed       DutiesPerformed         `json:"dutiesPerformed" firestore:"dutiesPerformed"`
+	HealthEdSessions      HealthEdSession         `json:"healthEdSessions" firestore:"healthEdSessions"`
+	Meetings              Meetings                `json:"meetings" firestore:"meetings"`
+	Births                models.GenderCategories `json:"births" firestore:"births"`
 }
 
 //ChwMonthlyReportRecord represents the persisted entity that stores a ChwMonthlyReport
 type MonthlyReportRecord struct {
-	ID        string        `json:"id"`
-	Report    MonthlyReport `json:"report"`
-	CreatedBy string        `json:"createdBy"`
-	CreatedAt time.Time     `json:"createdAt"`
-	UpdatedBy string        `json:"updatedBy"`
-	UpdatedAt *time.Time    `json:"updatedAt"`
+	ID        string        `json:"id" firestore:"id"`
+	Report    MonthlyReport `json:"report" firestore:"report"`
+	CreatedBy string        `json:"createdBy" firestore:"createdBy"`
+	CreatedAt time.Time     `json:"createdAt" firestore:"createdAt"`
+	UpdatedBy string        `json:"updatedBy" firestore:"updatedBy"`
+	UpdatedAt *time.Time    `json:"updatedAt" firestore:"updatedAt"`
 }
