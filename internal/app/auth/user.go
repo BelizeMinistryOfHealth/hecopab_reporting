@@ -59,7 +59,7 @@ func NewStore(ctx context.Context, db *db.FirestoreClient, config *firebase.Conf
 
 	return UserStore{
 		db:          db,
-		collection:  "emtct_users",
+		collection:  "hecopab_users",
 		authClient:  authClient,
 		adminClient: app,
 		apiKey:      apiKey,
