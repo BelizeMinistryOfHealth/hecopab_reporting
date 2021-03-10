@@ -30,14 +30,18 @@ func RegisterHandlers(ctx context.Context, cnf config.AppConf) *mux.Router {
 		Firestore:       firestoreDb,
 		FirestoreApiKey: cnf.FirestoreApiKey,
 	}
-	router := api.API(app)
+	router, apiErr := api.API(ctx, app)
+	if apiErr != nil {
+		log.Errorf("could not instantiate API: %v", err)
+		os.Exit(-1)
+	}
 	log.Infof("Initiated App: %+v", app)
 	//apiRouter := r.PathPrefix("/api").Subrouter()
-	router.HandleFunc("/test", api.TestHandler)
-	fs := http.FileServer(http.Dir("/var/lib/hecopab-www"))
-	router.PathPrefix("/").Handler(http.StripPrefix("/", fs))
-	staticFs := http.FileServer(http.Dir("/var/lib/hecopab-www"))
-	router.PathPrefix("/static/").Handler(http.StripPrefix("/static/", staticFs))
+	//router.HandleFunc("/test", api.TestHandler)
+	//fs := http.FileServer(http.Dir("/var/lib/hecopab-www"))
+	//router.PathPrefix("/").Handler(http.StripPrefix("/", fs))
+	//staticFs := http.FileServer(http.Dir("/var/lib/hecopab-www"))
+	//router.PathPrefix("/static/").Handler(http.StripPrefix("/static/", staticFs))
 
 	return router
 }
