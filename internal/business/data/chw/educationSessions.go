@@ -34,12 +34,16 @@ func (h *EdSession) Scan(value interface{}) error {
 	if err != nil {
 		return fmt.Errorf("failed to unmarshall duties performed: %w", err)
 	}
-	h.Total.CalculateTotal()
+	h.CalculateTotal()
 	return nil
 }
 
+func (h *EdSession) CalculateTotal() {
+	h.Total.CalculateTotal()
+}
+
 type HealthEdSession struct {
-	Sessions []EdSession `json:"sessions"`
+	Sessions []EdSession `json:"sessions" firestore:"sessions"`
 }
 
 // Value implements driver.Valuer. It is used by the sql driver
@@ -62,20 +66,3 @@ func (h *HealthEdSession) Scan(value interface{}) error {
 	}
 	return nil
 }
-
-//type EdSession []HealthEdSession
-//func (h *EdSession) Scan(value interface{}) error {
-//	b, ok := value.([]byte)
-//	if !ok {
-//		return errors.New("type assertion of DutiesPerformed to []byte failed")
-//	}
-//	err := json.Unmarshal(b, &h)
-//	if err != nil {
-//		return fmt.Errorf("failed to unmarshall duties performed: %w", err)
-//	}
-//	for idx, i := range []HealthEdSession(h) {
-//
-//	}
-//	//h.Total.CalculateTotal()
-//	return nil
-//}

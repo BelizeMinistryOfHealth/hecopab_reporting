@@ -8,22 +8,22 @@ import (
 )
 
 type DutiesPerformed struct {
-	HomeVisits               Tallies `json:"homeVisits"`
-	HealthEdAtHome           Tallies `json:"healthEdAtHome"`
-	HealthEdInSchools        Tallies `json:"healthEdInSchools"`
-	HealthEdWithGroups       Tallies `json:"healthEdWithGroups"`
-	BloodPressureChecks      Tallies `json:"bloodPressureChecks"`
-	BloodSugarChecks         Tallies `json:"bloodSugarChecks"`
-	PregnancyTest            Tallies `json:"pregnancyTest"`
-	WeightAndHeightCheck     Tallies `json:"weightAndHeightCheck"`
-	OrsDistributed           Tallies `json:"orsDistributed"`
-	IncaparinaDistributed    Tallies `json:"incaparinaDistributed"`
-	ReferralsGiven           Tallies `json:"referralsGiven"`
-	CounterReferralsReceived Tallies `json:"counterReferralsReceived"`
-	HealthFairsInCommunity   Tallies `json:"healthFairsInCommunity"`
-	FirstAid                 Tallies `json:"firstAid"`
-	MobileClinicAssistance   Tallies `json:"mobileClinicAssistance"`
-	RabiesCampaign           Tallies `json:"rabiesCampaign"`
+	HomeVisits               Tallies `json:"homeVisits" firestore:"homeVisits"`
+	HealthEdAtHome           Tallies `json:"healthEdAtHome" firestore:"healthEdAtHome"`
+	HealthEdInSchools        Tallies `json:"healthEdInSchools" firestore:"healthEdInSchools"`
+	HealthEdWithGroups       Tallies `json:"healthEdWithGroups" firestore:"healthEdWithGroups"`
+	BloodPressureChecks      Tallies `json:"bloodPressureChecks" firestore:"bloodPressureChecks"`
+	BloodSugarChecks         Tallies `json:"bloodSugarChecks" firestore:"bloodSugarChecks"`
+	PregnancyTest            Tallies `json:"pregnancyTest" firestore:"pregnancyTest"`
+	WeightAndHeightCheck     Tallies `json:"weightAndHeightCheck" firestore:"weightAndHeightCheck"`
+	OrsDistributed           Tallies `json:"orsDistributed" firestore:"orsDistributed"`
+	IncaparinaDistributed    Tallies `json:"incaparinaDistributed" firestore:"incaparinaDistributed"`
+	ReferralsGiven           Tallies `json:"referralsGiven" firestore:"referralsGiven"`
+	CounterReferralsReceived Tallies `json:"counterReferralsReceived" firestore:"counterReferralsReceived"`
+	HealthFairsInCommunity   Tallies `json:"healthFairsInCommunity" firestore:"healthFairsInCommunity"`
+	FirstAid                 Tallies `json:"firstAid" firestore:"firstAid"`
+	MobileClinicAssistance   Tallies `json:"mobileClinicAssistance" firestore:"mobileClinicAssistance"`
+	RabiesCampaign           Tallies `json:"rabiesCampaign" firestore:"rabiesCampaign"`
 }
 
 // Value implements driver.Valuer. It is used by the sql driver
@@ -61,4 +61,23 @@ func (d *DutiesPerformed) Scan(value interface{}) error {
 	d.MobileClinicAssistance.CalculateTotal()
 	d.RabiesCampaign.CalculateTotal()
 	return nil
+}
+
+func (d *DutiesPerformed) CalculateTotal() {
+	d.HomeVisits.CalculateTotal()
+	d.HealthEdAtHome.CalculateTotal()
+	d.HealthEdInSchools.CalculateTotal()
+	d.HealthEdWithGroups.CalculateTotal()
+	d.BloodPressureChecks.CalculateTotal()
+	d.BloodSugarChecks.CalculateTotal()
+	d.PregnancyTest.CalculateTotal()
+	d.WeightAndHeightCheck.CalculateTotal()
+	d.OrsDistributed.CalculateTotal()
+	d.IncaparinaDistributed.CalculateTotal()
+	d.ReferralsGiven.CalculateTotal()
+	d.CounterReferralsReceived.CalculateTotal()
+	d.HealthFairsInCommunity.CalculateTotal()
+	d.FirstAid.CalculateTotal()
+	d.MobileClinicAssistance.CalculateTotal()
+	d.RabiesCampaign.CalculateTotal()
 }

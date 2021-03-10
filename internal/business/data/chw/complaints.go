@@ -8,12 +8,12 @@ import (
 )
 
 type Complaints struct {
-	Malnutrition Tallies `json:"malnutrition"`
-	Diarrhea     Tallies `json:"diarrhea"`
-	Cold         Tallies `json:"cold"`
-	Fever        Tallies `json:"fever"`
-	FeverRash    Tallies `json:"feverRash"`
-	SoresRashes  Tallies `json:"soresRashes"`
+	Malnutrition Tallies `json:"malnutrition" firestore:"malnutrition"`
+	Diarrhea     Tallies `json:"diarrhea" firestore:"diarrhea"`
+	Cold         Tallies `json:"cold" firestore:"cold"`
+	Fever        Tallies `json:"fever" firestore:"fever"`
+	FeverRash    Tallies `json:"feverRash" firestore:"feverRash"`
+	SoresRashes  Tallies `json:"soresRashes" firestore:"soresRashes"`
 }
 
 // Value implements driver.Valuer. It is used by the sql driver
@@ -42,4 +42,13 @@ func (c *Complaints) Scan(value interface{}) error {
 	c.SoresRashes.CalculateTotal()
 	return nil
 
+}
+
+func (c *Complaints) CalculateTotal() {
+	c.Cold.CalculateTotal()
+	c.Diarrhea.CalculateTotal()
+	c.Fever.CalculateTotal()
+	c.FeverRash.CalculateTotal()
+	c.Malnutrition.CalculateTotal()
+	c.SoresRashes.CalculateTotal()
 }

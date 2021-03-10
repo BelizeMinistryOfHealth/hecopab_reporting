@@ -10,14 +10,14 @@ import (
 // GeographicalVectors is the vectors for some of the monthly reports.
 // They require that the numbers be broken down by Rural or Urban.
 type GeographicalVectors struct {
-	Rural int `json:"rural"`
-	Urban int `json:"urban"`
+	Rural int `json:"rural" firestore:"rural"`
+	Urban int `json:"urban" firestore:"urban"`
 }
 
 type GenderCategories struct {
-	Male   int `json:"male"`
-	Female int `json:"female"`
-	Total  int `json:"total"`
+	Male   int `json:"male" firestore:"male"`
+	Female int `json:"female" firestore:"female"`
+	Total  int `json:"total" firestore:"total"`
 }
 
 // Value makes the GenderCategories struct implement driver.Valuer.

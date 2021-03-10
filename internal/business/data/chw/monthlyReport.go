@@ -21,6 +21,13 @@ func New(firestoreClient *db.FirestoreClient) Report {
 // Create creates a new chw monthly report
 func (c Report) Create(ctx context.Context, r MonthlyReportRecord) error {
 	r.Report.PatientsSeen.CalculateTotal()
+	r.Report.Deaths.CalculateTotal()
+	r.Report.Complaints.CalculateTotal()
+	r.Report.DutiesPerformed.CalculateTotal()
+	r.Report.Births.CalculateTotal()
+	for _, i := range r.Report.HealthEdSessions.Sessions {
+		i.CalculateTotal()
+	}
 	_, err := c.firestoreClient.Client.Collection(c.collection).Doc(r.ID).Set(ctx, r)
 	if err != nil {
 		return fmt.Errorf("ChwReport.Create failed: %w", err)

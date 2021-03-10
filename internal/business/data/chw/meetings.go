@@ -8,12 +8,12 @@ import (
 )
 
 type Meetings struct {
-	CommunityMeetings int    `json:"communityMeetings"`
-	MeetingsOrganized int    `json:"meetingsOrganized"`
-	TrainingSessions  int    `json:"trainingSessions"`
-	Workshops         int    `json:"workshops"`
-	Other             int    `json:"other"`
-	Comments          string `json:"comments"`
+	CommunityMeetings int    `json:"communityMeetings" firestore:"communityMeetings"`
+	MeetingsOrganized int    `json:"meetingsOrganized" firestore:"meetingsOrganized"`
+	TrainingSessions  int    `json:"trainingSessions" firestore:"trainingSessions"`
+	Workshops         int    `json:"workshops" firestore:"workshops"`
+	Other             int    `json:"other" firestore:"other"`
+	Comments          string `json:"comments" firestore:"comments"`
 }
 
 // Value implements driver.Valuer. It is used by the sql driver
