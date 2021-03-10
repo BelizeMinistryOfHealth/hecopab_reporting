@@ -85,8 +85,18 @@ func TestChwReport_Create(t *testing.T) {
 }
 
 func TestChwReport_List(t *testing.T) {
-
-}
-
-func TestChwReport_Update(t *testing.T) {
+	projectId := os.Getenv("PROJECT_ID")
+	firestoreClient, err := db.NewFirestore(ctx, projectId)
+	if err != nil {
+		log.Fatalf("failed to connect to firestore: %v", err)
+		os.Exit(-1)
+	}
+	reporter := New(firestoreClient)
+	reports, err := reporter.List(ctx, 2021)
+	if err != nil {
+		t.Errorf("List() failed: %v", err)
+	}
+	if len(reports) == 0 {
+		t.Errorf("expected a non empty list of reports")
+	}
 }

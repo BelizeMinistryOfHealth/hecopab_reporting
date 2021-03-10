@@ -15,7 +15,7 @@ type Report struct {
 
 // New constructs the db access API for chw monthly reports
 func New(firestoreClient *db.FirestoreClient) Report {
-	return Report{firestoreClient: firestoreClient, collection: "chw_reports"}
+	return Report{firestoreClient: firestoreClient, collection: "hecopab_chw_reports"}
 }
 
 // Create creates a new chw monthly report
